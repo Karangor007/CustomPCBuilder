@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <div class="page-container">
         <header class="header-desktop">
                 <div class="section__content section__content--p30">
@@ -186,10 +187,10 @@
                     <div class="row">
 
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong>Basic Form</strong> Elements
+                                    <strong>User Registration</strong> 
                                 </div>
                                 <div class="card-body card-block">
                                     <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -201,24 +202,77 @@
                                                 <p class="form-control-static">Username</p>
                                             </div>
                                         </div>
+                                        <%-- First Name --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="text-input" class=" form-control-label">Text Input</label>
+                                                <label for="txtFname" class=" form-control-label">First Name</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control">
-                                                <small class="form-text text-muted">This is a help text</small>
+                                                <input type="text" id="txtFname" name="text-input" placeholder="Enter First Name" class="form-control">
+                                                
                                             </div>
                                         </div>
+                                        <%-- Last Name --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="email-input" class=" form-control-label">Email Input</label>
+                                                <label for="txtLastName" class=" form-control-label">Last Name</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input type="email" id="email-input" name="email-input" placeholder="Enter Email" class="form-control">
+                                                <input type="text" id="txtLastName" name="text-input" placeholder="Enter Last Name" class="form-control">
+                                                
+                                            </div>
+                                        </div>
+                                        <%-- UserName --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtUserName" class=" form-control-label">Username</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="txtUserName" name="text-input" placeholder="Enter Last Name" class="form-control">
+                                                
+                                            </div>
+                                        </div>
+                                        <%-- Password --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtPassword" class=" form-control-label">Password</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="password" id="txtPassword" name="text-input" placeholder="Enter Password" class="form-control">
+                                                
+                                            </div>
+                                        </div>
+                                        <%-- Confirm Password --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtConfPassword" class=" form-control-label">Confirm Password</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="password" id="txtConfPassword" name="text-input" placeholder="Enter Confirm Password" class="form-control">
+                                                
+                                            </div>
+                                        </div>
+                                        <%-- Email --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtEmail" class=" form-control-label">Email Address</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="email" id="txtEmail" name="email-input" placeholder="Enter Email" class="form-control">
                                                 <small class="help-block form-text">Please enter your email</small>
                                             </div>
                                         </div>
+                                         <%-- DOB --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtDob" class=" form-control-label">D.O.B</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="txtDob" name="" placeholder="Select a Date" class="form-control">
+                                                <small class="help-block form-text">Please enter your email</small>
+                                            </div>
+                                        </div>
+
                                         <div class="row form-group">
                                             <div class="col col-md-3">
                                                 <label for="password-input" class=" form-control-label">Password</label>
@@ -439,6 +493,10 @@
             </div>
         </div>
     </div>
-    
+    <script>
+        $(document).ready(function () {
+            $("#txtDob").flatpickr();
+        });
+    </script>
 </asp:Content>
 
