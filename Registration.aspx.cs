@@ -11,4 +11,10 @@ public partial class Registration : System.Web.UI.Page
     {
 
     }
+
+    public static string insertUpdateData(string demo)
+    {
+        var temp = demo;
+        return "1";
+    }
 }
