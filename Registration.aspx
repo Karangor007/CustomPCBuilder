@@ -27,6 +27,11 @@
         //    });
         //});
 
+        $(document).ready(function(){
+            //userTb
+            $('#userTb').DataTable();
+        });
+
         function checkValidation()
         {
             var flag = true;
@@ -51,19 +56,88 @@
           return flag;
         }
 
+        function checkPassword()
+        {
+            var passFlag = true;
+            //alert();
+            //console.log('Checking Password');
+            var password = $('#txtPassword').val();
+            var confPassword = $('#txtConfPassword').val();
+            //console.log('Password:'+password + 'Confirm Password:'+confPassword);
+            if(confPassword == password)
+            {
+                console.log('Password Match');
+                passFlag = true;
+            }
+            else
+            {
+                //console.log('Password Does Not Match');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Password Does Not Match',
+                
+                })
+                passFlag = false;
+            }
+            return passFlag;
+
+        }
+
+        function chkSelect()
+        {
+            var selectFlag = false;
+            var userSelect = $('#selectUserType').val();
+
+            if(userSelect == 'Select Type')
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please Select a User Type',
+                
+                })
+                selectFlag = false;
+            }
+            else
+            {
+                selectFlag = true;
+            }
+
+            return selectFlag;
+        }
+
         function Save()
         {
             //alert('Button Cliked');
 
             var chkValid = checkValidation();
+            var checkPassValid = checkPassword(); 
+            //var checkUserType = chkSelect();
             //console.log(val);
-
-            if(chkValid)
+            var checkFlag = chkValid === checkPassValid;
+            if(checkFlag)
             {
+                // Values
+                var fname = $('#txtFirstname').val();
+                var lname = $('#txtLastname').val();
+                var username = $('#txtUsername').val();
+                var password = $('#txtPassword').val();
+                var email = $('#txtEmail').val();
+                var contact = $('#txtContact').val();
+                var dob = $('#ddlDob').val();
+                var userType = $('#selectUserType').val();
+                var address = $('#txtAddress').val();
+                var isActive = $('#chbActive').val();
+
+
+                //string fname,string lname,string username,string password,string email,
+                //string contact,DateTime dob,
+                //string address,string usertype,string isActive
                 $.ajax({
                     type: "POST",
                     url: "Registration.aspx/insertUpdateData",
-                    data: '{demo:"demostring"}',
+                    data: '{fname:"'+fname+'",lname:"'+lname+'",username:"'+username+'",password:"'+password+'",email:"'+email+'",contact:"'+contact+'",dob:"'+dob+'",address:"'+address+'",usertype:"'+userType+'",isActive:"'+isActive+'"}',
                     contentType: "application/json"
                 }).done(function (res) {
                     alert(res);
@@ -279,6 +353,42 @@
 
 
                         </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="userTb" class="table table-striped table-bordered table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr No.</th>
+                                                <th>Username</th>
+                                                <th>Full Name</th>
+                                                <th>Email</th>
+                                                <th>Contact</th>
+                                                <th>Address</th>
+                                                <th>Active</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="userTbBody">
+                                            <%--<tr>
+                                                <td>1</td>
+                                                <td>Karan@123</td>
+                                                <td>Karan Rajgor</td>
+                                                <td>Karan@gmail.com</td>
+                                                <td>7894561231</td>
+                                                <td>Demo Address</td>
+                                                <td><label class="btn btn-danger">Deactive</label></td>
+                                                <td><button class="btn btn-success" data-toggle="modal" data-target="#largeModal">Edit</button></td>
+                                                <td><button class="btn btn-danger">Delete</button></td>
+                                            </tr>--%>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
 
                     </div>
@@ -308,10 +418,10 @@
                                 <%-- First Name --%>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="txtFname" class=" form-control-label">First Name</label>
+                                        <label for="txtFirstname" class=" form-control-label">First Name</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="Text1" name="text-input" placeholder="Enter First Name" class="form-control">
+                                        <input type="text" id="txtFirstname" name="text-input" placeholder="Enter First Name" class="form-control">
                                     </div>
                                 </div>
                                 <%-- Last Name --%>
@@ -320,7 +430,7 @@
                                         <label for="txtLastName" class=" form-control-label">Last Name</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="Text2" name="text-input" placeholder="Enter Last Name" class="form-control">
+                                        <input type="text" id="txtLastName" name="text-input" placeholder="Enter Last Name" class="form-control">
                                     </div>
                                 </div>
                                 <%-- UserName --%>
@@ -329,7 +439,7 @@
                                         <label for="txtUserName" class=" form-control-label">Username</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="Text3" name="text-input" placeholder="Enter Last Name" class="form-control valid">
+                                        <input type="text" id="txtUserName" name="txtUserName" placeholder="Enter Last Name" class="form-control valid">
                                     </div>
                                 </div>
                                 <%-- Password --%>
@@ -338,7 +448,7 @@
                                         <label for="txtPassword" class=" form-control-label">Password</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="password" id="Password1" name="text-input" placeholder="Enter Password" class="form-control valid">
+                                        <input type="password" id="txtPassword" name="txtPassword" placeholder="Enter Password" class="form-control valid" onchange="checkPassword()">
                                     </div>
                                 </div>
                                 <%-- Confirm Password --%>
@@ -347,7 +457,7 @@
                                         <label for="txtConfPassword" class=" form-control-label">Confirm Password</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="password" id="Password2" name="text-input" placeholder="Enter Confirm Password" class="form-control valid">
+                                        <input type="password" id="txtConfPassword" name="txtConfPassword" placeholder="Enter Confirm Password" class="form-control valid" onchange="checkPassword()">
                                     </div>
                                 </div>
                                 <%-- Email --%>
@@ -356,7 +466,7 @@
                                         <label for="txtEmail" class=" form-control-label">Email Address</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="email" id="Email1" name="email-input" placeholder="Enter Email" class="form-control">
+                                        <input type="email" id="txtEmail" name="email-input" placeholder="Enter Email" class="form-control">
                                         <small class="help-block form-text">Please enter your email</small>
                                     </div>
                                 </div>
@@ -366,18 +476,18 @@
                                         <label for="txtContact" class=" form-control-label">Contact No.</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="email" id="Email2" name="email-input" placeholder="Enter Contact Number" class="form-control">
+                                        <input type="text" id="txtContact" name="txtContact" placeholder="Enter Contact Number" class="form-control">
                                         <small class="help-block form-text">Please enter your email</small>
                                     </div>
                                 </div>
                                 <%-- DOB --%>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="txtDob" class=" form-control-label">D.O.B</label>
+                                        <label for="ddlDob" class=" form-control-label">D.O.B</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="Text4" name="" placeholder="Select a Date" class="form-control">
-                                        <small class="help-block form-text">Please enter your email</small>
+                                        <input type="text" id="ddlDob" name="" placeholder="Select a Date" class="form-control">
+                                        <small class="help-block form-text">Please Select D.O.B.</small>
                                     </div>
                                 </div>
 
@@ -388,7 +498,7 @@
                                         <label for="txtAddress" class=" form-control-label">Address</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <textarea name="txtAddress" id="Textarea1" rows="9" placeholder="Enter Address Here" class="form-control"></textarea>
+                                        <textarea name="txtAddress" id="txtAddress" rows="9" placeholder="Enter Address Here" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -396,8 +506,8 @@
                                         <label for="selectUserType" class=" form-control-label">User Type</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <select name="selectUserType" id="select1" class="form-control">
-                                            <option value="0">Select Type</option>
+                                        <select name="selectUserType" id="selectUserType" class="form-control">
+                                            
                                             <option value="1">User</option>
                                             <option value="2">Admin</option>
 
@@ -413,7 +523,7 @@
                                         <div class="form-check">
                                             <div class="checkbox">
                                                 <label for="chbActive" class="form-check-label ">
-                                                    <input type="checkbox" id="Checkbox1" name="chbActive" value="1" class="form-check-input">
+                                                    <input type="checkbox" id="chbActive" name="chbActive" value="1" class="form-check-input">
                                                 </label>
                                             </div>
 
@@ -426,10 +536,10 @@
                             </form>
                         </div>
                         <div class="card-footer">
-                            <button id="Button1" class="btn btn-primary btn-sm" onclick="Save()">
+                            <button id="btnSubmit" class="btn btn-primary btn-sm" onclick="Save()">
                                 <i class="fa fa-dot-circle-o"></i>Submit
                             </button>
-                            <button type="reset" id="Button2" class="btn btn-danger btn-sm">
+                            <button type="reset" id="btnReset" class="btn btn-danger btn-sm">
                                 <i class="fa fa-ban"></i>Reset
                             </button>
                         </div>
@@ -437,7 +547,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Confirm</button>
+
                 </div>
             </div>
         </div>
@@ -445,7 +555,7 @@
 
     <script>
         $(document).ready(function () {
-            $("#txtDob").flatpickr();
+            $("#ddlDob").flatpickr();
         });
     </script>
 </asp:Content>
