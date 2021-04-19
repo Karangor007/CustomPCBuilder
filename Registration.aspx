@@ -27,10 +27,169 @@
         //    });
         //});
 
+        //$('#largeModal').click(function () {
+        //    $('#mdTitle').text("Add User");
+        //    $('#largeModal').modal('show');
+        //    clear();
+        //    $("#chbActive ").prop("checked", 1);
+        //});
+
         $(document).ready(function(){
             //userTb
-            $('#userTb').DataTable();
+            getData();
         });
+
+        function getData()
+        {
+            // Destroy Datatable
+            $("#userTb").dataTable().fnDestroy();
+
+            $.ajax({
+                type : "POST",
+                url :"Registration.aspx/getData",
+                data : '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success : function(data){
+                    //console.log(data);
+                    var userData = $('#userTb tbody');
+                    userData.empty();
+                    var result = JSON.parse(data.d)
+                    var i = 0;
+                    var table = '';
+
+                    //<tr>
+                    //                            <td>1</td>
+                    //                            <td>Karan@123</td>
+                    //                            <td>Karan Rajgor</td>
+                    //                            <td>Karan@gmail.com</td>
+                    //                            <td>7894561231</td>
+                    //                            <td>Demo Address</td>
+                    //                            <td><label class="btn btn-danger">Deactive</label></td>
+                    //                            <td><button class="btn btn-success" data-toggle="modal" data-target="#largeModal">Edit</button></td>
+                    //                            <td><button class="btn btn-danger">Delete</button></td>
+                    //                        </tr>
+
+                    $.each(result, function (i, emp) {
+                        i++;
+                        console.log(emp);
+                        var fullName = emp.fname+ ' ' + emp.lname;
+                        table += '<tr><td>' + i + '</td><td>' + emp.usrname + '</td><td>' + fullName + '</td><td>' + emp.email + '</td><td>' + emp.contact + '</td><td>' + emp.address + '</td>';
+                        if (emp.isActive == "1") {
+                            table += '<td><label class="btn btn-success">Active</label></td>';
+                        }
+                        else {
+                            table += '<td><label class="btn btn-danger">Deactive</label></td>';
+                        }
+                        table += '<td> <button class="btn btn-success"  onclick="update('+emp.user_id+')">Edit</button></td>';
+                        table += '<td><button class="btn btn-danger" onclick="deleteData('+emp.user_id+')">Delete</button></td></tr>';
+                    });
+
+                    userData.append(table);
+                    $('#userTb').DataTable();
+                }
+            });
+        }
+
+        function deleteData(id)
+        {
+            Swal.fire({
+                title: 'Do you want to Delete This Record?',
+                showDenyButton: true,
+                
+                confirmButtonText: `Yes`,
+                
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+
+
+
+                Swal.fire('Record Has Been Deleted!', '', 'success')
+        } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+        }
+        })
+        }
+
+        function  update(id)
+        {
+            $('#largeModal').modal('show');
+            $('#mdTitle').html('Update User');
+            $('#btnSubmit').html('Update');
+            //hdfId
+            $('#hdfId').val(id);
+
+            $.ajax({
+                type : "POST",
+                url :"Registration.aspx/getData",
+                data : '{id:"'+id+'"}',                
+                contentType: "application/json"
+            }).done(function (res) {
+                //alert(res);
+                //$('#largeModal').modal('hide');
+                //clear();
+                //Swal.fire({
+                //    icon: 'success',
+                //    title: 'Success',
+                //    text: 'Record Has Been Saved!',
+                        
+                //})
+                //getData();
+                var result = JSON.parse(res.d);
+                console.log(result);
+                for(var data of result)
+                {
+                    //console.log(val);
+                $('#txtFirstName').val(data.fname)
+                $('#txtLastName').val(data.lname)
+                $('#txtUserName').val(data.usrname)
+                $('#txtPassword').val(data.password)
+                $('#txtEmail').val(data.email)
+                $('#txtContact').val(data.contact)
+                    //var dob = $('#ddlDob').val();
+                $('#selectUserType').val(data.type)
+                $('#txtAddress').val(data.address)
+
+                 if(data.isActive == "1")
+                {
+                    $("#chbActive ").prop("checked", true);
+                }
+            else
+            {
+                      $("#chbActive ").prop("checked", false);
+            }
+
+            }
+        //$('#txtFirstName').val('');
+        //$('#txtLastName').val('');
+        //$('#txtUserName').val('');
+        //$('#txtPassword').val('');
+        //$('#txtEmail').val('');
+        //$('#txtContact').val('');
+        ////var dob = $('#ddlDob').val();
+        //$('#selectUserType').val('');
+        //$('#txtAddress').val('');
+        //console.log('Clear Func');
+        //console.log(res);
+        });
+
+        //console.log(id);
+        }
+
+        function clear()
+        {
+            $('#txtFirstName').val('')
+            $('#txtLastName').val('')
+            $('#txtUserName').val('')
+            $('#txtPassword').val('')
+            $('#txtEmail').val('')
+            $('#txtContact').val('')
+            //var dob = $('#ddlDob').val();
+            $('#selectUserType').val('')
+            $('#txtAddress').val('')
+            console.log('Clear Func')
+        }
 
         function checkValidation()
         {
@@ -107,9 +266,22 @@
             return selectFlag;
         }
 
+        function addNew()
+        {
+            $('#largeModal').modal('show');
+            $('#mdTitle').html('Add User');
+            $('#btnSubmit').html('Submit');
+            //hdfId
+            clear();
+            $("#chbActive ").prop("checked", 1);
+            $('#hdfId').val('');
+            //console.log(id);
+        }
+
         function Save()
         {
             //alert('Button Cliked');
+            var id = $('#hdfId').val() == '' ? '' : $('#hdfId').val();
 
             var chkValid = checkValidation();
             var checkPassValid = checkPassword(); 
@@ -119,17 +291,36 @@
             if(checkFlag)
             {
                 // Values
-                var fname = $('#txtFirstname').val();
-                var lname = $('#txtLastname').val();
-                var username = $('#txtUsername').val();
+                var fname = $('#txtFirstName').val();
+                var lname = $('#txtLastName').val();
+                var username = $('#txtUserName').val();
                 var password = $('#txtPassword').val();
                 var email = $('#txtEmail').val();
                 var contact = $('#txtContact').val();
-                var dob = $('#ddlDob').val();
+                //var dob = $('#ddlDob').val();
                 var userType = $('#selectUserType').val();
                 var address = $('#txtAddress').val();
-                var isActive = $('#chbActive').val();
+                var isActive = "1";
+                //mdTitle
 
+                if($('#chbActive').prop('checked') == true)
+                {
+                    isActive = "1";
+                }
+                else
+                {
+                    isActive = "0";
+                }
+
+                var mode = '';
+                if($('#mdTitle').val() == 'Add User')
+                {
+                    mode = 'insert';
+                }
+                else
+                {
+                    mode = 'update';
+                }
 
                 //string fname,string lname,string username,string password,string email,
                 //string contact,DateTime dob,
@@ -137,10 +328,20 @@
                 $.ajax({
                     type: "POST",
                     url: "Registration.aspx/insertUpdateData",
-                    data: '{fname:"'+fname+'",lname:"'+lname+'",username:"'+username+'",password:"'+password+'",email:"'+email+'",contact:"'+contact+'",dob:"'+dob+'",address:"'+address+'",usertype:"'+userType+'",isActive:"'+isActive+'"}',
+                    data: '{mode:"'+mode+'",fname:"'+fname+'",lname:"'+lname+'",username:"'+username+'",password:"'+password+'",email:"'+email+'",contact:"'+contact+'",address:"'+address+'",usertype:"'+userType+'",isActive:"'+isActive+'",id:"'+id+'"}',
                     contentType: "application/json"
                 }).done(function (res) {
-                    alert(res);
+                    //alert(res);
+                    $('#largeModal').modal('hide');
+                    clear();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Record Has Been Saved!',
+                        
+                    })
+                    getData();
+
                     //console.log(res);
                 });
             }
@@ -345,7 +546,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#largeModal">
+                                    <button type="button" class="btn btn-primary mb-1" onclick="addNew()">
                                         Add New User
                                     </button>
                                 </div>
@@ -421,7 +622,7 @@
                                         <label for="txtFirstname" class=" form-control-label">First Name</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="txtFirstname" name="text-input" placeholder="Enter First Name" class="form-control">
+                                        <input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">
                                     </div>
                                 </div>
                                 <%-- Last Name --%>
@@ -481,15 +682,7 @@
                                     </div>
                                 </div>
                                 <%-- DOB --%>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="ddlDob" class=" form-control-label">D.O.B</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="text" id="ddlDob" name="" placeholder="Select a Date" class="form-control">
-                                        <small class="help-block form-text">Please Select D.O.B.</small>
-                                    </div>
-                                </div>
+
 
 
 
@@ -507,9 +700,9 @@
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <select name="selectUserType" id="selectUserType" class="form-control">
-                                            
-                                            <option value="1">User</option>
-                                            <option value="2">Admin</option>
+
+                                            <option value="User">User</option>
+                                            <option value="Admin">Admin</option>
 
                                         </select>
                                     </div>
@@ -523,7 +716,7 @@
                                         <div class="form-check">
                                             <div class="checkbox">
                                                 <label for="chbActive" class="form-check-label ">
-                                                    <input type="checkbox" id="chbActive" name="chbActive" value="1" class="form-check-input">
+                                                    <input type="checkbox" id="chbActive" name="chbActive" class="form-check-input">
                                                 </label>
                                             </div>
 
@@ -536,10 +729,10 @@
                             </form>
                         </div>
                         <div class="card-footer">
-                            <button id="btnSubmit" class="btn btn-primary btn-sm" onclick="Save()">
+                            <button id="btnSubmit" class="btn btn-primary btn-lg" onclick="Save()">
                                 <i class="fa fa-dot-circle-o"></i>Submit
                             </button>
-                            <button type="reset" id="btnReset" class="btn btn-danger btn-sm">
+                            <button id="btnReset" class="btn btn-danger btn-lg" onclick="clear()">
                                 <i class="fa fa-ban"></i>Reset
                             </button>
                         </div>
@@ -547,7 +740,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
+                    <input type="hidden" name="hdfId" id="hdfId" />
                 </div>
             </div>
         </div>

@@ -9,7 +9,7 @@ using System.Web;
 public class Props
 {
     #region User 
-
+    public string id { get; set; }
     public string userName { get; set; }
     public string firstName { get; set; }
     public string lastName { get; set; }
