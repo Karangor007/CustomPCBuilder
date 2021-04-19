@@ -154,15 +154,21 @@ public partial class Registration : System.Web.UI.Page
         //conn.Close();
     }
 
+    [WebMethod]
     public static string deleteUser(string id)
     {
         Props obj = new Props();
         obj.id = id;
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
+        conn.Open();
 
         obj.id = id;
-        string query = "";
+        string query = "delete from user_master where user_id = '"+obj.id+"'";
+        SqlCommand com = new SqlCommand(query,conn);
+        com.ExecuteNonQuery();
+
+        conn.Close();
 
         return "1";
     }

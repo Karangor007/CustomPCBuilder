@@ -72,7 +72,7 @@
 
                     $.each(result, function (i, emp) {
                         i++;
-                        console.log(emp);
+                        //console.log(emp);
                         var fullName = emp.fname+ ' ' + emp.lname;
                         table += '<tr><td>' + i + '</td><td>' + emp.usrname + '</td><td>' + fullName + '</td><td>' + emp.email + '</td><td>' + emp.contact + '</td><td>' + emp.address + '</td>';
                         if (emp.isActive == "1") {
@@ -91,25 +91,44 @@
             });
         }
 
+        function deleteFunc(id)
+        {
+            $.ajax({
+                type : "POST",
+                url :"Registration.aspx/deleteUser",
+                data : '{id:"'+id+'"}',                
+                contentType: "application/json"
+            }).done(function(res){
+                Swal.fire('Record Has Been Deleted!', '', 'success')
+                getData();
+            });
+
+
+            
+        }
+
         function deleteData(id)
         {
+            
+            // Confirmation
             Swal.fire({
-                title: 'Do you want to Delete This Record?',
-                showDenyButton: true,
+                title: 'Do you want To Delete This Record?',
                 
+                showCancelButton: true,
                 confirmButtonText: `Yes`,
                 
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
 
+                deleteFunc(id);
 
-
-                Swal.fire('Record Has Been Deleted!', '', 'success')
+                
         } else if (result.isDenied) {
             Swal.fire('Changes are not saved', '', 'info')
         }
         })
+
         }
 
         function  update(id)
@@ -188,7 +207,10 @@
             //var dob = $('#ddlDob').val();
             $('#selectUserType').val('')
             $('#txtAddress').val('')
-            console.log('Clear Func')
+            $('#txtConfPassword').val('')
+            
+
+            //console.log('Clear Func')
         }
 
         function checkValidation()
@@ -312,8 +334,9 @@
                     isActive = "0";
                 }
 
+                //console.log($('#mdTitle').html());
                 var mode = '';
-                if($('#mdTitle').val() == 'Add User')
+                if($('#mdTitle').html() == 'Add User')
                 {
                     mode = 'insert';
                 }
@@ -640,7 +663,7 @@
                                         <label for="txtUserName" class=" form-control-label">Username</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="txtUserName" name="txtUserName" placeholder="Enter Last Name" class="form-control valid">
+                                        <input type="text" id="txtUserName" name="txtUserName" placeholder="Enter UserName" class="form-control valid">
                                     </div>
                                 </div>
                                 <%-- Password --%>
