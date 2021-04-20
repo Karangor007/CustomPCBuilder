@@ -26,7 +26,7 @@
     <link href="admin/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
-
+    <link href="assets/css/style.css" rel="stylesheet" />
     <link href="admin/css/theme.css" rel="stylesheet" media="all">
 
     <script src="admin/vendor/jquery-3.2.1.min.js"></script>
@@ -34,59 +34,79 @@
 </head>
 <body>
 
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" />
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-12 mx-auto">
+                    <div class="card">
 
-    <div class="container mt-4">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="text-center text-info display-3">Login</h2>
-            </div>
-            <div class="card-body">
-                
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-user"></i>
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-md-12 mb-2">
+                                    <h2 class="text-center text-info display-4">Log In</h2>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+
+                                        <asp:TextBox runat="server" placeholder="Enter Username" ID="txtUsername" CssClass="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-asterisk"></i>
+                                        </div>
+
+                                        <asp:TextBox TextMode="Password" runat="server" placeholder="Enter Password" ID="txtPassword" CssClass="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-actions form-group col-md-12">
+                                    <asp:UpdatePanel runat="server">
+                                        <ContentTemplate>
+                                            <asp:Button Text="LogIn" runat="server" ID="btnLogin" CssClass="btn btn-success btn-block" OnClick="btnLogin_Click"/>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                    <%--<button  class="btn btn-success btn-block">Log In</button>--%>
+                                    
+                                </div>
                             </div>
-                            <input type="text" id="username" name="username" placeholder="Username" class="form-control">
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-asterisk"></i>
-                            </div>
-                            <input type="password" id="password" name="password" placeholder="Password" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-actions form-group">
-                        <button type="submit" class="btn btn-success btn-block">Log In</button>
-                    </div>
-                
+                </div>
             </div>
+
+
         </div>
 
-    </div>
+        
 
-    <script src="admin/vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="admin/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <script src="admin/vendor/slick/slick.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="admin/vendor/wow/wow.min.js"></script>
-    <script src="admin/vendor/animsition/animsition.min.js"></script>
-    <script src="admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="admin/vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="admin/vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="admin/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="admin/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="admin/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="admin/vendor/select2/select2.min.js">
-    </script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
-    <script src="admin/js/main.js"></script>
+        <script src="admin/vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="admin/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+        <script src="admin/vendor/slick/slick.min.js">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="admin/vendor/wow/wow.min.js"></script>
+        <script src="admin/vendor/animsition/animsition.min.js"></script>
+        <script src="admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+        </script>
+        <script src="admin/vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="admin/vendor/counter-up/jquery.counterup.min.js">
+        </script>
+        <script src="admin/vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="admin/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="admin/vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="admin/vendor/select2/select2.min.js">
+        </script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
+        <script src="admin/js/main.js"></script>
+    </form>
 </body>
 </html>
