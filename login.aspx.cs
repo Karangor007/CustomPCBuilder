@@ -12,8 +12,14 @@ public partial class login : System.Web.UI.Page
 
     }
 
+    //protected void btnLogin_Click(object sender, EventArgs e)
+    //{
+    //    ClientScript.RegisterClientScriptBlock(GetType(), "sas", "<script> Swal.fire('It Worked!', '', 'success')</script>", true);
+    //}
+
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        ClientScript.RegisterClientScriptBlock(GetType(), "sas", "<script> Swal.fire('It Worked!', '', 'success')</script>", true);
+        //ClientScript.RegisterClientScriptBlock(GetType(), "sas", "<script> alert('Worked');</script>", true);
+        ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "demo()", true);
     }
 }
