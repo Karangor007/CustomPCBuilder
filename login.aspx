@@ -68,11 +68,9 @@
                                     </div>
                                 </div>
                                 <div class="form-actions form-group col-md-12">
-                                    <asp:UpdatePanel runat="server">
-                                        <ContentTemplate>
+                                    
                                             <asp:Button Text="LogIn" runat="server" ID="btnLogin" CssClass="btn btn-success btn-block" OnClick="btnLogin_Click"/>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
+                                    
                                     <%--<button  class="btn btn-success btn-block">Log In</button>--%>
                                     
                                 </div>
