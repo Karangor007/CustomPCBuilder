@@ -23,6 +23,7 @@ public partial class Registration : System.Web.UI.Page
     {
         Props obj = new Props();
 
+        Registration reg = new Registration();
 
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
@@ -42,7 +43,7 @@ public partial class Registration : System.Web.UI.Page
             obj.isActive = isActive;
             obj.createAt = DateTime.Now.ToString("yyyy-MM-dd");
             obj.userName = username;
-            obj.createBy = "admin";
+            obj.createBy = reg.getUserInSession(); 
             obj.updateAt = null;
             obj.updateBy = "";
             //insert into USER_MASTER values('username','pass','type','fname','lname','email','address','createAt','createby','updateAt','updateBy','isActive','contact')
@@ -68,7 +69,7 @@ public partial class Registration : System.Web.UI.Page
             obj.userName = username;
             
             obj.updateAt = DateTime.Now.ToString("yyyy-MM-dd"); ;
-            obj.updateBy = "admin";
+            obj.updateBy = reg.getUserInSession();
             string query = "update USER_MASTER set usrname = '"+obj.userName+"',password = '"+obj.password+"',type = '"+obj.userType+"',fname = '"+obj.firstName+"',lname = '"+obj.lastName+"',email = '"+obj.email+"',address = '"+obj.address+"',updateAt = '"+obj.updateAt+"',updateBy = '"+obj.updateBy+"',isActive = '"+obj.isActive+"',contact = '"+obj.contact+"' where user_id = '"+obj.id+"'";
             SqlCommand com = new SqlCommand(query,conn);
             com.ExecuteNonQuery();
@@ -171,6 +172,37 @@ public partial class Registration : System.Web.UI.Page
         conn.Close();
 
         return "1";
+    }
+
+    private string getUserInSession()
+    {
+        string user;
+
+        if (Session["username"].ToString() == null || Session["username"].ToString() == "")
+        {
+            user = null;
+            redirectLogin();
+        }
+        else
+        {
+            user = Session["username"].ToString();
+        }
+
+
+        return user;
+
+    }
+
+    private void redirectLogin()
+    {
+        try
+        {
+            Response.Redirect("login.aspx");
+        }
+        catch (Exception ex)
+        {
+
+        }
     }
 
 }

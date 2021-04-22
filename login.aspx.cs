@@ -82,6 +82,7 @@ public partial class login : System.Web.UI.Page
         if (count > 0)
         {
             flag = true;
+            setUserNameSession(obj.userName);
         }
         else
         {
@@ -94,5 +95,17 @@ public partial class login : System.Web.UI.Page
         }
 
         return flag;
+    }
+
+    private void setUserNameSession(string username)
+    {
+        try
+        {
+            Session["username"] = username;
+        }
+        catch (Exception ex)
+        {
+
+        }
     }
 }
