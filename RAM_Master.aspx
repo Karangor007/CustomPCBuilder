@@ -34,7 +34,7 @@
                                 <div class="card-body card-block">
                                     <div id="form1" enctype="multipart/form-data" class="form-horizontal">
 
-                                        <%-- First Name --%>
+                                        <%-- Brand --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
                                                 <label for="txtBrand" class=" form-control-label">Brand</label>
@@ -44,25 +44,42 @@
                                                 <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Brand Name" ID="txtBrand" />
                                             </div>
                                         </div>
-                                        <%-- Last Name --%>
+                                        <%-- Type --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
                                                 <label for="txtType" class=" form-control-label">Type</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Type Eg. DDR4 or DDR5" ID="txtType" />
+                                                <%--<asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Type Eg. DDR4 or DDR5" ID="txtType" />--%>
+                                                <asp:DropDownList CssClass="form-control" ID="drpType" runat="server">
+                                                    <asp:ListItem Text="Select Type" />
+                                                    <asp:ListItem Text="DDR2" />
+                                                    <asp:ListItem Text="DDR3" />
+                                                    <asp:ListItem Text="DDR4" />
+                                                    <asp:ListItem Text="DDR5" />
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
-                                        <%-- UserName --%>
+                                        <%-- Size --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
                                                 <label for="txtSize" class=" form-control-label">Size</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Size In MB" ID="txtSize" />
+                                                <%--<asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Size In MB" ID="txtSize" />--%>
+                                                <asp:DropDownList runat="server" CssClass="form-control" ID="drpSize">
+                                                    <asp:ListItem Text="Select Size In MB" />
+                                                    <asp:ListItem Text="4" />
+                                                    <asp:ListItem Text="6" />
+                                                    <asp:ListItem Text="8" />
+                                                    <asp:ListItem Text="16" />
+                                                    <asp:ListItem Text="32" />
+                                                    <asp:ListItem Text="64" />
+                                                    <asp:ListItem Text="128" />
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
-                                        <%-- Password --%>
+                                        <%-- Price --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
                                                 <label for="txtPrice" class=" form-control-label">Price</label>
@@ -71,7 +88,16 @@
                                                 <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Price In Rupees" ID="txtPrice" />
                                             </div>
                                         </div>
-                                        <%-- Confirm Password --%>
+                                        <%-- Stock --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtStock" class=" form-control-label">In Stock</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <asp:TextBox CssClass="form-control" runat="server"  placeholder="Available Stock" ID="txtStock" />
+                                            </div>
+                                        </div>
+                                        <%-- Image --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
                                                 <label for="txtImage" class=" form-control-label">Image</label>

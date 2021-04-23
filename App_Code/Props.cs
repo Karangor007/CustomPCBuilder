@@ -27,6 +27,17 @@ public class Props
 
     #endregion
 
+    #region RAM
+    public string ram_id { get; set; }
+    public string ram_brand { get; set; }
+    public string ram_size { get; set; }
+    public string ram_type { get; set; }
+    public string ram_price { get; set; }
+    public string ram_stock { get; set; }
+    public string ram_img { get; set; }
+
+    #endregion
+
     public Props()
 	{
 		//
