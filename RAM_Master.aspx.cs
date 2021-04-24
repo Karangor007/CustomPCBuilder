@@ -14,13 +14,19 @@ public partial class RAM_Master : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            
 
+            requestData();
+        }
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         Props obj = new Props();
         string path = "assets/images/";
+        obj.ram_id = Convert.ToString(getRamId());
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
 
@@ -50,45 +56,92 @@ public partial class RAM_Master : System.Web.UI.Page
                 txtPrice.CssClass = "form-control ";
                 drpSize.CssClass = "form-control ";
                 drpType.CssClass = "form-control ";
-                
 
-                obj.ram_brand = txtBrand.Text.Trim();
-                obj.ram_size = drpSize.SelectedValue;
-                obj.ram_type = drpType.SelectedValue;
-                obj.ram_price = txtPrice.Text.Trim();
-                obj.ram_stock = txtStock.Text.Trim();
-                obj.ram_img = "No Image";
-                obj.isActive = chbActive.Checked == true ? "1" : "0";
-                obj.createAt = DateTime.Now.ToString("yyyy/MM/dd HH:mm");
-                obj.createBy = getUserInSession();
-                obj.updateAt = null;
-                obj.updateBy = "";
-                if (txtImage.HasFile)
+                // Insert
+                if (obj.ram_id == "0")
                 {
-                    //string fname = txtImage.FileName;
-                    obj.ram_img = txtImage.FileName;
-                    Guid objGuid = Guid.NewGuid();
-                    string subGuid = Convert.ToString(objGuid);
-                    subGuid = subGuid.Substring(0,4);
-                    txtImage.SaveAs(Server.MapPath(path+ subGuid + obj.ram_img ));
-                    string imgName = subGuid + obj.ram_img ;
-                    string query = "insert into mst_ram values('"+obj.ram_brand+"','"+obj.ram_type+"','"+obj.ram_size+"','"+obj.ram_price+"','"+obj.createAt+"','"+obj.createBy+"','"+obj.updateAt+"','"+obj.updateBy+"','"+obj.isActive+"','"+ imgName +"','" +obj.isActive+"')";
+                    obj.ram_brand = txtBrand.Text.Trim();
+                    obj.ram_size = drpSize.SelectedValue;
+                    obj.ram_type = drpType.SelectedValue;
+                    obj.ram_price = txtPrice.Text.Trim();
+                    obj.ram_stock = txtStock.Text.Trim();
+                    obj.ram_img = "No Image";
+                    obj.isActive = chbActive.Checked == true ? "1" : "0";
+                    obj.createAt = DateTime.Now.ToString("yyyy/MM/dd HH:mm");
+                    obj.createBy = getUserInSession();
+                    obj.updateAt = null;
+                    obj.updateBy = "";
+                    if (txtImage.HasFile)
+                    {
+                        //string fname = txtImage.FileName;
+                        obj.ram_img = txtImage.FileName;
+                        Guid objGuid = Guid.NewGuid();
+                        string subGuid = Convert.ToString(objGuid);
+                        subGuid = subGuid.Substring(0, 4);
+                        txtImage.SaveAs(Server.MapPath(path + subGuid + obj.ram_img));
+                        string imgName = subGuid + obj.ram_img;
+                        string query = "insert into mst_ram values('" + obj.ram_brand + "','" + obj.ram_type + "','" + obj.ram_size + "','" + obj.ram_price + "','" + obj.createAt + "','" + obj.createBy + "','" + obj.updateAt + "','" + obj.updateBy + "','" + obj.isActive + "','" + imgName + "','" + obj.isActive + "')";
 
-                    SqlCommand com = new SqlCommand(query,conn);
-                    com.ExecuteNonQuery();
-                    clear();
-                    Response.Redirect("ram_list.aspx");
+                        SqlCommand com = new SqlCommand(query, conn);
+                        com.ExecuteNonQuery();
+                        clear();
+                        Response.Redirect("ram_list.aspx");
+                    }
+                    else
+                    {
+                        string query = "insert into mst_ram values('" + obj.ram_brand + "','" + obj.ram_type + "','" + obj.ram_size + "','" + obj.ram_price + "','" + obj.createAt + "','" + obj.createBy + "','" + obj.updateAt + "','" + obj.updateBy + "','" + obj.isActive + "','" + obj.ram_img + "','" + obj.isActive + "')";
+
+                        SqlCommand com = new SqlCommand(query, conn);
+                        com.ExecuteNonQuery();
+                        clear();
+                        Response.Redirect("ram_list.aspx");
+
+                    }
                 }
+                // Update
                 else
                 {
-                    string query = "insert into mst_ram values('" + obj.ram_brand + "','" + obj.ram_type + "','" + obj.ram_size + "','" + obj.ram_price + "','" + obj.createAt + "','" + obj.createBy + "','" + obj.updateAt + "','" + obj.updateBy + "','" + obj.isActive + "','" + obj.ram_img + "','" + obj.isActive + "')";
+                    obj.ram_brand = txtBrand.Text.Trim();
+                    obj.ram_size = drpSize.SelectedValue;
+                    obj.ram_type = drpType.SelectedValue;
+                    obj.ram_price = txtPrice.Text.Trim();
+                    obj.ram_stock = txtStock.Text.Trim();
+                    //obj.ram_img = "No Image";
+                    obj.isActive = chbActive.Checked == true ? "1" : "0";
+                    //obj.createAt = DateTime.Now.ToString("yyyy/MM/dd HH:mm");
+                    //obj.createBy = getUserInSession();
+                    obj.updateAt = DateTime.Now.ToString("yyyy/MM/dd HH:mm"); ;
+                    obj.updateBy = getUserInSession();
+                    if (txtImage.HasFile)
+                    {
+                        //string fname = txtImage.FileName;
+                        obj.ram_img = txtImage.FileName;
+                        Guid objGuid = Guid.NewGuid();
+                        string subGuid = Convert.ToString(objGuid);
+                        subGuid = subGuid.Substring(0, 4);
+                        txtImage.SaveAs(Server.MapPath(path + subGuid + obj.ram_img));
+                        string imgName = subGuid + obj.ram_img;
+                        string query = "update mst_ram set brand = '" + obj.ram_brand + "' , type = '" + obj.ram_type + "', size = '" + obj.ram_size + "',price = '" + obj.ram_price + "',updateAt = '" + obj.updateAt + "',updateBy = '" + obj.updateBy + "',isActive ='" + obj.isActive + "', img= '" + imgName + "' , in_stock = '" + obj.ram_stock + "' where ram_id = '" + obj.ram_id + "'";
+                        //update mst_ram set brand = '', type = '', size = '', price = '', updateAt = '', updateBy = '', isActive = '', img = '', in_stock = '' where ram_id = ''
+                        SqlCommand com = new SqlCommand(query, conn);
+                        com.ExecuteNonQuery();
+                        clear();
+                        Response.Redirect("ram_list.aspx");
+                    }
+                    else
+                    {
+                        string query = "update mst_ram set brand = '" + obj.ram_brand + "' , type = '" + obj.ram_type + "', size = '" + obj.ram_size + "',price = '" + obj.ram_price + "',updateAt = '" + obj.updateAt + "',updateBy = '" + obj.updateBy + "',isActive ='" + obj.isActive + "', in_stock = '" + obj.ram_stock + "' where ram_id = '" + obj.ram_id + "'";
 
-                    SqlCommand com = new SqlCommand(query, conn);
-                    com.ExecuteNonQuery();
-                    clear();
-                    Response.Redirect("ram_list.aspx");
+                        SqlCommand com = new SqlCommand(query, conn);
+                        com.ExecuteNonQuery();
+                        clear();
+                        Response.Redirect("ram_list.aspx");
 
+                    }
                 }
+
+
+
 
             }
 
@@ -138,6 +191,57 @@ public partial class RAM_Master : System.Web.UI.Page
         catch (Exception ex)
         {
 
+        }
+    }
+
+    private int getRamId()
+    {
+        int id;
+
+        if (Session["ram_id"].ToString() == "" || Session["ram_id"].ToString() == null)
+        {
+            id = 0;
+        }
+        else
+        {
+            id = Convert.ToInt32(Session["ram_id"].ToString());
+        }
+        return id;
+
+    }
+
+    private void requestData()
+    {
+        SqlConnection conn = new SqlConnection();
+        DataSet ds = new DataSet();
+        Props obj = new Props();
+        obj.ram_id = Convert.ToString(getRamId());
+        conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
+        try
+        {
+            if (obj.ram_id == "0")
+            {
+
+            }
+            else
+            {
+                btnSubmit.Text = "Update";
+                string query = "select * from mst_ram where ram_id='" + obj.ram_id + "'";
+                SqlDataAdapter adp = new SqlDataAdapter(query, conn);
+                adp.Fill(ds);
+                //ds.Tables[0].Rows[0]["type"].ToString();
+                txtBrand.Text = ds.Tables[0].Rows[0]["brand"].ToString();
+                txtPrice.Text = ds.Tables[0].Rows[0]["price"].ToString();
+                txtStock.Text = ds.Tables[0].Rows[0]["in_stock"].ToString();
+                drpSize.Text = ds.Tables[0].Rows[0]["size"].ToString();
+                drpType.Text = ds.Tables[0].Rows[0]["type"].ToString();
+            }
+
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
         }
     }
 }

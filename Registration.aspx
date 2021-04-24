@@ -76,10 +76,10 @@
                         var fullName = emp.fname+ ' ' + emp.lname;
                         table += '<tr><td>' + i + '</td><td>' + emp.usrname + '</td><td>' + fullName + '</td><td>' + emp.email + '</td><td>' + emp.contact + '</td><td>' + emp.address + '</td>';
                         if (emp.isActive == "1") {
-                            table += '<td><label class="btn btn-success">Active</label></td>';
+                            table += '<td><label class="badge badge-success pt-2 pb-2 pl-3 pr-3">Active</label></td>';
                         }
                         else {
-                            table += '<td><label class="btn btn-danger">Deactive</label></td>';
+                            table += '<td><label class="badge badge-danger pt-2 pb-2 pl-3 pr-3">Deactive</label></td>';
                         }
                         table += '<td> <button class="btn btn-success"  onclick="update('+emp.user_id+')">Edit</button></td>';
                         table += '<td><button class="btn btn-danger" onclick="deleteData('+emp.user_id+')">Delete</button></td></tr>';
