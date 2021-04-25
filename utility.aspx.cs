@@ -50,7 +50,7 @@ public partial class utility : System.Web.UI.Page
     {
         string user;
 
-        if (Session["username"].ToString() == null || Session["username"].ToString() == "")
+        if (Session["username"] == null)
         {
             user = null;
             redirectLogin();

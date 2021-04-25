@@ -35,7 +35,9 @@ public class Props
     public string ram_price { get; set; }
     public string ram_stock { get; set; }
     public string ram_img { get; set; }
-
+    public string ram_frequency { get; set; }
+    public string ram_channel { get; set; }
+    public string ram_model { get; set; }
     #endregion
 
     public Props()

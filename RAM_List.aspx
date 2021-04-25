@@ -22,9 +22,8 @@
                                         <h3 class="text-dark ">RAM Master</h3>
                                     </div>
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-primary mb-1">
-                                            Add New
-                                        </button>
+                                        
+                                        <asp:Button Text="Add New" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="btnAddNew_Click" />
                                     </div>
 
                                 </div>
@@ -41,6 +40,9 @@
                                                 <th>Sr No.</th>
                                                 <th>Image</th>
                                                 <th>Brand</th>
+                                                <th>Model</th>
+                                                <th>Frequency</th>
+                                                <th>Channel</th>
                                                 <th>Type</th>
                                                 <th>Size</th>
                                                 <th>Price</th>
@@ -63,6 +65,15 @@
                                                         </td>
                                                         <td>
                                                             <asp:Label Text='<%#Eval("brand")%>' ID="lblBrand" runat="server" />
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label Text='<%#Eval("model")%>' ID="lblModel" runat="server" />
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label Text='<%#Eval("frequency")%>' ID="lblFrequency" runat="server" />
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label Text='<%#Eval("channel")%>' ID="lblChannel" runat="server" />
                                                         </td>
                                                         <td>
                                                             <asp:Label Text='<%#Eval("type")%>' ID="lblType" runat="server" />

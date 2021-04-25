@@ -97,4 +97,16 @@ public partial class RAM_List : System.Web.UI.Page
             throw ex;
         }
     }
+
+    protected void btnAddNew_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Response.Redirect("ram_master.aspx");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 }
