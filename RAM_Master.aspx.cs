@@ -183,7 +183,7 @@ public partial class RAM_Master : System.Web.UI.Page
     {
         string user;
 
-        if (Session["username"].ToString() == null || Session["username"].ToString() == "")
+        if (Session["username"] == null)
         {
             user = null;
             redirectLogin();
@@ -259,6 +259,19 @@ public partial class RAM_Master : System.Web.UI.Page
             }
 
 
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    protected void btnAddNew_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            
+            Response.Redirect("ram_list.aspx");
         }
         catch (Exception ex)
         {

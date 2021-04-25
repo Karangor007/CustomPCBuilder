@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using System.Configuration;
 
-public partial class RAM_List : System.Web.UI.Page
+public partial class Processor_List : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -18,6 +18,12 @@ public partial class RAM_List : System.Web.UI.Page
         {
             bindRptList();
         }
+    }
+
+    protected void btnAddNew_Click(object sender, EventArgs e)
+    {
+        Session["processor_id"] = "0";
+        Response.Redirect("processor_Master.aspx");
     }
 
     protected string imgUrl(object ul)
@@ -33,18 +39,22 @@ public partial class RAM_List : System.Web.UI.Page
         }
     }
 
+
+
     protected void btnUpdateRepeater_Command(object sender, CommandEventArgs e)
     {
+
         try
         {
             int id = Convert.ToInt32(e.CommandArgument);
-            Session["ram_id"] = id;
-            Response.Redirect("ram_Master.aspx");
+            Session["processor_id"] = id;
+            Response.Redirect("processor_Master.aspx");
         }
         catch (Exception ex)
         {
             throw ex;
         }
+
     }
 
     protected void btnDeleteRepeater_Command(object sender, CommandEventArgs e)
@@ -59,17 +69,18 @@ public partial class RAM_List : System.Web.UI.Page
         }
         try
         {
-            string query = "delete from mst_ram where ram_id = '"+id+"'";
+            string query = "delete from mst_processor where id = '" + id + "'";
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
             //bindRptList();
-            Response.Redirect("ram_list.aspx");
+            Response.Redirect("processor_list.aspx");
         }
         catch (Exception ex)
         {
             throw ex;
         }
+
     }
 
     private void bindRptList()
@@ -84,11 +95,11 @@ public partial class RAM_List : System.Web.UI.Page
                 conn.Open();
             }
 
-            string query = "select * from mst_ram";
+            string query = "select * from mst_processor";
             SqlDataAdapter adp = new SqlDataAdapter(query, conn);
             adp.Fill(ds);
-            rptRam.DataSource = ds;
-            rptRam.DataBind();
+            rptProcessor.DataSource = ds;
+            rptProcessor.DataBind();
 
             conn.Close();
         }
@@ -97,17 +108,35 @@ public partial class RAM_List : System.Web.UI.Page
             throw ex;
         }
     }
+    private string getUserInSession()
+    {
+        string user;
 
-    protected void btnAddNew_Click(object sender, EventArgs e)
+        if (Session["username"].ToString() == null || Session["username"].ToString() == "")
+        {
+            user = null;
+            redirectLogin();
+        }
+        else
+        {
+            user = Session["username"].ToString();
+        }
+
+
+        return user;
+
+    }
+
+    private void redirectLogin()
     {
         try
         {
-            Session["ram_id"] = "0";
-            Response.Redirect("ram_master.aspx");
+            Response.Redirect("login.aspx");
         }
         catch (Exception ex)
         {
-            throw ex;
+
         }
     }
+
 }

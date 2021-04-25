@@ -1,13 +1,19 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminMaster.master" AutoEventWireup="true" CodeFile="RAM_List.aspx.cs" Inherits="RAM_List" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminMaster.master" AutoEventWireup="true" CodeFile="Processor_List.aspx.cs" Inherits="Processor_List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <script>
+
+     <script>
         $(document).ready(function () {
-            $('#ramTb').DataTable();
+            $('#processorTb').DataTable({
+                "autoWidth": true,
+                "searching": true,
+                "ordering": true,
+            });
         });
     </script>
+
     <form id="form1" runat="server">
         <div class="main-content">
             <div class="section__content section__content--p30">
@@ -19,10 +25,10 @@
                             <div class="card">
                                 <div class="card-body row">
                                     <div class="col-md-8">
-                                        <h3 class="text-dark ">RAM List</h3>
+                                        <h3 class="text-dark ">Processor List</h3>
                                     </div>
                                     <div class="col-md-4">
-                                        
+
                                         <asp:Button Text="Add New" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="btnAddNew_Click" />
                                     </div>
 
@@ -34,17 +40,15 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <table id="ramTb" class="table table-striped table-bordered table-responsive">
+                                    <table id="processorTb" class="table table-striped table-bordered table-responsive">
                                         <thead>
                                             <tr>
                                                 <th>Sr No.</th>
                                                 <th>Image</th>
                                                 <th>Brand</th>
                                                 <th>Model</th>
-                                                <th>Frequency</th>
-                                                <th>Channel</th>
-                                                <th>Type</th>
-                                                <th>Size</th>
+                                                <th>Socket Type</th>
+                                                <th>Clock Speed</th>
                                                 <th>Price</th>
                                                 <th>In Stock</th>
                                                 <th>Active</th>
@@ -53,15 +57,15 @@
                                             </tr>
 
                                         </thead>
-                                        <tbody id="ramTbBody">
-                                            <asp:Repeater ID="rptRam" runat="server">
+                                        <tbody id="processorTbBody">
+                                            <asp:Repeater ID="rptProcessor" runat="server">
                                                 <ItemTemplate>
                                                     <tr>
                                                         <td>
                                                             <%#Container.ItemIndex+1 %>
                                                         </td>
                                                         <td>
-                                                            <asp:Image ImageUrl='<%#imgUrl(Eval("img")) %>' Height="80" Width="160" runat="server" ID="imgRam" />
+                                                            <asp:Image ImageUrl='<%#imgUrl(Eval("image")) %>' Height="80" Width="160" runat="server" ID="imgRam" />
                                                         </td>
                                                         <td>
                                                             <asp:Label Text='<%#Eval("brand")%>' ID="lblBrand" runat="server" />
@@ -70,16 +74,10 @@
                                                             <asp:Label Text='<%#Eval("model")%>' ID="lblModel" runat="server" />
                                                         </td>
                                                         <td>
-                                                            <asp:Label Text='<%#Eval("frequency")%>' ID="lblFrequency" runat="server" />
+                                                            <asp:Label Text='<%#Eval("Socket_Type")%>' ID="lblSocketType" runat="server" />
                                                         </td>
                                                         <td>
-                                                            <asp:Label Text='<%#Eval("channel")%>' ID="lblChannel" runat="server" />
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label Text='<%#Eval("type")%>' ID="lblType" runat="server" />
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label Text='<%#Eval("size")%>' ID="lblSize" runat="server" />
+                                                            <asp:Label Text='<%#Eval("Clock_Speed")%>' ID="lblClock_Speed" runat="server" />
                                                         </td>
                                                         <td>
                                                             <asp:Label Text='<%#Eval("price")%>' ID="lblPrice" runat="server" />
@@ -97,14 +95,14 @@
                                                             <%--<button class="btn btn-success">Edit</button></td>--%>
                                                             <asp:LinkButton Text="Update" type="button" ID="btnUpdateRepeater"
                                                                 CssClass="btn waves-effect btn-sm btn-success"
-                                                                CommandArgument='<%#Eval("ram_id")%>'
+                                                                CommandArgument='<%#Eval("id")%>'
                                                                 CommandName="Update"
                                                                 runat="server"
                                                                 OnCommand="btnUpdateRepeater_Command" />
                                                         <td>
                                                             <%--<button class="btn btn-danger">Delete</button>--%>
                                                             <asp:LinkButton ID="btnDeleteRepeater" Text="Delete" runat="server" class="btn btn-danger btn-sm"
-                                                                CommandArgument='<%#Eval("ram_id")%>'
+                                                                CommandArgument='<%#Eval("id")%>'
                                                                 CommandName="Delete"
                                                                 OnCommand="btnDeleteRepeater_Command"
                                                                 OnClientClick="return confirm('Are you sure you want DELETE');"
@@ -127,5 +125,6 @@
             </div>
         </div>
     </form>
+
 </asp:Content>
 

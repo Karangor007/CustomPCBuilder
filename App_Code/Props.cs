@@ -40,6 +40,23 @@ public class Props
     public string ram_model { get; set; }
     #endregion
 
+    #region Platform
+    public string platform_id { get; set; }
+    public string platform_name { get; set; }
+    public string platform_brand { get; set; }
+    public string platform_image { get; set; }
+    #endregion
+
+    #region Processor
+    public string processor_id { get; set; }
+    public string processor_model { get; set; }
+    public string processor_brand { get; set; }
+    public string processor_clock_speed { get; set; }
+    public string processor_socket_type { get; set; }
+    public string processor_price { get; set; }
+    public string processor_stock { get; set; }
+    public string processor_image { get; set; }
+    #endregion
     public Props()
 	{
 		//

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using System.Configuration;
 
-public partial class RAM_List : System.Web.UI.Page
+public partial class Platform_List : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -38,12 +38,43 @@ public partial class RAM_List : System.Web.UI.Page
         try
         {
             int id = Convert.ToInt32(e.CommandArgument);
-            Session["ram_id"] = id;
-            Response.Redirect("ram_Master.aspx");
+            Session["platform_id"] = id;
+            Response.Redirect("platform_Master.aspx");
         }
         catch (Exception ex)
         {
             throw ex;
+        }
+    }
+
+    private string getUserInSession()
+    {
+        string user;
+
+        if (Session["username"].ToString() == null || Session["username"].ToString() == "")
+        {
+            user = null;
+            redirectLogin();
+        }
+        else
+        {
+            user = Session["username"].ToString();
+        }
+
+
+        return user;
+
+    }
+
+    private void redirectLogin()
+    {
+        try
+        {
+            Response.Redirect("login.aspx");
+        }
+        catch (Exception ex)
+        {
+
         }
     }
 
@@ -59,12 +90,25 @@ public partial class RAM_List : System.Web.UI.Page
         }
         try
         {
-            string query = "delete from mst_ram where ram_id = '"+id+"'";
+            string query = "delete from mst_platform where pt_id = '" + id + "'";
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
             //bindRptList();
-            Response.Redirect("ram_list.aspx");
+            Response.Redirect("platform_list.aspx");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    protected void btnAddNew_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Session["platform_id"] = "0";
+            Response.Redirect("platform_master.aspx");
         }
         catch (Exception ex)
         {
@@ -84,26 +128,13 @@ public partial class RAM_List : System.Web.UI.Page
                 conn.Open();
             }
 
-            string query = "select * from mst_ram";
+            string query = "select * from mst_platform";
             SqlDataAdapter adp = new SqlDataAdapter(query, conn);
             adp.Fill(ds);
-            rptRam.DataSource = ds;
-            rptRam.DataBind();
+            rptPlatform.DataSource = ds;
+            rptPlatform.DataBind();
 
             conn.Close();
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-    }
-
-    protected void btnAddNew_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            Session["ram_id"] = "0";
-            Response.Redirect("ram_master.aspx");
         }
         catch (Exception ex)
         {

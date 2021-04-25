@@ -44,55 +44,10 @@
 
 
     </script>
-
+    
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server" />
-        <%--<div class="container mt-4">
-            <div class="row">
-                <div class="col-md-12 mx-auto">
-                    <div class="card">
-
-                        <div class="card-body">
-                            <div class="row">
-
-                                <div class="col-md-12 mb-2">
-                                    <h2 class="text-center text-info display-4">Log In</h2>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-user"></i>
-                                        </div>
-
-                                        <asp:TextBox runat="server" placeholder="Enter Username" ID="txtUsername" CssClass="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-asterisk"></i>
-                                        </div>
-
-                                        <asp:TextBox TextMode="Password" runat="server" placeholder="Enter Password" ID="txtPassword" CssClass="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-actions form-group col-md-12">
-                                    
-                                            <asp:Button Text="LogIn" runat="server" ID="btnLogin" CssClass="btn btn-success btn-block" OnClick="btnLogin_Click"/>
-                                    
-                                   
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>--%>
+        
 
         <div class="container">
             <div class="row">
