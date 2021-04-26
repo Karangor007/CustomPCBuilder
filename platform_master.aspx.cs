@@ -16,8 +16,6 @@ public partial class platform_master : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-
-
             requestData();
         }
 

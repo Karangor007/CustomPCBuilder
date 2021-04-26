@@ -57,6 +57,32 @@ public class Props
     public string processor_stock { get; set; }
     public string processor_image { get; set; }
     #endregion
+
+    #region MotherBoard
+    public string motherboard_id { get; set; }
+    public string motherboard_brand { get; set; }
+    public string motherboard_model { get; set; }
+    public string motherboard_storage { get; set; }
+    public string motherboard_stock { get; set; }
+    public string motherboard_price { get; set; }
+    public string motherboard_image { get; set; }
+
+    #endregion
+
+    #region GPU
+    public string GPU_id { get; set; }
+    public string GPU_model { get; set; }
+    public string GPU_brand { get; set; }
+    public string GPU_ramType { get; set; }
+    public string GPU_ramSize { get; set; }
+    public string GPU_interface { get; set; }
+    public string GPU_image { get; set; }
+    public string GPU_price { get; set; }
+    public string GPU_stock { get; set; }
+
+    #endregion
+
+
     public Props()
 	{
 		//

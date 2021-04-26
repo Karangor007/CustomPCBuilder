@@ -236,6 +236,14 @@
                                 <i class="fas fa-table"></i>Processor Master</a>
                         </li>
                         <li>
+                            <a href="motherboard_list.aspx">
+                                <i class="fas fa-table"></i>Motherboard Master</a>
+                        </li>
+                        <li>
+                            <a href="GPU_List.aspx">
+                                <i class="fas fa-table"></i>GPU Master</a>
+                        </li>
+                        <li>
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>

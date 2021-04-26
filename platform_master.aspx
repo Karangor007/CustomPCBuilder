@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminMaster.master" AutoEventWireup="true" CodeFile="platform_master.aspx.cs" Inherits="platform_master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <form runat="server" id="form2">
 
 
@@ -19,7 +19,7 @@
                                         <h3 class="text-dark ">Platform Master</h3>
                                     </div>
                                     <div class="col-md-4">
-                                       <asp:Button Text="Back" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="btnAddNew_Click" />
+                                        <asp:button text="Back" cssclass="btn btn-primary mb-1" runat="server" id="btnAddNew" onclick="btnAddNew_Click" />
                                     </div>
 
                                 </div>
@@ -52,7 +52,7 @@
                                                 <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Brand Name" id="txtBrand" />
                                             </div>
                                         </div>
-                                       
+
                                         <%-- Image --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">

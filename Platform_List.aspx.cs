@@ -51,7 +51,7 @@ public partial class Platform_List : System.Web.UI.Page
     {
         string user;
 
-        if (Session["username"].ToString() == null || Session["username"].ToString() == "")
+        if (Session["username"] == null || Session["username"].ToString() == "")
         {
             user = null;
             redirectLogin();
