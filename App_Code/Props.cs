@@ -82,6 +82,15 @@ public class Props
 
     #endregion
 
+    #region SMPS   
+    public string SMPS_id { get; set; }
+    public string SMPS_model { get; set; }
+    public string SMPS_brand { get; set; }
+    public string SMPS_wattage { get; set; }
+    public string SMPS_price { get; set; }
+    public string SMPS_stock { get; set; }
+    public string SMPS_image { get; set; }
+    #endregion
 
     public Props()
 	{
