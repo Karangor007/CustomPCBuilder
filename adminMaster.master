@@ -248,6 +248,10 @@
                                 <i class="fas fa-table"></i>SMPS Master</a>
                         </li>
                         <li>
+                            <a href="Cooler_List.aspx">
+                                <i class="fas fa-table"></i>Cooler Master</a>
+                        </li>
+                        <li>
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>

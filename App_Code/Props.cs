@@ -92,6 +92,15 @@ public class Props
     public string SMPS_image { get; set; }
     #endregion
 
+    #region Cooler
+    public string Cooler_id { get; set; }
+    public string Cooler_model { get; set; }
+    public string Cooler_brand { get; set; }
+    public string Cooler_wattage { get; set; }
+    public string Cooler_price { get; set; }
+    public string Cooler_stock { get; set; }
+    public string Cooler_image { get; set; }
+    #endregion
     public Props()
 	{
 		//
