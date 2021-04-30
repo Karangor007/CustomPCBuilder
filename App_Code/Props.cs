@@ -101,6 +101,19 @@ public class Props
     public string Cooler_stock { get; set; }
     public string Cooler_image { get; set; }
     #endregion
+
+    #region Storage
+    public string Storage_id { get; set; }
+    public string Storage_brand { get; set; }
+    public string Storage_model { get; set; }
+    public string Storage_size { get; set; }
+    public string Storage_interface { get; set; }
+    public string Storage_price { get; set; }
+    public string Storage_stock { get; set; }
+    public string Storage_image { get; set; }
+
+    #endregion
+
     public Props()
 	{
 		//

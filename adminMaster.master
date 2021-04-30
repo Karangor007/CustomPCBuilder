@@ -252,6 +252,10 @@
                                 <i class="fas fa-table"></i>Cooler Master</a>
                         </li>
                         <li>
+                            <a href="Storage_List.aspx">
+                                <i class="fas fa-table"></i>Storage Master</a>
+                        </li>
+                        <li>
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
