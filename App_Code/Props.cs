@@ -114,6 +114,17 @@ public class Props
 
     #endregion
 
+    #region Wifi
+    public string WiFi_id { get; set; }
+    public string WiFi_model { get; set; }
+    public string WiFi_brand { get; set; }
+    public string WiFi_speed { get; set; }
+    public string WiFi_interface { get; set; }
+    public string WiFi_image { get; set; }
+    public string WiFi_stock { get; set; }
+    public string WiFi_price { get; set; }
+    #endregion
+
     public Props()
 	{
 		//
