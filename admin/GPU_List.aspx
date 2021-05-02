@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminMaster.master" AutoEventWireup="true" CodeFile="motherboard_list.aspx.cs" Inherits="motherboard_list" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="GPU_List.aspx.cs" Inherits="GPU_List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script>
         $(document).ready(function () {
-            $('#motherBoardTb').DataTable({
+            $('#GPUTb').DataTable({
                 "autoWidth": true,
                 "searching": true,
                 "ordering": true,
@@ -23,7 +23,7 @@
                             <div class="card">
                                 <div class="card-body row">
                                     <div class="col-md-8">
-                                        <h3 class="text-dark ">Motherboard List</h3>
+                                        <h3 class="text-dark ">GPU List</h3>
                                     </div>
                                     <div class="col-md-4">
 
@@ -39,14 +39,16 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="motherBoardTb" class="table table-striped table-bordered table-responsive nowrap" style="width: 100%; display: inline-table">
+                                        <table id="GPUTb" class="table table-striped table-bordered table-responsive nowrap" style="width: 100%; display: inline-table">
                                             <thead>
                                                 <tr>
                                                     <th>Sr No.</th>
                                                     <th>Image</th>
                                                     <th>Model</th>
                                                     <th>Brand</th>
-                                                    <th>Storage</th>
+                                                    <th>Ram Size</th>
+                                                    <th>Ram Type</th>
+                                                    <th>Interface</th>
                                                     <th>Price</th>
                                                     <th>In Stock</th>
                                                     <th>Active</th>
@@ -55,8 +57,8 @@
                                                 </tr>
 
                                             </thead>
-                                            <tbody id="motherBoardTbBody">
-                                                <asp:Repeater ID="rptMotherBoard" runat="server">
+                                            <tbody id="GPUTbBody">
+                                                <asp:Repeater ID="rptGPU" runat="server">
                                                     <ItemTemplate>
                                                         <tr>
                                                             <td>
@@ -72,7 +74,13 @@
                                                                 <asp:Label Text='<%#Eval("brand")%>' ID="lblBrand" runat="server" />
                                                             </td>
                                                             <td>
-                                                                <asp:Label Text='<%#Eval("storage")%>' ID="lblStorage" runat="server" />
+                                                                <asp:Label Text='<%#Eval("ram_size")%>' ID="lblRamSize" runat="server" />
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label Text='<%#Eval("ram_type")%>' ID="lblRamType" runat="server" />
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label Text='<%#Eval("interface")%>' ID="lblInterface" runat="server" />
                                                             </td>
                                                             <td>
                                                                 <asp:Label Text='<%#Eval("price")%>' ID="lblPrice" runat="server" />

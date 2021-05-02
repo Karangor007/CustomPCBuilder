@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminMaster.master" AutoEventWireup="true" CodeFile="Cooler_List.aspx.cs" Inherits="Cooler_List" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="SMPS_List.aspx.cs" Inherits="SMPS_List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script>
         $(document).ready(function () {
-            $('#CoolerTb').DataTable({
+            $('#SMPSTb').DataTable({
                 "autoWidth": true,
                 "searching": true,
                 "ordering": true,
@@ -23,7 +23,7 @@
                             <div class="card">
                                 <div class="card-body row">
                                     <div class="col-md-8">
-                                        <h3 class="text-dark ">Cooler List</h3>
+                                        <h3 class="text-dark ">SMPS List</h3>
                                     </div>
                                     <div class="col-md-4">
 
@@ -39,14 +39,14 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="CoolerTb" class="table table-striped table-bordered table-responsive nowrap" style="width: 100%; display: inline-table">
+                                        <table id="SMPSTb" class="table table-striped table-bordered table-responsive nowrap" style="width: 100%; display: inline-table">
                                             <thead>
                                                 <tr>
                                                     <th>Sr No.</th>
                                                     <th>Image</th>
                                                     <th>Model</th>
                                                     <th>Brand</th>
-                                                    <th>Wattage</th>
+                                                    <th>Wattage</th>                                                    
                                                     <th>Price</th>
                                                     <th>In Stock</th>
                                                     <th>Active</th>
@@ -55,8 +55,8 @@
                                                 </tr>
 
                                             </thead>
-                                            <tbody id="CoolerTbBody">
-                                                <asp:Repeater ID="rptCooler" runat="server">
+                                            <tbody id="SMPSTbBody">
+                                                <asp:Repeater ID="rptSMPS" runat="server">
                                                     <ItemTemplate>
                                                         <tr>
                                                             <td>
@@ -73,7 +73,7 @@
                                                             </td>
                                                             <td>
                                                                 <asp:Label Text='<%#Eval("wattage")%>' ID="lblWattage" runat="server" />
-                                                            </td>
+                                                            </td>                                                                                                                        
                                                             <td>
                                                                 <asp:Label Text='<%#Eval("price")%>' ID="lblPrice" runat="server" />
                                                             </td>

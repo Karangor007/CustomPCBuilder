@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminMaster.master" AutoEventWireup="true" CodeFile="motherboard_master.aspx.cs" Inherits="motherboard_master" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="RAM_Master.aspx.cs" Inherits="RAM_Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -16,10 +16,12 @@
                             <div class="card">
                                 <div class="card-body row">
                                     <div class="col-md-8">
-                                        <h3 class="text-dark ">Motherboard Master</h3>
+                                        <h3 class="text-dark ">RAM Master</h3>
                                     </div>
                                     <div class="col-md-4">
-                                        <asp:Button Text="Back" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="btnAddNew_Click" />
+
+                                        <%--<asp:Button Text="Add New" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="" />--%>
+                                        <asp:button text="Back" cssclass="btn btn-primary mb-1" runat="server" id="btnAddNew" onclick="btnAddNew_Click" />
                                     </div>
 
                                 </div>
@@ -32,16 +34,6 @@
                                 <div class="card-body card-block">
                                     <div id="form1" enctype="multipart/form-data" class="form-horizontal">
 
-                                        <%-- Model --%>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="txtModel" class=" form-control-label">Model</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Model" ID="txtModel" />
-                                            </div>
-                                        </div>
                                         <%-- Brand --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
@@ -49,17 +41,70 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Brand Name" ID="txtBrand" />
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Brand Name" id="txtBrand" />
                                             </div>
                                         </div>
-                                        <%-- Storage --%>
+                                        <%-- Model --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="txtStorage" class=" form-control-label">Storage Capacity</label>
+                                                <label for="txtModel" class=" form-control-label">Model</label>
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Storage Capacity In GB" ID="txtStorage" />
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Model" id="txtModel" />
+                                            </div>
+                                        </div>
+                                        <%-- Frequency --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtFrequency" class=" form-control-label">Frequency</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Frequency In Mhz" id="txtFrequency" />
+                                            </div>
+                                        </div>
+                                        <%-- Channel --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtChannel" class=" form-control-label">Channel</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Channel" id="txtChannel" />
+                                            </div>
+                                        </div>
+                                        <%-- Type --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtType" class=" form-control-label">Type</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <%--<asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Type Eg. DDR4 or DDR5" ID="txtType" />--%>
+                                                <asp:dropdownlist cssclass="form-control" id="drpType" runat="server">
+                                                    <asp:ListItem Text="Select Type" />                                                    
+                                                    <asp:ListItem Text="DDR4" />
+                                                    <asp:ListItem Text="DDR5" />
+                                                </asp:dropdownlist>
+                                            </div>
+                                        </div>
+                                        <%-- Size --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtSize" class=" form-control-label">Size</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <%--<asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Size In MB" ID="txtSize" />--%>
+                                                <asp:dropdownlist runat="server" cssclass="form-control" id="drpSize">
+                                                    <asp:ListItem Text="Select Size In MB" />
+                                                    <asp:ListItem Text="4" />
+                                                    <asp:ListItem Text="6" />
+                                                    <asp:ListItem Text="8" />
+                                                    <asp:ListItem Text="16" />
+                                                    <asp:ListItem Text="32" />
+                                                    <asp:ListItem Text="64" />
+                                                    <asp:ListItem Text="128" />
+                                                </asp:dropdownlist>
                                             </div>
                                         </div>
                                         <%-- Price --%>
@@ -68,8 +113,7 @@
                                                 <label for="txtPrice" class=" form-control-label">Price</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Price" ID="txtPrice" />
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Price In Rupees" id="txtPrice" />
                                             </div>
                                         </div>
                                         <%-- Stock --%>
@@ -78,11 +122,9 @@
                                                 <label for="txtStock" class=" form-control-label">In Stock</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Available In Stock" ID="txtStock" />
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Available Stock" id="txtStock" />
                                             </div>
                                         </div>
-
                                         <%-- Image --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
@@ -90,7 +132,7 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="password" id="txtConfPassword" name="txtConfPassword" placeholder="Enter Confirm Password" class="form-control valid" onchange="checkPassword()">--%>
-                                                <asp:FileUpload ID="txtImage" CssClass="form-control" runat="server" placeholder="Choose An Image" />
+                                                <asp:fileupload id="txtImage" cssclass="form-control" runat="server" placeholder="Choose An Image" />
                                             </div>
                                         </div>
 
@@ -103,7 +145,7 @@
                                                     <div class="checkbox">
                                                         <label for="chbActive" class="form-check-label ">
                                                             <%--<input type="checkbox" id="chbActive" name="chbActive" class="form-check-input">--%>
-                                                            <asp:CheckBox runat="server" ID="chbActive" CssClass="form-check-input" />
+                                                            <asp:checkbox runat="server" id="chbActive" cssclass="form-check-input" />
                                                         </label>
                                                     </div>
 
@@ -118,7 +160,7 @@
                                         <%--<button id="btnSubmit" class="btn btn-primary btn-md">
                                         Submit
                                     </button>--%>
-                                        <asp:Button Text="Submit" ID="btnSubmit" runat="server" CssClass="btn btn-primary btn-md" OnClick="btnSubmit_Click" />
+                                        <asp:button text="Submit" id="btnSubmit" runat="server" cssclass="btn btn-primary btn-md" onclick="btnSubmit_Click" />
                                         <button id="btnReset" class="btn btn-danger btn-md" onclick="clear()">
                                             Reset
                                         </button>

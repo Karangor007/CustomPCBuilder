@@ -16,6 +16,10 @@ public partial class login : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        if (!IsPostBack)
+        {
+            Session["username"] = "0";
+        }
     }
 
     //protected void btnLogin_Click(object sender, EventArgs e)
@@ -44,7 +48,7 @@ public partial class login : System.Web.UI.Page
 
             if (check)
             {
-                Response.Redirect("dashboard.aspx");
+                Response.Redirect("admin/dashboard.aspx");
             }
             else
             {

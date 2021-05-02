@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -11,7 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using System.Configuration;
 
-public partial class admin_adminMaster : System.Web.UI.MasterPage
+public partial class utility : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,7 +20,7 @@ public partial class admin_adminMaster : System.Web.UI.MasterPage
     [WebMethod]
     public static string getUser()
     {
-        admin_adminMaster mst = new admin_adminMaster();
+        utility mst = new utility();
         Dictionary<string, string> row = row = new Dictionary<string, string>(); ;
         List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
         System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -34,7 +33,7 @@ public partial class admin_adminMaster : System.Web.UI.MasterPage
         }
         else
         {
-            
+
             row.Add("user", obj.userName);
             rows.Add(row);
         }
@@ -50,7 +49,17 @@ public partial class admin_adminMaster : System.Web.UI.MasterPage
     private string getUserInSession()
     {
         string user;
-        user = Session["username"].ToString();
+
+        if (Session["username"].ToString() == "0" || Session["username"] == null)
+        {
+            user = null;
+            redirectLogin();
+        }
+        else
+        {
+            user = Session["username"].ToString();
+        }
+        
 
         return user;
 
@@ -60,7 +69,7 @@ public partial class admin_adminMaster : System.Web.UI.MasterPage
     {
         try
         {
-            Response.Redirect("login.aspx");
+            Response.Redirect("../login.aspx");
         }
         catch (Exception ex)
         {

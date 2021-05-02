@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminMaster.master" AutoEventWireup="true" CodeFile="SMPS_List.aspx.cs" Inherits="SMPS_List" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="Storage_List.aspx.cs" Inherits="Storage_List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script>
         $(document).ready(function () {
-            $('#SMPSTb').DataTable({
+            $('#storageTb').DataTable({
                 "autoWidth": true,
                 "searching": true,
                 "ordering": true,
@@ -23,11 +23,11 @@
                             <div class="card">
                                 <div class="card-body row">
                                     <div class="col-md-8">
-                                        <h3 class="text-dark ">SMPS List</h3>
+                                        <h3 class="text-dark ">Storage List</h3>
                                     </div>
                                     <div class="col-md-4">
 
-                                        <asp:Button Text="Add New" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="btnAddNew_Click" />
+                                        <asp:button text="Add New" cssclass="btn btn-primary mb-1" runat="server" id="btnAddNew" onclick="btnAddNew_Click" />
                                     </div>
 
                                 </div>
@@ -39,14 +39,15 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="SMPSTb" class="table table-striped table-bordered table-responsive nowrap" style="width: 100%; display: inline-table">
+                                        <table id="storageTb" class="table table-striped table-bordered table-responsive nowrap" style="width: 100%; display: inline-table">
                                             <thead>
                                                 <tr>
                                                     <th>Sr No.</th>
                                                     <th>Image</th>
                                                     <th>Model</th>
                                                     <th>Brand</th>
-                                                    <th>Wattage</th>                                                    
+                                                    <th>Size</th>
+                                                    <th>Interface</th>
                                                     <th>Price</th>
                                                     <th>In Stock</th>
                                                     <th>Active</th>
@@ -55,8 +56,8 @@
                                                 </tr>
 
                                             </thead>
-                                            <tbody id="SMPSTbBody">
-                                                <asp:Repeater ID="rptSMPS" runat="server">
+                                            <tbody id="storageTbBody">
+                                                <asp:repeater id="rptStorage" runat="server">
                                                     <ItemTemplate>
                                                         <tr>
                                                             <td>
@@ -72,8 +73,11 @@
                                                                 <asp:Label Text='<%#Eval("brand")%>' ID="lblBrand" runat="server" />
                                                             </td>
                                                             <td>
-                                                                <asp:Label Text='<%#Eval("wattage")%>' ID="lblWattage" runat="server" />
-                                                            </td>                                                                                                                        
+                                                                <asp:Label Text='<%#Eval("size")%>' ID="lblSize" runat="server" />
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label Text='<%#Eval("interface")%>' ID="lblInterFace" runat="server" />
+                                                            </td>
                                                             <td>
                                                                 <asp:Label Text='<%#Eval("price")%>' ID="lblPrice" runat="server" />
                                                             </td>
@@ -105,7 +109,7 @@
                                                             </td>
                                                         </tr>
                                                     </ItemTemplate>
-                                                </asp:Repeater>
+                                                </asp:repeater>
 
                                             </tbody>
 

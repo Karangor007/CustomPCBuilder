@@ -87,6 +87,8 @@ public partial class motherboard_master : System.Web.UI.Page
                     SqlCommand com = new SqlCommand(query, conn);
                     com.ExecuteNonQuery();
                     clear();
+                    
+                    //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "demo()", true);
                     Response.Redirect("motherboard_list.aspx");
 
                 }
@@ -123,7 +125,7 @@ public partial class motherboard_master : System.Web.UI.Page
 
                     SqlCommand com = new SqlCommand(query, conn);
                     com.ExecuteNonQuery();
-                    clear();
+                    clear();                    
                     Response.Redirect("motherboard_list.aspx");
 
                 }

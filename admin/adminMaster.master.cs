@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,7 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.Script.Serialization;
 using System.Configuration;
 
-public partial class utility : System.Web.UI.Page
+public partial class admin_adminMaster : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,7 +21,7 @@ public partial class utility : System.Web.UI.Page
     [WebMethod]
     public static string getUser()
     {
-        utility mst = new utility();
+        admin_adminMaster mst = new admin_adminMaster();
         Dictionary<string, string> row = row = new Dictionary<string, string>(); ;
         List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
         System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -33,7 +34,7 @@ public partial class utility : System.Web.UI.Page
         }
         else
         {
-
+            
             row.Add("user", obj.userName);
             rows.Add(row);
         }
@@ -48,12 +49,10 @@ public partial class utility : System.Web.UI.Page
 
     private string getUserInSession()
     {
-        string user;
-
-        if (Session["username"] == null)
+        string user = "";
+        if (Session["username"].ToString() == "0")
         {
-            user = null;
-            redirectLogin();
+            Response.Redirect("../login.aspx");
         }
         else
         {

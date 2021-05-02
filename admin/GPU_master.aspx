@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/adminMaster.master" AutoEventWireup="true" CodeFile="RAM_Master.aspx.cs" Inherits="RAM_Master" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="GPU_master.aspx.cs" Inherits="GPU_master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -16,11 +16,9 @@
                             <div class="card">
                                 <div class="card-body row">
                                     <div class="col-md-8">
-                                        <h3 class="text-dark ">RAM Master</h3>
+                                        <h3 class="text-dark ">GPU Master</h3>
                                     </div>
                                     <div class="col-md-4">
-
-                                        <%--<asp:Button Text="Add New" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="" />--%>
                                         <asp:button text="Back" cssclass="btn btn-primary mb-1" runat="server" id="btnAddNew" onclick="btnAddNew_Click" />
                                     </div>
 
@@ -34,16 +32,6 @@
                                 <div class="card-body card-block">
                                     <div id="form1" enctype="multipart/form-data" class="form-horizontal">
 
-                                        <%-- Brand --%>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="txtBrand" class=" form-control-label">Brand</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Brand Name" id="txtBrand" />
-                                            </div>
-                                        </div>
                                         <%-- Model --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
@@ -54,57 +42,57 @@
                                                 <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Model" id="txtModel" />
                                             </div>
                                         </div>
-                                        <%-- Frequency --%>
+                                        <%-- Brand --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="txtFrequency" class=" form-control-label">Frequency</label>
+                                                <label for="txtBrand" class=" form-control-label">Brand</label>
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Frequency In Mhz" id="txtFrequency" />
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Brand Name" id="txtBrand" />
                                             </div>
                                         </div>
-                                        <%-- Channel --%>
+                                        <%-- RAM Size --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
-                                                <label for="txtChannel" class=" form-control-label">Channel</label>
+                                                <label for="drpRamSize" class="form-control-label">RAM Size</label>
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Channel" id="txtChannel" />
-                                            </div>
-                                        </div>
-                                        <%-- Type --%>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="txtType" class=" form-control-label">Type</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <%--<asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Type Eg. DDR4 or DDR5" ID="txtType" />--%>
-                                                <asp:dropdownlist cssclass="form-control" id="drpType" runat="server">
-                                                    <asp:ListItem Text="Select Type" />                                                    
-                                                    <asp:ListItem Text="DDR4" />
-                                                    <asp:ListItem Text="DDR5" />
-                                                </asp:dropdownlist>
-                                            </div>
-                                        </div>
-                                        <%-- Size --%>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3">
-                                                <label for="txtSize" class=" form-control-label">Size</label>
-                                            </div>
-                                            <div class="col-12 col-md-9">
-                                                <%--<asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Size In MB" ID="txtSize" />--%>
-                                                <asp:dropdownlist runat="server" cssclass="form-control" id="drpSize">
-                                                    <asp:ListItem Text="Select Size In MB" />
+                                                <asp:dropdownlist runat="server" id="drpRamSize" cssclass="form-control">
+                                                    <asp:ListItem Text="Select RAM Size In GB" />
+                                                    <asp:ListItem Text="2" />
                                                     <asp:ListItem Text="4" />
                                                     <asp:ListItem Text="6" />
                                                     <asp:ListItem Text="8" />
                                                     <asp:ListItem Text="16" />
                                                     <asp:ListItem Text="32" />
                                                     <asp:ListItem Text="64" />
-                                                    <asp:ListItem Text="128" />
                                                 </asp:dropdownlist>
+                                            </div>
+                                        </div>
+                                        <%-- RAM Type --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="drpRamType" class="form-control-label">RAM Type</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
+                                                <asp:dropdownlist runat="server" id="drpRamType" cssclass="form-control">
+                                                    <asp:ListItem Text="Select RAM Type" />
+                                                    <asp:ListItem Text="GDDR5" />
+                                                    <asp:ListItem Text="DDR3" />                                                    
+                                                </asp:dropdownlist>
+                                            </div>
+                                        </div>
+                                        <%-- Interface --%>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="txtInterFace" class=" form-control-label">Interface</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Interface" id="txtInterFace" />
                                             </div>
                                         </div>
                                         <%-- Price --%>
@@ -113,7 +101,8 @@
                                                 <label for="txtPrice" class=" form-control-label">Price</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Price In Rupees" id="txtPrice" />
+                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Price" id="txtPrice" />
                                             </div>
                                         </div>
                                         <%-- Stock --%>
@@ -122,9 +111,11 @@
                                                 <label for="txtStock" class=" form-control-label">In Stock</label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Available Stock" id="txtStock" />
+                                                <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
+                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Available In Stock" id="txtStock" />
                                             </div>
                                         </div>
+
                                         <%-- Image --%>
                                         <div class="row form-group">
                                             <div class="col col-md-3">
