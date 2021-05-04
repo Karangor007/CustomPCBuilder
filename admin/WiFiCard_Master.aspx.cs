@@ -95,7 +95,7 @@ public partial class WiFiCard_Master : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         Props obj = new Props();
-        string path = "assets/images/";
+        string path = @"../assets/images/";
         obj.WiFi_id = Convert.ToString(getWiFiId());
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);

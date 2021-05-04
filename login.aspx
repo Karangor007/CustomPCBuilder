@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>-- Login Here --</title>
+    <title> Login Here </title>
 
     <meta charset="UTF-8">
     <%--<link href="admin/css/font-face.css" rel="stylesheet" />--%>
@@ -26,9 +26,8 @@
     <link href="admin/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
-    <link href="assets/css/style.css" rel="stylesheet" />
     <link href="admin/css/theme.css" rel="stylesheet" media="all">
-
+    <link href="assets/css/loginstyle.css" rel="stylesheet" />
     <script src="admin/vendor/jquery-3.2.1.min.js"></script>
 
 </head>

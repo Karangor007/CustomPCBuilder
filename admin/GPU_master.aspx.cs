@@ -23,7 +23,7 @@ public partial class GPU_master : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         Props obj = new Props();
-        string path = "assets/images/";
+        string path = @"../assets/images/";
         obj.GPU_id = Convert.ToString(getGPUId());
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
