@@ -1,0 +1,197 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <%-- Stylesheets --%>
+    <link href="amin/css/barfiller.css" rel="stylesheet" type="text/css" />
+    <link href="amin/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="amin/css/elegant-icons.css" rel="stylesheet" type="text/css" />
+    <link href="amin/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="amin/css/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <link href="amin/css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+    <link href="amin/css/slicknav.min.css" rel="stylesheet" type="text/css" />
+    <link href="amin/css/style.css" rel="stylesheet" type="text/css" />
+    
+    <%-- Scripts --%>
+    <script src="amin/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <div id="preloder">
+                <div class="loader"></div>
+            </div>
+            <div class="humberger-menu-overlay"></div>
+    <div class="humberger-menu-wrapper">
+        <div class="hw-logo">
+            <%-- How to insert image Learn here --%>
+            <a href="#"><img src="img/hero/hero-1.jpg" alt="" /></a>
+            <%--<img src="img/hero/hero-1.jpg" />--%>
+            <%-- This is Image Source  img/hero/hero-1.jpg--%>
+        </div>
+        <div class="hw-menu mobile-menu">
+            <ul>
+                <li><a href="index-2.html">Home</a></li>
+                <li>
+                    <a href="#">Pages <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="categories-list.html">Categories</a></li>
+                        <li><a href="categories-grid.html">Categories grid</a></li>
+                        <li><a href="typography.html">Typography</a></li>
+                        <li><a href="details-post-default.html">Post default</a></li>
+                        <li><a href="details-post-gallery.html">Post gallery</a></li>
+                        <li><a href="details-post-review.html">Post review</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Reviews <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#">Playstation</a></li>
+                        <li><a href="#">Windows</a></li>
+                        <li><a href="#">Mobile</a></li>
+                        <li><a href="#">Xbox</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Windows <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#">Playstation</a></li>
+                        <li><a href="#">Windows</a></li>
+                        <li><a href="#">Mobile</a></li>
+                        <li><a href="#">Xbox</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Videos <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#">Playstation</a></li>
+                        <li><a href="#">Windows</a></li>
+                        <li><a href="#">Mobile</a></li>
+                        <li><a href="#">Xbox</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        
+        <div class="hw-social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-youtube-play"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        
+    </div>
+
+    <header class="header-section">
+        
+        <div class="logo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <a href="index-2.html"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-options">
+            <div class="container row ml-5">
+                <div class="humberger-menu humberger-open">
+                    <i class="fa fa-bars"></i>
+                </div>
+                
+                <div class="nav-menu">
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+        </div>
+    </form>
+    <%--Scripts--%>
+    <script src="amin/js/bootstrap.min.js"></script>
+    <script src="amin/js/circle-progress.min.js"></script>
+    <script src="amin/js/jquery.barfiller.js"></script>
+    <script src="amin/js/jquery.magnific-popup.min.js"></script>
+    <script src="amin/js/jquery.slicknav.js"></script>
+    <script src="amin/js/main.js"></script>
+    <script src="amin/js/owl.carousel.min.js"></script>
+
+
+
+    <div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <div class="container">
+  <div class="row">
+    <div class=".col-">
+      <div class="col-sm-12">
+		<label>Enter Your Name</label>
+		<input name="Last Name" id="cuname" type="text" class="form-control">
+		<div id="cerrors" style="color:red;"></div></div>
+	    <div class="col-sm-12">
+		<label>Enter Your Email</label>
+		<input name="Email" id="ctxtEmailid" type="text" class="form-control">
+		<div id="ceid" style="color:red;"></div></div>
+	    <div class="col-sm-12">
+		<label>Enter Your Phone No.</label>
+		<input name="LEADCF1" id="ccontacts" type="text" class="form-control">
+		<div id="ccon" style="color:red;"></div></div>
+	    <div class="col-sm-12">
+		<label>Enter Your Message</label>
+		<textarea name="Description" id="cmesg" cols="5" rows="10" class="form-control"></textarea>
+		<div id="cmsg" style="color:red;"></div></div>
+		<select style="display:none;" name="Lead Source">
+		    <option selected="" value="Website">Website</option>
+		</select>
+   
+    </div>
+    <div class="row">
+
+      <div class="col-sm">
+<a href="#section-scroll" class="mousey scrollup"> <i class="lni lni-arrow-down"></i></a>
+</div>
+
+<section id="section-scroll" class="right-sec animated bounceInLeft">
+    <div class="pd-img">
+     <div class="d-flex1">
+ <div class="mid-content px-50 "><h1 class="heading-txt col-wht">HIGH PERFORMANCE Custom build<br>GAMING PCS</h1>
+   <p class="para-txt col-wht">Custom build pc for entry level gaming  to extreme gaming <br>enthusiasts. </p>   
+     a href="#">  <img src="amin/img/videos/videos-1.jpg"class="updown" width="700px" height="600px"/></a> 	  
+    
+       </section>
+</div> 
+
+    </div>
+     
+
+    </div>
+       <section id="section-scroll" class="right-sec animated bounceInLeft">
+ <div class="d-flex1">
+ <div class="mid-content px-50 "><h1 class="heading-txt col-wht">HIGH PERFORMANCE Custom build<br>GAMING PCS</h1>
+   <p class="para-txt col-wht">Custom build pc for entry level gaming  to extreme gaming <br>enthusiasts. </p>  
+    </div>
+     <div style="background-image:url("img/rt-bg.jpg");"></div><a href="#"><img src="img/rt-product.png" class="updown" width="700px" height="600px" /></a>
+ </div></div>
+
+
+    </div>
+ 
+</div>
+
+
+
+</body>
+</html>
+
+ 
