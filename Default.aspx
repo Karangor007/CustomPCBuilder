@@ -1,17 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/client.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <style>
+        #owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+    </style>
     <script>
         $(document).ready(function () {
             //userTb
             getRamData();
+
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                items: 4,
+                itemsDesktop: [1199, 3],
+                itemsDesktopSmall: [979, 3]
+
+            });
+
         });
+
+
 
         function getRamData() {
             // Destroy Datatable
-            
+
 
             $.ajax({
                 type: "POST",
@@ -21,7 +44,7 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     //console.log(data);
-                    
+
                     //userData.empty();
                     var result = JSON.parse(data.d)
                     console.log(result);
@@ -32,7 +55,7 @@
 
 
                     <div class="section-title">
-                        
+
                     </div>
 
                     <div class="ip-item">
@@ -62,7 +85,10 @@
                     </div>
                     </div>`
 
-                      $("#divRam").append(demo);
+
+
+                        $("#divRam").append(demo);
+
 
                     });
                 }
@@ -73,14 +99,14 @@
     <section class="instagram-post-section spad">
         <div class="container">
             <div class="row">
-                 <div class="section-title">
-                        <h5>RAM</h5>
-                    </div>
+                <div class="section-title">
+                    <h5>RAM</h5>
+                </div>
                 <div class="col-lg-12">
                     <div id="divRam">
 
-                    
-                    <%--<div class="section-title">
+
+                        <%--<div class="section-title">
                         <h5>RAM</h5>
                     </div>
                     
@@ -110,8 +136,8 @@
                            
                     </div>--%>
                     </div>
-                    
-                    
+
+
                     <div class="pagination-item">
                         <a href="#"><span>1</span></a>
                         <a href="#"><span>2</span></a>
@@ -119,105 +145,62 @@
                         <a href="#"><span>Next</span></a>
                     </div>
                 </div>
-                <%--<div class="col-lg-4 col-md-7">
-                    <div class="sidebar-option">
-                        <div class="insta-media">
-                            <div class="section-title">
-                                <h5>Instagram</h5>
+
+            </div>
+        </div>
+    </section>
+    <section class="video-guide-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h5>Videos guide</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-elem">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-5" role="tab">All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Platform</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Hardware</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-8" role="tab">Reviews</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tabs-5" role="tabpanel">
+                        <div class="row">
+                            <div class="vg-slider owl-carousel" id="owl-demo">
+
+
+                                <div class="item" style="margin: 3px">
+                                    <img src="amin/img/videos/videos-1.jpg" alt="Owl Image"></div>
+                                <div class="item" style="margin: 3px">
+                                    <img src="amin/img/videos/videos-2.jpg" alt="Owl Image"></div>
+                                <div class="item" style="margin: 3px">
+                                    <img src="amin/img/videos/videos-2.jpg" alt="Owl Image"></div>
+                                <div class="item" style="margin: 3px">
+                                    <img src="amin/img/videos/videos-1.jpg" alt="Owl Image"></div>
+                                <div class="item" style="margin: 3px">
+                                    <img src="amin/img/videos/videos-2.jpg" alt="Owl Image"></div>
+                                <div class="item" style="margin: 3px">
+                                    <img src="amin/img/videos/videos-2.jpg" alt="Owl Image"></div>
+
+
+
                             </div>
-                            <div class="insta-pic">
-                                <img src="assets/img/instagram/ip-1.jpg" alt="">
-                                <img src="assets/img/instagram/ip-2.jpg" alt="">
-                                <img src="assets/img/instagram/ip-3.jpg" alt="">
-                                <img src="assets/img/instagram/ip-4.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="best-of-post">
-                            <div class="section-title">
-                                <h5>Best of</h5>
-                            </div>
-                            <div class="bp-item">
-                                <div class="bp-loader">
-                                    <div class="loader-circle-wrap">
-                                        <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-1" data-cpvalue="95" data-cpcolor="#c20000"></span>
-                                            <div class="review-point">9.5</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bp-text">
-                                    <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 20</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="bp-item">
-                                <div class="bp-loader">
-                                    <div class="loader-circle-wrap">
-                                        <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-2" data-cpvalue="85" data-cpcolor="#c20000"></span>
-                                            <div class="review-point">8.5</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bp-text">
-                                    <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 20</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="bp-item">
-                                <div class="bp-loader">
-                                    <div class="loader-circle-wrap">
-                                        <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-3" data-cpvalue="80" data-cpcolor="#c20000"></span>
-                                            <div class="review-point">8.0</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bp-text">
-                                    <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 20</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="bp-item">
-                                <div class="bp-loader">
-                                    <div class="loader-circle-wrap">
-                                        <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-4" data-cpvalue="75" data-cpcolor="#c20000"></span>
-                                            <div class="review-point">7.5</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bp-text">
-                                    <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 20</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="subscribe-option">
-                            <div class="section-title">
-                                <h5>Subscribe</h5>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor.</p>
-                            <form action="#">
-                                <input type="text" placeholder="Name">
-                                <input type="text" placeholder="Email">
-                                <button type="submit"><span>Subscribe</span></button>
-                            </form>
                         </div>
                     </div>
-                </div>--%>
+
+
+
+                </div>
             </div>
         </div>
     </section>
