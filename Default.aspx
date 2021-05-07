@@ -17,7 +17,7 @@
         $(document).ready(function () {
             //userTb
             getRamData();
-
+            $('#viewLessRam').hide();
             $("#owl-demo").owlCarousel({
 
                 autoPlay: 3000, //Set AutoPlay to 3 seconds
@@ -30,7 +30,84 @@
 
         });
 
+        // View More RAM
+        function viewMoreRam() {
+            //alert('More RAM');
+            $('#divRam').empty();
+            $('#viewMoreRam').hide();
+            $('#viewLessRam').show();
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getMoreRamData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
 
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(emp.brand);
+
+                        var demo = `<div>
+
+
+                    <div class="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="assets/images/${data.img}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.type} ${data.frequency} ${data.size} GB</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+                  
+                    </div>`
+
+
+
+                        $("#divRam").append(demo);
+
+
+                    });
+                }
+            });
+            //$('#viewLessRam').show();
+            //console.log($('#divRam'));
+        }
+
+        // View Less RAM
+        function viewLessRam() {
+            //alert('it worked');
+            //alert('Less RAM');
+            $('#divRam').empty();
+            $('#viewLessRam').hide();
+            $('#viewMoreRam').show();
+            
+            getRamData();
+        }
 
         function getRamData() {
             // Destroy Datatable
@@ -51,10 +128,10 @@
                     $.each(result, function (i, data) {
                         //console.log(emp.brand);
 
-                        var demo = `<div id="divRam">
+                        var demo = `<div>
 
 
-                    <div class="section-title">
+                    <div class="section-title ramClass">
 
                     </div>
 
@@ -71,7 +148,7 @@
                                 <li><i class="fa fa-comment-o"></i> 20</li>
                             </ul>
                             <p class="label">
-                                Price: <i class ="fas fa-rupee-sign"></i> ${data.price}
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
                             </p>
                             <p class="label">
                                 Available in stock: ${data.in_stock}
@@ -81,6 +158,10 @@
                             </p>
 
                         </div>
+
+                    </div>
+                    <div class ="pagination-item">
+                        <div  onclick="viewLessRam()" id="viewLessRam" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                     </div>`
@@ -105,104 +186,22 @@
                 <div class="col-lg-12">
                     <div id="divRam">
 
-
-                        <%--<div class="section-title">
-                        <h5>RAM</h5>
-                    </div>
-                    
-                    <div class="ip-item">
-                        <div class="ip-pic">
-                            <img src="assets/images/07ea51HIx1CNZxL._AC_SL1007_.jpg" alt="">
-                        </div>
-                        <div class="ip-text">
-                            <div class="label"><span>Latest</span></div>
-                            <h5><a href="#">Crucial Crucial DDR4 2666 MHz 8 GB</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 20</li>
-                            </ul>
-                            <p class="label">
-                                Price : 3,250 
-                            </p>
-                            <p class="label">
-                                Available in stock : 3 
-                            </p>
-                            <p class="mt-5">
-                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
-                            </p>
-                            
-                        </div>
-                           
-                    </div>--%>
                     </div>
 
 
                     <div class="pagination-item">
-                        <a href="#"><span>1</span></a>
-                        <a href="#"><span>2</span></a>
-                        <a href="#"><span>3</span></a>
-                        <a href="#"><span>Next</span></a>
+                        <div  onclick="viewMoreRam()" id="viewMoreRam"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+                        
+                    </div>
+                      <div class ="pagination-item">
+                        <div  onclick="viewLessRam()" id="viewLessRam" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
-    <section class="video-guide-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h5>Videos guide</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-elem">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#tabs-5" role="tab">All</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Platform</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Hardware</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabs-8" role="tab">Reviews</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="tabs-5" role="tabpanel">
-                        <div class="row">
-                            <div class="vg-slider owl-carousel" id="owl-demo">
-
-
-                                <div class="item" style="margin: 3px">
-                                    <img src="amin/img/videos/videos-1.jpg" alt="Owl Image"></div>
-                                <div class="item" style="margin: 3px">
-                                    <img src="amin/img/videos/videos-2.jpg" alt="Owl Image"></div>
-                                <div class="item" style="margin: 3px">
-                                    <img src="amin/img/videos/videos-2.jpg" alt="Owl Image"></div>
-                                <div class="item" style="margin: 3px">
-                                    <img src="amin/img/videos/videos-1.jpg" alt="Owl Image"></div>
-                                <div class="item" style="margin: 3px">
-                                    <img src="amin/img/videos/videos-2.jpg" alt="Owl Image"></div>
-                                <div class="item" style="margin: 3px">
-                                    <img src="amin/img/videos/videos-2.jpg" alt="Owl Image"></div>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-    </section>
+    
 </asp:Content>
 
