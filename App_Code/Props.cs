@@ -8,6 +8,14 @@ using System.Web;
 /// </summary>
 public class Props
 {
+    #region Client Side Image Source
+    public static string imageClientSource()
+    {
+        return "assets/images/";
+    }
+
+    #endregion
+
     #region User 
     public string id { get; set; }
     public string userName { get; set; }
