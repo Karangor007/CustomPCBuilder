@@ -37,7 +37,7 @@ public partial class motherboard_master : System.Web.UI.Page
         obj.motherboard_model = txtModel.Text.Trim();
         obj.motherboard_stock = txtStock.Text.Trim();
         obj.motherboard_storage = txtStorage.Text.Trim();
-        obj.motherboard_price = txtModel.Text.Trim();
+        obj.motherboard_price = txtPrice.Text.Trim();
 
         // Validation
         if (obj.motherboard_model == "" || obj.motherboard_brand == "" || obj.motherboard_storage == "")

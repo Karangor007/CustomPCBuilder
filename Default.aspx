@@ -5,20 +5,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <script>
+
+        var imgSource = 'assets/images/';
+        
         $(document).ready(function () {
             //userTb
             getRamData();
             getProcessorData();
-            $('#viewLessRam').hide();
-            $("#owl-demo").owlCarousel({
-
-                autoPlay: 3000, //Set AutoPlay to 3 seconds
-
-                items: 4,
-                itemsDesktop: [1199, 3],
-                itemsDesktopSmall: [979, 3]
-
-            });
+            getMotherboardData();
+            getGPUData()
+            getSMPSData();
+            getCoolerData();
+            getStorageData();
+            getWifiData();
+            //$('#viewLessRam').hide();
+          
 
         });
 
@@ -52,7 +53,7 @@
 
                     <div class="ip-item">
                         <div class="ip-pic">
-                            <img src="assets/images/${data.img}" alt="">
+                            <img src="${imgSource}${data.img}" alt="">
                         </div>
                         <div class="ip-text">
                             <div class="label"><span>Latest</span></div>
@@ -114,7 +115,7 @@
 
                     //userData.empty();
                     var result = JSON.parse(data.d)
-                    console.log(result);
+                    //console.log(result);
                     $.each(result, function (i, data) {
                         //console.log(emp.brand);
 
@@ -127,7 +128,7 @@
 
                     <div class="ip-item">
                         <div class="ip-pic">
-                            <img src="assets/images/${data.img}" alt="">
+                            <img src="${imgSource}${data.img}" alt="">
                         </div>
                         <div class="ip-text">
                             <div class="label"><span>Latest</span></div>
@@ -180,7 +181,7 @@
 
                     //userData.empty();
                     var result = JSON.parse(data.d)
-                    console.log(result);
+                    //console.log(result);
                     $.each(result, function (i, data) {
                         console.log(data);
 
@@ -193,7 +194,7 @@
 
                     <div class="ip-item">
                         <div class="ip-pic">
-                            <img src="assets/images/${data.image}" alt="">
+                            <img src="${imgSource}${data.image}" alt="">
                         </div>
                         <div class="ip-text">
                             <div class="label"><span>Latest</span></div>
@@ -258,7 +259,7 @@
 
                     //userData.empty();
                     var result = JSON.parse(data.d)
-                    console.log(result);
+                    //console.log(result);
                     $.each(result, function (i, data) {
                         //console.log(emp.brand);
 
@@ -271,7 +272,7 @@
 
                     <div class="ip-item">
                         <div class="ip-pic">
-                            <img src="assets/images/${data.image}" alt="">
+                            <img src="${imgSource}${data.image}" alt="">
                         </div>
                         <div class="ip-text">
                             <div class="label"><span>Latest</span></div>
@@ -306,10 +307,836 @@
                 }
             });
         }
+
+        // Motherboard Data
+        function getMotherboardData()
+        {
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getMotherboardData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(data);
+
+                        var demo = `<div>
+
+
+                    <div class ="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.storage}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <div class ="pagination-item">
+                        <div  onclick="viewLessProcessor()" id="viewLessProcessor" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                    </div>`
+
+
+
+                        $("#divMBoard").append(demo);
+                        //console.log(demo);
+
+                    });
+                }
+            });
+        }
+
+        function viewMoreMotherBoard()
+        {
+            $('#divMBoard').empty();
+            $('#viewMoreMotherBoard').hide();
+            $('#viewLessMotherBoard').show();
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getMoreMotherboardData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(emp.brand);
+
+                        var demo = `<div>
+
+
+                    <div class="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.storage}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    </div>`
+
+
+
+                        $("#divMBoard").append(demo);
+
+                       
+                    });
+                }
+            });
+        }
+
+        function viewLessMotherBoard()
+        {
+            $('#divMBoard').empty();
+            $('#viewLessMotherBoard').hide();
+            $('#viewMoreMotherBoard').show();
+
+            getMotherboardData();
+        }
+
+        // GPU Data
+        function getGPUData() {
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getGPUData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(data);
+
+                        var demo = `<div>
+
+
+                    <div class ="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.ram_size} ${data.ram_type} ${data.interface}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <div class ="pagination-item">
+                        <div  onclick="viewLessProcessor()" id="viewLessProcessor" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                    </div>`
+
+
+
+                        $("#divGPU").append(demo);
+                        //console.log(demo);
+
+                    });
+                }
+            });
+        }
+
+        function viewMoreGPU() {
+            $('#divGPU').empty();
+            $('#viewMoreGPU').hide();
+            $('#viewLessGPU').show();
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getMoreGPUData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(emp.brand);
+
+                        var demo = `<div>
+
+
+                    <div class="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.ram_size} ${data.ram_type} ${data.interface}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    </div>`
+
+
+
+                        $("#divGPU").append(demo);
+
+
+                    });
+                }
+            });
+        }
+
+        function viewLessGPU() {
+            $('#divGPU').empty();
+            $('#viewLessGPU').hide();
+            $('#viewMoreGPU').show();
+
+            getGPUData();
+        }
+
+        // SMPS Data
+        function getSMPSData() {
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getSMPSData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(data);
+
+                        var demo = `<div>
+
+
+                    <div class ="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.wattage}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <div class ="pagination-item">
+                        <div  onclick="viewLessProcessor()" id="viewLessProcessor" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                    </div>`
+
+
+
+                        $("#divSMPS").append(demo);
+                        //console.log(demo);
+
+                    });
+                }
+            });
+        }
+
+        function viewMoreSMPS() {
+            $('#divSMPS').empty();
+            $('#viewMoreSMPS').hide();
+            $('#viewLessSMPS').show();
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getMoreSMPSData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(emp.brand);
+
+                        var demo = `<div>
+
+
+                    <div class="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.wattage}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    </div>`
+
+
+
+                        $("#divSMPS").append(demo);
+
+
+                    });
+                }
+            });
+        }
+
+        function viewLessSMPS() {
+            $('#divSMPS').empty();
+            $('#viewLessSMPS').hide();
+            $('#viewMoreSMPS').show();
+
+            getSMPSData();
+        }
+
+        // Cooler Data
+        function getCoolerData() {
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getCoolerData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(data);
+
+                        var demo = `<div>
+
+
+                    <div class ="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.wattage}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <div class ="pagination-item">
+                        <div  onclick="viewLessProcessor()" id="viewLessProcessor" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                    </div>`
+
+
+
+                        $("#divCooler").append(demo);
+                        //console.log(demo);
+
+                    });
+                }
+            });
+        }
+
+        function viewMoreCooler() {
+            $('#divCooler').empty();
+            $('#viewMoreCooler').hide();
+            $('#viewLessCooler').show();
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getMoreCoolerData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(emp.brand);
+
+                        var demo = `<div>
+
+
+                    <div class="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.wattage}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    </div>`
+
+
+
+                        $("#divCooler").append(demo);
+
+
+                    });
+                }
+            });
+        }
+
+        function viewLessCooler() {
+            $('#divCooler').empty();
+            $('#viewLessCooler').hide();
+            $('#viewMoreCooler').show();
+
+            getCoolerData();
+        }
+
+        // Storage Data
+        function getStorageData() {
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getStorageData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(data);
+
+                        var demo = `<div>
+
+
+                    <div class ="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.size} ${data.interface} </a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <div class ="pagination-item">
+                        <div  onclick="viewLessProcessor()" id="viewLessProcessor" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                    </div>`
+
+
+
+                        $("#divStorage").append(demo);
+                        //console.log(demo);
+
+                    });
+                }
+            });
+        }
+
+        function viewMoreStorage() {
+            $('#divStorage').empty();
+            $('#viewMoreStorage').hide();
+            $('#viewLessStorage').show();
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getMoreStorageData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(emp.brand);
+
+                        var demo = `<div>
+
+
+                    <div class="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.size} ${data.interface}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    </div>`
+
+
+
+                        $("#divStorage").append(demo);
+
+
+                    });
+                }
+            });
+        }
+
+        function viewLessStorage() {
+            $('#divStorage').empty();
+            $('#viewLessStorage').hide();
+            $('#viewMoreStorage').show();
+
+            getStorageData();
+        }
+
+        // Wifi Card Data
+        function getWifiData() {
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getWifiCardData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(data);
+
+                        var demo = `<div>
+
+
+                    <div class ="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.speed} ${data.interface} </a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <div class ="pagination-item">
+                        <div  onclick="viewLessProcessor()" id="viewLessProcessor" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                    </div>`
+
+
+
+                        $("#divWifi").append(demo);
+                        //console.log(demo);
+
+                    });
+                }
+            });
+        }
+
+        function viewMoreWifi() {
+            $('#divWifi').empty();
+            $('#viewMoreWifi').hide();
+            $('#viewLessWifi').show();
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/getMoreWifiCardData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //console.log(data);
+
+                    //userData.empty();
+                    var result = JSON.parse(data.d)
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        //console.log(emp.brand);
+
+                        var demo = `<div>
+
+
+                    <div class="section-title ramClass">
+
+                    </div>
+
+                    <div class="ip-item">
+                        <div class="ip-pic">
+                            <img src="${imgSource}${data.image}" alt="">
+                        </div>
+                        <div class="ip-text">
+                            <div class="label"><span>Latest</span></div>
+                            <h5><a href="#">${data.brand} ${data.model} ${data.speed} ${data.interface}</a></h5>
+                            <ul>
+                                <li>by <span>Admin</span></li>
+                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                <li><i class="fa fa-comment-o"></i> 20</li>
+                            </ul>
+                            <p class="label">
+                                Price: <i class ="fa fa-inr"></i> ${data.price}
+                            </p>
+                            <p class="label">
+                                Available in stock: ${data.in_stock}
+                            </p>
+                            <p class="mt-5">
+                                <button class="btn btn-block btn-outline-danger" type="button">Buy</button>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    </div>`
+
+
+
+                        $("#divWifi").append(demo);
+
+
+                    });
+                }
+            });
+        }
+
+        function viewLessWifi() {
+            $('#divWifi').empty();
+            $('#viewLessWifi').hide();
+            $('#viewMoreWifi').show();
+
+            getWifiData();
+        }
     </script>
     <section class="instagram-post-section spad">
-        <div class="container">
-            <%-- RAM --%>
+
+        <%-- RAM --%>
+        <div class="container">            
             <div class="row">
                 <div class="section-title">
                     <h5>RAM</h5>
@@ -331,11 +1158,10 @@
                 </div>
 
             </div>
-
-          
         </div>
-        <div class="container mt-5">
-              <%-- Processor --%>
+
+        <%-- Processor --%>
+        <div class="container mt-5">              
             <div class="row">
                 <div class="section-title">
                     <h5>Processors</h5>
@@ -357,9 +1183,158 @@
                 </div>
 
             </div>
-
         </div>
-    </section>
-    
+
+        <%-- MotherBoard --%>
+        <div class="container mt-5">              
+            <div class="row">
+                <div class="section-title">
+                    <h5>Motherboard</h5>
+                </div>
+                <div class="col-lg-12">
+                    <div id="divMBoard">
+
+                    </div>
+
+
+                    <div class="pagination-item">
+                        <div  onclick="viewMoreMotherBoard()" id="viewMoreMotherBoard"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+                        
+                    </div>
+                      <div class ="pagination-item">
+                        <div  onclick="viewLessMotherBoard()" id="viewLessMotherBoard" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <%-- GPU --%>
+        <div class="container mt-5">              
+            <div class="row">
+                <div class="section-title">
+                    <h5>GPU</h5>
+                </div>
+                <div class="col-lg-12">
+                    <div id="divGPU">
+
+                    </div>
+
+
+                    <div class="pagination-item">
+                        <div  onclick="viewMoreGPU()" id="viewMoreGPU"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+                        
+                    </div>
+                      <div class ="pagination-item">
+                        <div  onclick="viewLessGPU()" id="viewLessGPU" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+          <%-- SMPS --%>
+        <div class="container mt-5">              
+            <div class="row">
+                <div class="section-title">
+                    <h5>SMPS</h5>
+                </div>
+                <div class="col-lg-12">
+                    <div id="divSMPS">
+
+                    </div>
+
+
+                    <div class="pagination-item">
+                        <div  onclick="viewMoreSMPS()" id="viewMoreSMPS"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+                        
+                    </div>
+                      <div class ="pagination-item">
+                        <div  onclick="viewLessSMPS()" id="viewLessSMPS" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+         <%-- Cooler --%>
+        <div class="container mt-5">              
+            <div class="row">
+                <div class="section-title">
+                    <h5>Coolers</h5>
+                </div>
+                <div class="col-lg-12">
+                    <div id="divCooler">
+
+                    </div>
+
+
+                    <div class="pagination-item">
+                        <div  onclick="viewMoreCooler()" id="viewMoreCooler"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+                        
+                    </div>
+                      <div class ="pagination-item">
+                        <div  onclick="viewLessCooler()" id="viewLessCooler" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+         <%-- Storage --%>
+        <div class="container mt-5">              
+            <div class="row">
+                <div class="section-title">
+                    <h5>Storage</h5>
+                </div>
+                <div class="col-lg-12">
+                    <div id="divStorage">
+
+                    </div>
+
+
+                    <div class="pagination-item">
+                        <div  onclick="viewMoreStorage()" id="viewMoreStorage"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+                        
+                    </div>
+                      <div class ="pagination-item">
+                        <div  onclick="viewLessStorage()" id="viewLessStorage" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+          <%-- Wifi Card --%>
+        <div class="container mt-5">              
+            <div class="row">
+                <div class="section-title">
+                    <h5>Wifi Card</h5>
+                </div>
+                <div class="col-lg-12">
+                    <div id="divWifi">
+
+                    </div>
+
+
+                    <div class="pagination-item">
+                        <div  onclick="viewMoreWifi()" id="viewMoreWifi"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+                        
+                    </div>
+                      <div class ="pagination-item">
+                        <div  onclick="viewLessWifi()" id="viewLessWifi" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>    
 </asp:Content>
 
