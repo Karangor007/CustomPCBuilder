@@ -133,6 +133,7 @@ public class Props
     public string WiFi_price { get; set; }
     #endregion
 
+
     public Props()
 	{
 		//

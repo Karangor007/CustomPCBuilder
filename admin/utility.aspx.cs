@@ -17,6 +17,7 @@ public partial class utility : System.Web.UI.Page
 
     }
 
+    #region Admin Side
     [WebMethod]
     public static string getUser()
     {
@@ -59,7 +60,7 @@ public partial class utility : System.Web.UI.Page
         {
             user = Session["username"].ToString();
         }
-        
+
 
         return user;
 
@@ -76,4 +77,55 @@ public partial class utility : System.Web.UI.Page
 
         }
     }
+    #endregion
+
+    #region Client Side
+    [WebMethod]
+    public static string getClientUser()
+    {
+        utility mst = new utility();
+        Dictionary<string, string> row = row = new Dictionary<string, string>(); ;
+        List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
+        System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        Props obj = new Props();
+        obj.userName = mst.getUserClientInSession();
+
+      
+
+        row.Add("clientuser", obj.userName);
+        rows.Add(row);
+        serializer.MaxJsonLength = Int32.MaxValue;
+
+        string jj = serializer.Serialize(rows);
+        return serializer.Serialize(rows);
+
+    }
+
+    private string getUserClientInSession()
+    {
+        string user;
+
+        if (Session != null && Session["clientusername"] != null)
+        {
+            //Session != null && Session["TenantSessionId"] != null
+            //Session["clientusername"] == null
+            user = Session["clientusername"].ToString();
+            
+        }
+        else
+        {
+            user = null;
+            
+        }
+
+
+        return user;
+
+    }
+
+  
+
+
+    #endregion
+
 }
