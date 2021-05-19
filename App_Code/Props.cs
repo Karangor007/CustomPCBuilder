@@ -133,7 +133,12 @@ public class Props
     public string WiFi_price { get; set; }
     #endregion
 
-
+    #region Mail
+    public string mailName { get; set; }
+    public string mailEmail { get; set; }
+    public string mailContact { get; set; }
+    public string mailMessage { get; set; }
+    #endregion
     public Props()
 	{
 		//

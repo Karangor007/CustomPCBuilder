@@ -110,15 +110,10 @@
                 data: '{}',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
-                    var result = JSON.parse(data.d)
-                    //console.log(result);
+                success: function (data) {                    
+                    var result = JSON.parse(data.d)                    
                     $.each(result, function (i, data) {
-                        //console.log(emp.brand);
-
+                    
                         var demo = `<div>
 
 
@@ -157,8 +152,6 @@
                     </div>
                     </div>`
 
-
-
                         $("#divRam").append(demo);
 
 
@@ -177,14 +170,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        console.log(data);
-
+                        
                         var demo = `<div>
 
 
@@ -255,14 +245,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(emp.brand);
-
+                    
                         var demo = `<div>
 
 
@@ -318,14 +305,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(data);
-
+                    
                         var demo = `<div>
 
 
@@ -364,8 +348,6 @@
                     </div>
                     </div>`
 
-
-
                         $("#divMBoard").append(demo);
                         //console.log(demo);
 
@@ -386,16 +368,12 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(emp.brand);
-
+                    
                         var demo = `<div>
-
 
                     <div class="section-title ramClass">
 
@@ -429,11 +407,8 @@
 
                     </div>`
 
-
-
                         $("#divMBoard").append(demo);
 
-                       
                     });
                 }
             });
@@ -457,16 +432,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(data);
-
                         var demo = `<div>
-
 
                     <div class ="section-title ramClass">
 
@@ -503,10 +473,8 @@
                     </div>
                     </div>`
 
-
-
                         $("#divGPU").append(demo);
-                        //console.log(demo);
+                        
 
                     });
                 }
@@ -524,14 +492,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(emp.brand);
-
+                    
                         var demo = `<div>
 
 
@@ -566,8 +531,6 @@
                     </div>
 
                     </div>`
-
-
 
                         $("#divGPU").append(demo);
 
@@ -593,15 +556,11 @@
                 data: '{}',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                success: function (data) {                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(data);
-
+                    
                         var demo = `<div>
 
 
@@ -641,9 +600,8 @@
                     </div>`
 
 
-
                         $("#divSMPS").append(demo);
-                        //console.log(demo);
+                        
 
                     });
                 }
@@ -661,14 +619,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
                     console.log(result);
                     $.each(result, function (i, data) {
-                        //console.log(emp.brand);
-
+                    
                         var demo = `<div>
 
 
@@ -704,8 +659,6 @@
 
                     </div>`
 
-
-
                         $("#divSMPS").append(demo);
 
 
@@ -722,7 +675,7 @@
             getSMPSData();
         }
 
-        // Cooler Data
+        
         function getCoolerData() {
             $.ajax({
                 type: "POST",
@@ -731,14 +684,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(data);
-
+                    
                         var demo = `<div>
 
 
@@ -778,10 +728,8 @@
                     </div>`
 
 
-
                         $("#divCooler").append(demo);
-                        //console.log(demo);
-
+                    
                     });
                 }
             });
@@ -798,14 +746,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(emp.brand);
-
+                    
                         var demo = `<div>
 
 
@@ -840,8 +785,6 @@
                     </div>
 
                     </div>`
-
-
 
                         $("#divCooler").append(demo);
 
@@ -868,14 +811,10 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
 
-                    //userData.empty();
                     var result = JSON.parse(data.d)
-                    //console.log(result);
-                    $.each(result, function (i, data) {
-                        //console.log(data);
 
+                    $.each(result, function (i, data) {
                         var demo = `<div>
 
 
@@ -914,11 +853,8 @@
                     </div>
                     </div>`
 
-
-
                         $("#divStorage").append(demo);
-                        //console.log(demo);
-
+                        
                     });
                 }
             });
@@ -935,14 +871,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(emp.brand);
-
+                    
                         var demo = `<div>
 
 
@@ -978,10 +911,7 @@
 
                     </div>`
 
-
-
                         $("#divStorage").append(demo);
-
 
                     });
                 }
@@ -1005,16 +935,12 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(data);
-
+                    
                         var demo = `<div>
-
 
                     <div class ="section-title ramClass">
 
@@ -1051,10 +977,8 @@
                     </div>
                     </div>`
 
-
-
                         $("#divWifi").append(demo);
-                        //console.log(demo);
+                        
 
                     });
                 }
@@ -1072,14 +996,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    //console.log(data);
-
-                    //userData.empty();
+                    
                     var result = JSON.parse(data.d)
-                    //console.log(result);
+                    
                     $.each(result, function (i, data) {
-                        //console.log(emp.brand);
-
+                    
                         var demo = `<div>
 
 
@@ -1114,8 +1035,6 @@
                     </div>
 
                     </div>`
-
-
 
                         $("#divWifi").append(demo);
 
