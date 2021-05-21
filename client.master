@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="assets/css/magnific-popup.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -29,6 +29,35 @@
 
     <%-- Scripts --%>
     <script>
+        $(document).ready(function () {
+            
+        });
+
+        function alloWPCBuild()
+        {
+            $.ajax({
+                type: "POST",
+                url: "admin/utility.aspx/getClientUser",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var result = JSON.parse(data.d)
+                    $.each(result, function (i, data) {
+                        if (data.clientuser == null) {
+                            showLoginModal();
+                        }
+                        else {
+                            
+                            $('#linkOrders').attr('href', 'orders.aspx');
+                            $('#linkPCBuild').attr('href', 'custompc.aspx');
+                        }
+
+                    });
+                }
+            });
+        }
+
         function checkLogin() {
             
             $.ajax({
@@ -44,6 +73,9 @@
                             showLoginModal();                            
                         }
                         else {
+                            //linkOrders
+                            $('#linkOrders').attr('href', 'orders.aspx');
+                            $('#linkPCBuild').attr('href', 'custompc.aspx');
                             window.location.replace("orders.aspx");
                         }
 
@@ -377,10 +409,10 @@
 
                 <div class="nav-menu">
                     <ul>
-                        <li class=""><a href="#"><span>Home</span></a></li>
+                        <li class=""><a href="Default.aspx"><span>Home</span></a></li>
                         <li class="mega-menu">
-                            <a href="custompc.aspx"><span>Customize Your PC</span></a>
-                            <a href="#" onclick="checkLogin()"><span>Your Orders</span></a>
+                            <a href="#" id="linkPCBuild" onclick="alloWPCBuild()"><span>Customize Your PC</span></a>
+                            <a href="#" id="linkOrders" onclick="checkLogin()"><span>Your Orders</span></a>
                             <a href="about.aspx"><span>About  Us</span></a>
                             <a href="contactUs.aspx"><span>Contact Us</span></a>
                         </li>
