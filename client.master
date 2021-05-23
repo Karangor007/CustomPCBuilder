@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="assets/css/magnific-popup.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -76,7 +77,11 @@
                             //linkOrders
                             $('#linkOrders').attr('href', 'orders.aspx');
                             $('#linkPCBuild').attr('href', 'custompc.aspx');
-                            window.location.replace("orders.aspx");
+                            //window.location.replace("orders.aspx");
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'You have been Logged In!',
+                            })
                         }
 
                     });
@@ -375,9 +380,13 @@
                             <ul>
                                 <li><i class="fa fa-sun-o"></i><span>20<sup>c</sup></span> London</li>
                                 <li><i class="fa fa-clock-o"></i>Aug 01, 2019</li>
+                                <li class="signup-switch signup-open" onclick="checkLogin()">
+                                    <i class="fa fa-sign-in"></i>Sign In
+                                </li>
                                 <li class="signup-switch signup-open" onclick="signOut()">
                                     <i class="fa fa-sign-out"></i>Sign Out
                                 </li>
+                                
                             </ul>
                         </div>
                     </div>

@@ -3,80 +3,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <style>
-        .myCheckBoxClass {
-            display: none;
+        /*.svg {
+            max-width: 30% !important;
         }
 
-        .checkClass {
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        li {
-            display: inline-block;
-        }
-
-        input[type="radio"][id^="myRadio"] {
-            display: none;
-        }
-
-        label {
-            border: 1px solid #fff;
-            padding: 10px;
-            display: block;
-            position: relative;
-            margin: 10px;
-            cursor: pointer;
-        }
-
-            label:before {
-                background-color: white;
-                color: white;
-                content: " ";
-                display: block;
-                border-radius: 50%;
-                border: 1px solid grey;
-                position: absolute;
-                top: -5px;
-                left: -5px;
-                width: 25px;
-                height: 25px;
-                text-align: center;
-                line-height: 28px;
-                transition-duration: 0.4s;
-                transform: scale(0);
-            }
-
-            label img {
-                height: 100px;
-                width: 100px;
-                transition-duration: 0.2s;
-                transform-origin: 50% 50%;
-            }
-
-        :checked + label {
-            border-color: #ddd;
-        }
-
-            :checked + label:before {
-                content: "✓";
-                background-color: grey;
-                transform: scale(1);
-            }
-
-            :checked + label img {
-                transform: scale(0.9);
-                /* box-shadow: 0 0 5px #333; */
-                z-index: -1;
-            }
-
-
+            .svg:hover {
+                transform: skew(-15deg);
+            }*/
     </style>
     <script>
         $(document).ready(function () {
+            
+          
+
+
+            secondFourHide();
+
             var obj = function () {
                 this.demoAlert = function () {
                     Swal.fire({
@@ -163,39 +107,58 @@
 
             getCheckBox();
         });
+        function secondFourHide() {
+            var secondFour = $('.secondFour');
+            console.log(secondFour);
+            secondFour.hide();
+        }
+        
 
         function getCheckBoxDemo() {
             //myCheckBoxClass
-             $('.checkClass').prop('disabled', true);
-            console.log()
+            $('.checkClass').prop('disabled', true);
+            console.log($('.checkClass'))
         }
 
+
+        function secondFourShow() {
+            var secondFour = $('.secondFour');
+            var firstFive = $('.firstFive');
+            console.log(secondFour);
+            firstFive.hide();
+            secondFour.show();
+        }
     </script>
     <section class="contact-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="card bg-dark">
                         <div class="card-body">
-                            <ul>
+                            <button class="btn btn-outline-danger " onclick="">Show</button>
+                            <%--<ul>
                                 <li >
                                     <input type="checkbox" id="myCheckbox1" class="myCheckBoxClass" />
-                                    <label for="myCheckbox1" class="checkClass" onclick="getCheckBoxDemo()">
+                                    <label for="myCheckbox1" class="checkClass" >
                                         <img src="assets/images/pc1.jpg" /></label>
                                 </li>
                                 <li >
 
                                     <input type="checkbox" id="myCheckbox2" class="myCheckBoxClass" />
-                                    <label for="myCheckbox2" class="checkClass " onclick="getCheckBoxDemo()">
+                                    <label for="myCheckbox2" class="checkClass " >
                                         <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" /></label>
                                 </li>
                                 <li >
 
+
                                     <input type="checkbox" id="myCheckbox3" class="myCheckBoxClass" />
-                                    <label for="myCheckbox3" class="checkClass" onclick="getCheckBoxDemo()">
+                                    <label for="myCheckbox3" class="checkClass" >
                                         <img src="http://www.thebusinessofsports.com/wp-content/uploads/2010/10/facebook-icon-200x200.png" /></label>
                                 </li>
-                            </ul>
+                            </ul>--%>
+                        </div>
+                        <div class="card-footer">
+                            
                         </div>
                     </div>
                 </div>
