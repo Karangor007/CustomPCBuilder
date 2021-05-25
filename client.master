@@ -31,7 +31,7 @@
     <%-- Scripts --%>
     <script>
         $(document).ready(function () {
-            
+            //alloWPCBuild();
         });
 
         function alloWPCBuild()
@@ -52,6 +52,10 @@
                             
                             $('#linkOrders').attr('href', 'orders.aspx');
                             $('#linkPCBuild').attr('href', 'custompc.aspx');
+                            //alloWPCBuild
+                            //dynamicLink
+                            //$('#dynamicLink');
+                           
                         }
 
                     });
@@ -77,11 +81,10 @@
                             //linkOrders
                             $('#linkOrders').attr('href', 'orders.aspx');
                             $('#linkPCBuild').attr('href', 'custompc.aspx');
+                            $('#linkOrdersMob').attr('href', 'orders.aspx');
+                            $('#linkPCBuildMob').attr('href', 'custompc.aspx');
                             //window.location.replace("orders.aspx");
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'You have been Logged In!',
-                            })
+                            
                         }
 
                     });
@@ -370,7 +373,27 @@
         <div class="loader"></div>
     </div>
     <div class="humberger-menu-overlay"></div>
-
+    <div class="humberger-menu-wrapper">
+        <div class="hw-logo">
+            <a href="#"><img src="img/f-logo.png" alt="" /></a>
+        </div>
+        <div class="hw-menu mobile-menu">
+            <ul>
+                <li class=""><a href="Default.aspx"><span>Home</span></a></li>
+                        <li class="mega-menu">
+                            <a href="custompc.aspx" id="linkPCBuildMob" class="dynamicLink" onclick="alloWPCBuild()"><span>Customize Your PC</span></a>
+                            <a href="orders.aspx" id="linkOrdersMob" class="dynamicLink" onclick="checkLogin()"><span>Your Orders</span></a>
+                            <a href="about.aspx"><span>About  Us</span></a>
+                            <a href="contactUs.aspx"><span>Contact Us</span></a>
+                        </li>
+            </ul>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="hw-copyright">
+            Copyright © 2021 Custom PC Builder. All rights reserved
+        </div>
+      
+    </div>
     <header class="header-section">
         <div class="ht-options">
             <div class="container">
@@ -414,7 +437,10 @@
         </div>
         <div class="nav-options">
             <div class="container">
-
+                  <div class="humberger-menu humberger-open">
+                    <i class="fa fa-bars"></i>
+                </div>
+               
 
                 <div class="nav-menu">
                     <ul>
@@ -451,6 +477,7 @@
             <div class="hs-item set-bg" data-setbg="assets/images/bg1.jpg"></div>
             <div class="hs-item set-bg" data-setbg="assets/images/bg3.jpg"></div>
         </div>
+        
     </section>
 
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

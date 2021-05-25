@@ -103,27 +103,48 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
+                        <li >
+                            <a class="" href="Dashboard.aspx">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>                                                   </li>
+                       <li>
+                            <a href="Registration.aspx">
+                                <i class="fas fa-chart-bar"></i>User Master</a>
                         </li>
                         <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
+                            <a href="RAM_List.aspx">
+                                <i class="fas fa-table"></i>RAM Master</a>
+                        </li>
+                        <li>
+                            <a href="Platform_List.aspx">
+                                <i class="fas fa-table"></i>Platform Master</a>
+                        </li>
+                        <li>
+                            <a href="Processor_List.aspx">
+                                <i class="fas fa-table"></i>Processor Master</a>
+                        </li>
+                        <li>
+                            <a href="motherboard_list.aspx">
+                                <i class="fas fa-table"></i>Motherboard Master</a>
+                        </li>
+                        <li>
+                            <a href="GPU_List.aspx">
+                                <i class="fas fa-table"></i>GPU Master</a>
+                        </li>
+                        <li>
+                            <a href="SMPS_List.aspx">
+                                <i class="fas fa-table"></i>SMPS Master</a>
+                        </li>
+                        <li>
+                            <a href="Cooler_List.aspx">
+                                <i class="fas fa-table"></i>Cooler Master</a>
+                        </li>
+                        <li>
+                            <a href="Storage_List.aspx">
+                                <i class="fas fa-table"></i>Storage Master</a>
+                        </li>
+                        <li>
+                            <a href="WifiCard_List.aspx">
+                                <i class="fas fa-table"></i>WiFi Card Master</a>
                         </li>
                         <li>
                             <a href="table.html">
@@ -211,21 +232,9 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="Dashboard.aspx">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">                                                              
                             </ul>
                         </li>
                         <li>

@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
+
     <style>
         /*.svg {
             max-width: 30% !important;
@@ -15,12 +15,6 @@
     </style>
     <script>
         $(document).ready(function () {
-            
-          
-
-
-            secondFourHide();
-
             var obj = function () {
                 this.demoAlert = function () {
                     Swal.fire({
@@ -83,86 +77,58 @@
             }
 
             checkLogin();
-            //$(document).ready(function (e) {
-            //    $(".img-check").click(function () {
-            //        $(this).toggleClass("check");
-            //    });
-            //});
-            $(".image-checkbox").each(function () {
-                if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
-                    $(this).addClass('image-checkbox-checked');
-                }
-                else {
-                    $(this).removeClass('image-checkbox-checked');
-                }
-            });
-
-            // sync the state to the input
-            function getCheckBox() {
-                //myCheckBoxClass
-                var check = $('.checkClass');
-                $('.checkClass').prop('disabled', true);
-                console.log(check)
-            }
-
-            getCheckBox();
         });
-        function secondFourHide() {
-            var secondFour = $('.secondFour');
-            console.log(secondFour);
-            secondFour.hide();
-        }
-        
 
-        function getCheckBoxDemo() {
-            //myCheckBoxClass
-            $('.checkClass').prop('disabled', true);
-            console.log($('.checkClass'))
-        }
-
-
-        function secondFourShow() {
-            var secondFour = $('.secondFour');
-            var firstFive = $('.firstFive');
-            console.log(secondFour);
-            firstFive.hide();
-            secondFour.show();
-        }
     </script>
     <section class="contact-section spad">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="card bg-dark">
-                        <div class="card-body">
-                            <button class="btn btn-outline-danger " onclick="">Show</button>
-                            <%--<ul>
-                                <li >
-                                    <input type="checkbox" id="myCheckbox1" class="myCheckBoxClass" />
-                                    <label for="myCheckbox1" class="checkClass" >
-                                        <img src="assets/images/pc1.jpg" /></label>
-                                </li>
-                                <li >
-
-                                    <input type="checkbox" id="myCheckbox2" class="myCheckBoxClass" />
-                                    <label for="myCheckbox2" class="checkClass " >
-                                        <img src="http://tech21info.com/admin/wp-content/uploads/2013/03/chrome-logo-200x200.png" /></label>
-                                </li>
-                                <li >
-
-
-                                    <input type="checkbox" id="myCheckbox3" class="myCheckBoxClass" />
-                                    <label for="myCheckbox3" class="checkClass" >
-                                        <img src="http://www.thebusinessofsports.com/wp-content/uploads/2010/10/facebook-icon-200x200.png" /></label>
-                                </li>
-                            </ul>--%>
+                        <div class="card-body row">
+                            <div class="col-md-12">
+                                <h3 class="text-white text-center">Select Parts</h3>
+                                <div class="col-md-12 row mt-2 text-center">
+                                    <a href="#">
+                                        <i class="fa fa-arrow-left bg-dark text-white mr-1"></i>
+                                    </a>
+                                    
+                                    <div class="col-md-1">
+                                        
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <button class="btn btn-outline-danger btn-md text-white">Item</button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-outline-danger btn-md text-white">Item</button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-outline-danger btn-md text-white">Item</button>
+                                    </div>
+                                    <div class="col-md-1">
+                                        
+                                    </div>
+                                    <a href="#">
+                                        <i class="fa fa-arrow-right bg-dark text-white"></i>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-12"></div>
                         </div>
                         <div class="card-footer">
-                            
                         </div>
                     </div>
                 </div>
-
+                <div class="col-md-6">
+                    <div class="card bg-dark">
+                        <div class="card-body">
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
