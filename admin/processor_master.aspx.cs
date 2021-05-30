@@ -15,9 +15,7 @@ public partial class processor_master : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
-        {
-
-
+        {            
             requestData();
         }
     }
@@ -80,7 +78,7 @@ public partial class processor_master : System.Web.UI.Page
                         subGuid = subGuid.Substring(0, 4);
                         txtImage.SaveAs(Server.MapPath(path + subGuid + obj.processor_image));
                         string imgName = subGuid + obj.processor_image;
-                        //string query = "insert into mst_ram values('" + obj.ram_brand + "','" + obj.ram_type + "','" + obj.ram_size + "','" + obj.ram_price + "','" + obj.createAt + "','" + obj.createBy + "','" + obj.updateAt + "','" + obj.updateBy + "','" + obj.isActive + "','" + imgName + "','" + obj.isActive + "')";
+                        //string query = "insert into mst_PreBuiltPC values('model','brand','details','pctype','stock','price','platform','cpu','motherboard','cooler','gpu','smps','ram','pcCase','storage1','storage2','wificard','wattage','image','isActive','createAt','createBy','updateAt','updateBy');";
                         string query = "insert into mst_processor values('" + obj.processor_model + "','" + obj.processor_brand + "','" + obj.processor_socket_type + "','" + obj.processor_clock_speed + "','" + obj.createAt + "','" + obj.createBy + "','" + obj.updateAt + "','" + obj.updateBy + "','" + obj.isActive + "','" + imgName + "','" + obj.processor_stock + "','" + obj.processor_price + "')";
 
                         SqlCommand com = new SqlCommand(query, conn);

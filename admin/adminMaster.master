@@ -35,22 +35,11 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
     <script>
         $(document).ready(function () {
             getUser();
            
         });
-
-        function demo() {
-
-
-        }
-
-
-
-
-
 
         function getUser() {
             $.ajax({
@@ -145,6 +134,14 @@
                         <li>
                             <a href="WifiCard_List.aspx">
                                 <i class="fas fa-table"></i>WiFi Card Master</a>
+                        </li>
+                        <li>
+                            <a href="PreBuiltPC.aspx">
+                                <i class="fas fa-table"></i>Pre Built PC</a>
+                        </li>
+                        <li>
+                            <a href="Products.aspx">
+                                <i class="fas fa-table"></i>Products</a>
                         </li>
                         <li>
                             <a href="table.html">
@@ -276,6 +273,14 @@
                         <li>
                             <a href="WifiCard_List.aspx">
                                 <i class="fas fa-table"></i>WiFi Card Master</a>
+                        </li>
+                        <li>
+                            <a href="PreBuiltPC.aspx">
+                                <i class="fas fa-table"></i>Pre Built PC</a>
+                        </li>
+                        <li>
+                            <a href="Products.aspx">
+                                <i class="fas fa-table"></i>Products</a>
                         </li>
                         <li>
                             <a href="form.html">

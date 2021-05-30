@@ -133,6 +133,29 @@ public class Props
     public string WiFi_price { get; set; }
     #endregion
 
+    #region Pre Built PC
+    public string pre_id            { get; set; }
+    public string pre_model         { get; set; }
+    public string pre_brand         { get; set; }
+    public string pre_cooler        { get; set; }
+    public string pre_cpu           { get; set; }
+    public string pre_details       { get; set; }
+    public string pre_gpu           { get; set; }
+    public string pre_image         { get; set; }
+    public string pre_in_stock      { get; set; }
+    public string pre_motherboard   { get; set; }
+    public string pre_pcCase        { get; set; }
+    public string pre_pcType        { get; set; }
+    public string pre_platform      { get; set; }
+    public string pre_price         { get; set; }
+    public string pre_ram           { get; set; }
+    public string pre_smps          { get; set; }
+    public string pre_storage1      { get; set; }
+    public string pre_storage2      { get; set; }
+    public string pre_wattage       { get; set; }
+    public string pre_wifiCard      { get; set; }    
+    #endregion
+
     #region Mail
     public string mailName { get; set; }
     public string mailEmail { get; set; }
