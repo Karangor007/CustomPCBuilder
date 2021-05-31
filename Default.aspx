@@ -79,8 +79,6 @@
                   
                     </div>`
 
-
-
                         $("#divRam").append(demo);
 
 

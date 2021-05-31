@@ -153,7 +153,18 @@ public class Props
     public string pre_storage1      { get; set; }
     public string pre_storage2      { get; set; }
     public string pre_wattage       { get; set; }
-    public string pre_wifiCard      { get; set; }    
+    public string pre_wifiCard      { get; set; }
+    #endregion
+
+    #region Products
+    public string Product_id { get; set; }
+    public string Product_model { get; set; }
+    public string Product_brand { get; set; }
+    public string Product_stock { get; set; }
+    public string Product_price { get; set; }
+    public string Product_type { get; set; }
+    public string Product_details { get; set; }
+    public string Product_image { get; set; }
     #endregion
 
     #region Mail

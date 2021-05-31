@@ -19,7 +19,7 @@
                                         <h3 class="text-dark ">GPU Master</h3>
                                     </div>
                                     <div class="col-md-4">
-                                        <asp:button text="Back" cssclass="btn btn-primary mb-1" runat="server" id="btnAddNew" onclick="btnAddNew_Click" />
+                                        <asp:Button Text="Back" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="btnAddNew_Click" />
                                     </div>
 
                                 </div>
@@ -39,7 +39,7 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Model" id="txtModel" />
+                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Model" ID="txtModel" />
                                             </div>
                                         </div>
                                         <%-- Brand --%>
@@ -49,7 +49,7 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Brand Name" id="txtBrand" />
+                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Brand Name" ID="txtBrand" />
                                             </div>
                                         </div>
                                         <%-- RAM Size --%>
@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:dropdownlist runat="server" id="drpRamSize" cssclass="form-control">
+                                                <asp:DropDownList runat="server" ID="drpRamSize" CssClass="form-control">
                                                     <asp:ListItem Text="Select RAM Size In GB" />
                                                     <asp:ListItem Text="2" />
                                                     <asp:ListItem Text="4" />
@@ -68,7 +68,7 @@
                                                     <asp:ListItem Text="16" />
                                                     <asp:ListItem Text="32" />
                                                     <asp:ListItem Text="64" />
-                                                </asp:dropdownlist>
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
                                         <%-- RAM Type --%>
@@ -78,11 +78,11 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:dropdownlist runat="server" id="drpRamType" cssclass="form-control">
+                                                <asp:DropDownList runat="server" ID="drpRamType" CssClass="form-control">
                                                     <asp:ListItem Text="Select RAM Type" />
                                                     <asp:ListItem Text="GDDR5" />
-                                                    <asp:ListItem Text="DDR3" />                                                    
-                                                </asp:dropdownlist>
+                                                    <asp:ListItem Text="DDR3" />
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
                                         <%-- Interface --%>
@@ -92,7 +92,7 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Interface" id="txtInterFace" />
+                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Interface" ID="txtInterFace" />
                                             </div>
                                         </div>
                                         <%-- Price --%>
@@ -102,7 +102,7 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Enter Price" id="txtPrice" />
+                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Enter Price" ID="txtPrice" />
                                             </div>
                                         </div>
                                         <%-- Stock --%>
@@ -112,7 +112,7 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
-                                                <asp:textbox cssclass="form-control" runat="server" placeholder="Available In Stock" id="txtStock" />
+                                                <asp:TextBox CssClass="form-control" runat="server" placeholder="Available In Stock" ID="txtStock" />
                                             </div>
                                         </div>
 
@@ -123,7 +123,7 @@
                                             </div>
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="password" id="txtConfPassword" name="txtConfPassword" placeholder="Enter Confirm Password" class="form-control valid" onchange="checkPassword()">--%>
-                                                <asp:fileupload id="txtImage" cssclass="form-control" runat="server" placeholder="Choose An Image" />
+                                                <asp:FileUpload ID="txtImage" CssClass="form-control" runat="server" placeholder="Choose An Image" />
                                             </div>
                                         </div>
 
@@ -136,7 +136,7 @@
                                                     <div class="checkbox">
                                                         <label for="chbActive" class="form-check-label ">
                                                             <%--<input type="checkbox" id="chbActive" name="chbActive" class="form-check-input">--%>
-                                                            <asp:checkbox runat="server" id="chbActive" cssclass="form-check-input" />
+                                                            <asp:CheckBox runat="server" ID="chbActive" CssClass="form-check-input" />
                                                         </label>
                                                     </div>
 
@@ -151,7 +151,7 @@
                                         <%--<button id="btnSubmit" class="btn btn-primary btn-md">
                                         Submit
                                     </button>--%>
-                                        <asp:button text="Submit" id="btnSubmit" runat="server" cssclass="btn btn-primary btn-md" onclick="btnSubmit_Click" />
+                                        <asp:Button Text="Submit" ID="btnSubmit" runat="server" CssClass="btn btn-primary btn-md" OnClick="btnSubmit_Click" />
                                         <button id="btnReset" class="btn btn-danger btn-md" onclick="clear()">
                                             Reset
                                         </button>

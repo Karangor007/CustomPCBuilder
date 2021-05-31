@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="col-md-4">
 
-                                        <asp:Button Text="Add New" CssClass="btn btn-primary mb-1" runat="server" ID="btnAddNew" OnClick="btnAddNew_Click" />
+                                        <asp:button text="Add New" cssclass="btn btn-primary mb-1" runat="server" id="btnAddNew" onclick="btnAddNew_Click" />
                                     </div>
 
                                 </div>
@@ -56,7 +56,7 @@
 
                                             </thead>
                                             <tbody id="motherBoardTbBody">
-                                                <asp:Repeater ID="rptMotherBoard" runat="server">
+                                                <asp:repeater id="rptMotherBoard" runat="server">
                                                     <ItemTemplate>
                                                         <tr>
                                                             <td>
@@ -105,7 +105,7 @@
                                                             </td>
                                                         </tr>
                                                     </ItemTemplate>
-                                                </asp:Repeater>
+                                                </asp:repeater>
 
                                             </tbody>
 
