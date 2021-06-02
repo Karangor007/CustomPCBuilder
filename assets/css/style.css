@@ -10,4 +10,10 @@ html,body{height:100%;font-family:montserrat,sans-serif;-webkit-font-smoothing:a
                                           -ms-transform:skewX(15deg);
                                           transform:skewX(15deg);
                                           display:inline-block}
+
+
+.linkHover:hover {
+    cursor: pointer;
+    color:red;
+}
                                          

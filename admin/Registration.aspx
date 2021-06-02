@@ -6,34 +6,6 @@
 
     <script>
         
-
-        //$(document).ready(function () {
-        //    var btnSubmit = document.querySelector('#btnSubmit');
-        //    //console.log(btnSubmit);
-        //    btnSubmit.addEventListener('click', function () {
-        //        //alert('Clicked');
-
-        //        $.ajax({
-        //            type: "POST",
-        //            url: "Registration.aspx/insertUpdateData",
-        //            data: '{demo:"DemoString"}',
-        //            contentType: "application/json",
-        //            success: function (result) {
-        //                //$("#div1").html(result);
-        //                alert(result);
-        //            }
-        //        });
-
-        //    });
-        //});
-
-        //$('#largeModal').click(function () {
-        //    $('#mdTitle').text("Add User");
-        //    $('#largeModal').modal('show');
-        //    clear();
-        //    $("#chbActive ").prop("checked", 1);
-        //});
-
         $(document).ready(function(){
             //userTb
             getData();
@@ -57,18 +29,6 @@
                     var result = JSON.parse(data.d)
                     var i = 0;
                     var table = '';
-
-                    //<tr>
-                    //                            <td>1</td>
-                    //                            <td>Karan@123</td>
-                    //                            <td>Karan Rajgor</td>
-                    //                            <td>Karan@gmail.com</td>
-                    //                            <td>7894561231</td>
-                    //                            <td>Demo Address</td>
-                    //                            <td><label class="btn btn-danger">Deactive</label></td>
-                    //                            <td><button class="btn btn-success" data-toggle="modal" data-target="#largeModal">Edit</button></td>
-                    //                            <td><button class="btn btn-danger">Delete</button></td>
-                    //                        </tr>
 
                     $.each(result, function (i, emp) {
                         i++;
@@ -180,17 +140,7 @@
             }
 
             }
-        //$('#txtFirstName').val('');
-        //$('#txtLastName').val('');
-        //$('#txtUserName').val('');
-        //$('#txtPassword').val('');
-        //$('#txtEmail').val('');
-        //$('#txtContact').val('');
-        ////var dob = $('#ddlDob').val();
-        //$('#selectUserType').val('');
-        //$('#txtAddress').val('');
-        //console.log('Clear Func');
-        //console.log(res);
+    
         });
 
         //console.log(id);

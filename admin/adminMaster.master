@@ -38,7 +38,7 @@
     <script>
         $(document).ready(function () {
             getUser();
-           
+
         });
 
         function getUser() {
@@ -92,10 +92,10 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li >
+                        <li>
                             <a class="" href="Dashboard.aspx">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>                                                   </li>
-                       <li>
+                        <li>
                             <a href="Registration.aspx">
                                 <i class="fas fa-chart-bar"></i>User Master</a>
                         </li>
@@ -231,7 +231,7 @@
                         <li class="active has-sub">
                             <a class="js-arrow" href="Dashboard.aspx">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">                                                              
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
                             </ul>
                         </li>
                         <li>
@@ -536,9 +536,18 @@
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+             <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2021 Custom PC Builder. All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
         </div>
     </div>
-
+    <footer>
+       
+    </footer>
     <%--<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>--%>
 
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
