@@ -382,6 +382,7 @@
                 <li class=""><a href="Default.aspx"><span>Home</span></a></li>
                         <li class="mega-menu">
                             <a href="custompc.aspx" id="linkPCBuildMob" class="dynamicLink" onclick="alloWPCBuild()"><span>Customize Your PC</span></a>
+                            <a href="pre_built_pc.aspx" id="preBuilt" class="" ><span>PREBUILT PC</span></a>
                             <a href="orders.aspx" id="linkOrdersMob" class="dynamicLink" onclick="checkLogin()"><span>Your Orders</span></a>
                             <a href="about.aspx"><span>About  Us</span></a>
                             <a href="store.aspx"><span>Store</span></a>
@@ -449,7 +450,8 @@
                         <li class="mega-menu">
                             <a href="#" id="linkPCBuild" onclick="alloWPCBuild()"><span>Customize Your PC</span></a>
                             <a href="#" id="linkOrders" onclick="checkLogin()"><span>Your Orders</span></a>
-                            <a href="about.aspx"><span>About  Us</span></a>
+                            <a href="pre_built_pc.aspx" class="" ><span>PREBUILT PC</span></a>
+                             <a href="about.aspx"><span>About  Us</span></a>
                             <a href="store.aspx"><span>Store</span></a>
                             <a href="contactUs.aspx"><span>Contact Us</span></a>
                         </li>

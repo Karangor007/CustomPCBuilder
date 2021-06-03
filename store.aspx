@@ -40,12 +40,12 @@
                                     <div class="card-body">
                                         <p class ="card-text">${data.model}</p>
                                         <p class ="card-text">${data.brand}</p>
-                                        <p class ="card-text">${data.price}</p>
+                                        <p class ="card-text"><i class ="fa fa-inr"></i>${data.price}</p>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">View</button>
+                                            <button class ="btn btn-outline-danger btn-sm text-white text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">Add To Cart</button>
+                                            <button class ="btn btn-outline-danger btn-sm text-white text-white">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -77,12 +77,12 @@
                                     <div class="card-body">
                                         <p class ="card-text">${data.model}</p>
                                         <p class ="card-text">${data.brand}</p>
-                                        <p class ="card-text">${data.price}</p>
+                                        <p class ="card-text"><i class ="fa fa-inr"></i>${data.price}</p>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">View</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white text-white text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">Add To Cart</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -114,12 +114,12 @@
                                     <div class="card-body">
                                         <p class ="card-text">${data.model}</p>
                                         <p class ="card-text">${data.brand}</p>
-                                        <p class ="card-text">${data.price}</p>
+                                        <p class ="card-text"><i class ="fa fa-inr"></i>${data.price}</p>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">View</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">Add To Cart</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -151,12 +151,12 @@
                                     <div class="card-body">
                                         <p class ="card-text">${data.model}</p>
                                         <p class ="card-text">${data.brand}</p>
-                                        <p class ="card-text">${data.price}</p>
+                                        <p class ="card-text"><i class ="fa fa-inr"></i>${data.price}</p>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">View</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">Add To Cart</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -188,12 +188,12 @@
                                     <div class="card-body">
                                         <p class ="card-text">${data.model}</p>
                                         <p class ="card-text">${data.brand}</p>
-                                        <p class ="card-text">${data.price}</p>
+                                        <p class ="card-text"><i class ="fa fa-inr"></i>${data.price}</p>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">View</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">Add To Cart</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -227,12 +227,12 @@
                                     <div class="card-body">
                                         <p class ="card-text">${data.model}</p>
                                         <p class ="card-text">${data.brand}</p>
-                                        <p class ="card-text">${data.price}</p>
+                                        <p class ="card-text"><i class ="fa fa-inr"></i>${data.price}</p>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">View</button>
+                                            <button class="btn btn-outline-danger btn-sm text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm">Add To Cart</button>
+                                            <button class="btn btn-danger btn-sm text-white">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>

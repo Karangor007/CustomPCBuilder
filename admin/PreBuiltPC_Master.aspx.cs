@@ -263,7 +263,7 @@ public partial class admin_PreBuiltPC_Master : System.Web.UI.Page
     {
         try
         {
-            Response.Redirect("processor_list.aspx");
+            Response.Redirect("prebuiltpc.aspx");
         }
         catch (Exception ex)
         {
