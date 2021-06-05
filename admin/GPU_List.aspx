@@ -5,11 +5,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script>
         $(document).ready(function () {
-            $('#GPUTb').DataTable({
-                "autoWidth": true,
-                "searching": true,
-                "ordering": true,
-            });
+                $('#GPUTb').DataTable({
+                    "autoWidth": true,
+                    "searching": true,
+                    "ordering": true,
+                });
         });
     </script>
     <form id="form1" runat="server">

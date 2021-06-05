@@ -8,17 +8,30 @@
     <script>
         var imgSource = 'assets/images/';
         $(document).ready(function () {
-            $(document.body).append(`<div id="preloder" style="display:none;">
-        <div class="loader"></div>
-    </div>`);
-            var demo = `<div id="preloder">
-        <div class="loader"></div>
-    </div>`;
+    //        $(document.body).append(`<div id="preloder" style="display:none;">
+    //    <div class="loader"></div>
+    //</div>`);
+    //        var demo = `<div id="preloder">
+    //    <div class="loader"></div>
+    //</div>`;
             //$('preloder').show(1).delay(1000).hide(1);
             getAllProducts();
-
+            //getItem();
 
         });
+
+        function getItem() {
+            if (typeof (Storage) !== "undefined") {
+                // Store
+                //sessionStorage.setItem("lastname", arr);
+                // Retrieve
+                data = JSON.parse(sessionStorage.getItem("lastname"));
+                //alert(data);
+
+            } else {
+                alert("Sorry, your browser does not support Web Storage...")
+            }
+        }
 
         // All Products
         function getAllProducts() {

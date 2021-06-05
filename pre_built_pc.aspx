@@ -9,14 +9,123 @@
         }
     </style>
     <script>
+        var arr = [];
+        var data = [];
+        var cartArray = [];
+        var itemArray = [];
         var imgSource = 'assets/images/';
         $(document).ready(function () {
-
+            //getItem();
             getAllProducts();         
         });
 
-        // Show Details
+        // Add to Cart
+        function addTocart(id,type,price,brand)
+        {
+            itemArray = [
+                {
 
+                    itemId: id,
+                    itemType: type,
+                    itemPrice: price,
+                    item : brand
+                }
+            ];
+                        
+            if (typeof (Storage) !== "undefined") {
+                // Store
+                addInSession(id, type, price, brand)
+                // Retrieve
+                data = JSON.parse(sessionStorage.getItem("lastname"));
+                alert(`Cart : ${data}`);
+                //pushItem(arr);
+            } else {
+                alert("Sorry, your browser does not support Web Storage...")
+            }
+        }
+
+        function getItem(obj)
+        {
+            if (typeof (Storage) !== "undefined") {                
+                data = JSON.parse(sessionStorage.getItem("lastname"));
+                alert('lastname Arr :'+data);
+
+            } else {
+                alert("Sorry, your browser does not support Web Storage...")
+            }
+        }
+
+        // Add item In Session
+        function addInSession(id,type,price,brand)
+        {
+            
+            
+            check = JSON.parse(sessionStorage.getItem("lastname"));
+            if (check == null) {
+                itemArray = [
+                {
+                    itemId: id,
+                    itemType: type,
+                    itemPrice: price,
+                    item: brand
+                }
+                ];
+                console.log(`Check Is Null : ${check}`);
+                sessionStorage.setItem("lastname", JSON.stringify(itemArray));
+                check = JSON.parse(sessionStorage.getItem("lastname"));
+                cartArray = check;                
+            }
+            else {
+                //debugger;
+                console.log(`Check Is Not Null : ${check}`);
+                itemArray = JSON.parse(sessionStorage.getItem("lastname"))
+                
+                console.log(`itemArray`);
+                console.log(itemArray);
+                let tempArray = {
+                    itemId: id,
+                    itemType: type,
+                    itemPrice: price,
+                    item: brand
+                };
+                itemArray.push(tempArray)
+                cartArray = itemArray;                
+                sessionStorage.setItem("lastname", JSON.stringify(cartArray));                
+            }
+            setToCart(cartArray);
+        }
+
+        // Set To Cart
+        function setToCart(arrObj)
+        {
+            var itemCount = arrObj.length;
+            var obj = 'MSI Clutch GM08';
+            var cartIcon = $('#cartbadge');
+            cartIcon.text(itemCount)
+            Swal.fire({
+                icon: 'success',
+                title: 'Success..',
+                text: `You have added ${obj} to your shopping cart!`,
+                
+            })
+            //console.log(cartIcon)
+            console.log('arrObj')            
+            for (let val of arrObj) {
+                console.log(val);
+            }
+        }
+        // Check Array is empty or not and push item
+        function pushItem(obj)
+        {
+            obj = JSON.parse(sessionStorage.getItem("lastname"));
+            let myArray = new Array();
+            myArray = obj;
+            console.log('Array : ' + myArray);
+
+        }
+        
+
+        // Show Details
         function showDetails(id, type) {
             //console.log($('#exampleModal'));
             $('#cardBody').empty();
@@ -42,40 +151,40 @@
                         </div>
                         <div class ="card-body">
                          <div class ="row">
-                         <p class ="card-text col-md-5">PLATFORM: </p> <p class='col-md-7'><span class ="badge badge-danger largText" >${data.platform}</span></p>
+                         <p class ="card-text col-md-5">PLATFORM: </p> <p class='col-md-7'><span class ="badge badge-danger largText text-wrap" >${data.platform}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">CPU: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.cpu}</span></p>
+                         <p class ="card-text col-md-5">CPU: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.cpu}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">MOTHERBOARD: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.motherboard}</span></p>
+                         <p class ="card-text col-md-5">MOTHERBOARD: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.motherboard}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">CPU COOLER: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.cooler}</span></p>
+                         <p class ="card-text col-md-5">CPU COOLER: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.cooler}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">GPU: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.gpu}</span></p>
+                         <p class ="card-text col-md-5">GPU: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.gpu}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">SMPS: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.smps}</span></p>
+                         <p class ="card-text col-md-5">SMPS: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.smps}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">RAM: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.ram}</span></p>
+                         <p class ="card-text col-md-5">RAM: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.ram}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">CASE: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.pcCase}</span></p>
+                         <p class ="card-text col-md-5">CASE: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.pcCase}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">STORAGE 1: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.storage1}</span></p>
+                         <p class ="card-text col-md-5">STORAGE 1: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.storage1}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">STORAGE 2: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.storage2}</span></p>
+                         <p class ="card-text col-md-5">STORAGE 2: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.storage2}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">WATTAGE: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.wattage}</span></p>
+                         <p class ="card-text col-md-5">WATTAGE: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.wattage}</span></p>
                          </div>
                          <div class ="row">
-                         <p class ="card-text col-md-5">WIFI CARD: </p> <p class="col-md-7"><span class ="badge badge-danger largText" >${data.wifiCard}</span></p>
+                         <p class ="card-text col-md-5">WIFI CARD: </p> <p class="col-md-7"><span class ="badge badge-danger largText text-wrap" >${data.wifiCard}</span></p>
                          </div>
                                 </div>
                                 
@@ -89,18 +198,6 @@
             //$('#detailsModal').modal('show');
         }
        
-        //                            <p class ="card-text">CPU: <span class ="badge badge-danger largText" >${data.cpu}</span></p>
-                                    //<p class ="card-text">MOTHERBOARD: <span class ="badge badge-danger largText" >${data.motherboard}</span></p>
-                                    //<p class ="card-text">CPU COOLER: <span class ="badge badge-danger largText" >${data.cooler}</span></p>
-                                    //<p class ="card-text">GPU: <span class ="badge badge-danger largText" >${data.gpu}</span></p>
-                                    //<p class ="card-text">SMPS: <span class ="badge badge-danger largText" >${data.smps}</span></p>
-                                    //<p class ="card-text">RAM: <span class ="badge badge-danger largText" >${data.ram}</span></p>
-                                    //<p class ="card-text">CASE: <span class ="badge badge-danger largText" >${data.pcCase}</span></p>
-                                    //<p class ="card-text">STORAGE 1: <span class ="badge badge-danger largText" >${data.storage1}</span></p>
-                                    //<p class ="card-text">STORAGE 2: <span class ="badge badge-danger largText" >${data.storage2}</span></p>
-                                    //<p class ="card-text">WATTAGE: <span class ="badge badge-danger largText" >${data.wattage}</span></p>
-                                    //<p class ="card-text">WIFI CARD: <span class ="badge badge-danger largText" >${data.wifiCard}</span></p>
-
 
         // All Products
         function getAllProducts() {
@@ -129,7 +226,7 @@
                                             <button id='btnViewDetails' class ="btn btn-outline-danger btn-sm text-white" onclick="showDetails('${id}','${type}')">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
+                                            <button class ="btn btn-outline-danger btn-sm text-white" onclick="addTocart('${id}','${type}','${data.price}','${data.brand}')">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -312,13 +409,7 @@
                 <div class="modal-body">
                     <div class="row">
                         
-                        <div class="col-md-12" id="cardBody">
-                            <%--<div class="card bg-dark text-white col-md-12">
-                                <img class="card-img-top" src="assets/images/fc43download.jpg" alt="Card image cap" />
-                                <div class="card-body">                                    
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>--%>
+                        <div class="col-md-12" id="cardBody">                            
                         </div>
                     </div>
 
@@ -329,34 +420,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </div>    
 </asp:Content>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%--<p class ="card-text">MOTHERBOARD:  <span class ="badge badge-danger largText" >${data.motherboard}</span></p>
-<p class ="card-text">CPU COOLER:   <span class ="badge badge-danger largText" >${data.cooler}</span></p>
-<p class ="card-text">GPU:          <span class ="badge badge-danger largText" >${data.gpu}</span></p>
-<p class ="card-text">SMPS:         <span class ="badge badge-danger largText" >${data.smps}</span></p>
-<p class ="card-text">RAM:          <span class ="badge badge-danger largText" >${data.ram}</span></p>
-<p class ="card-text">CASE:         <span class ="badge badge-danger largText" >${data.pcCase}</span></p>
-<p class ="card-text">STORAGE 1:    <span class ="badge badge-danger largText" >${data.storage1}</span></p>
-<p class ="card-text">STORAGE 2:    <span class ="badge badge-danger largText" >${data.storage2}</span></p>
-<p class ="card-text">WATTAGE:      <span class ="badge badge-danger largText" >${data.wattage}</span></p>
-<p class ="card-text">WIFI CARD:    <span class ="badge badge-danger largText" >${data.wifiCard}</span></p>--%>
 

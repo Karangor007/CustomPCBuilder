@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&amp;display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" />    
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/elegant-icons.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css" />
@@ -21,21 +21,45 @@
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
 
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <style>
+        .largeIcon {
+            font-size:1.5rem !important;
+        }
 
+        .largeIconText {
+            font-size:1rem !important;
+        }
+    </style>
     <%-- Scripts --%>
     <script>
         $(document).ready(function () {
             //alloWPCBuild();
+            setCart();
         });
 
-        function alloWPCBuild()
+        function goToOrder() {
+            window.location.href = 'orders.aspx';
+        }
+
+        // Set Cart Count
+        function setCart()
         {
+            obj = JSON.parse(sessionStorage.getItem("lastname"));
+
+            var itemCount = obj == null ? 0 : obj.length;
+            //var obj = 'MSI Clutch GM08';
+            var cartIcon = $('#cartbadge');
+            cartIcon.text(itemCount)
+        }
+
+        function alloWPCBuild() {
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/getClientUser",
@@ -49,13 +73,13 @@
                             showLoginModal();
                         }
                         else {
-                            
+
                             $('#linkOrders').attr('href', 'orders.aspx');
                             $('#linkPCBuild').attr('href', 'custompc.aspx');
                             //alloWPCBuild
                             //dynamicLink
                             //$('#dynamicLink');
-                           
+
                         }
 
                     });
@@ -64,18 +88,18 @@
         }
 
         function checkLogin() {
-            
+
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/getClientUser",
                 data: '{}',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function (data) {            
-                    var result = JSON.parse(data.d)                    
-                    $.each(result, function (i, data) {                        
+                success: function (data) {
+                    var result = JSON.parse(data.d)
+                    $.each(result, function (i, data) {
                         if (data.clientuser == null) {
-                            showLoginModal();                            
+                            showLoginModal();
                         }
                         else {
                             //linkOrders
@@ -84,7 +108,7 @@
                             $('#linkOrdersMob').attr('href', 'orders.aspx');
                             $('#linkPCBuildMob').attr('href', 'custompc.aspx');
                             //window.location.replace("orders.aspx");
-                            
+
                         }
 
                     });
@@ -98,7 +122,7 @@
                 title: 'Oops...',
                 text: 'Please Login First!'
 
-            }).then(function () {                
+            }).then(function () {
                 showModal();
             })
         }
@@ -112,17 +136,16 @@
             $('#SignUpModal').modal('show');
         }
 
-        function showSignIn()
-        {
+        function showSignIn() {
             $('#SignUpModal').modal('hide');
-            $('#loginModal').modal('show');            
+            $('#loginModal').modal('show');
         }
 
         function checkValidationSignUp() {
             var flag = true;
-            var validElm = $('.validSignUp');            
+            var validElm = $('.validSignUp');
             for(var el of validElm)
-            {            
+            {
                 if (el.value == '' || el.value == null) {
                     flag = false;
                     Swal.fire({
@@ -159,17 +182,17 @@
                 message.show();
             }
             else {
-                 debugger;
-                 addUser(user, pass);
-                
+                debugger;
+                addUser(user, pass);
+
             }
         }
 
         function checkValidationSignIn() {
             var flag = true;
-            var validElm = $('.validSignIn');            
+            var validElm = $('.validSignIn');
             for(var el of validElm)
-            {            
+            {
                 if (el.value == '' || el.value == null) {
                     flag = false;
                     Swal.fire({
@@ -184,7 +207,7 @@
             return flag;
         }
 
-        function signIn() {            
+        function signIn() {
             var user = $('#txtUserName').val();
             var pass = $('#txtPassword').val();
             let checkValidation = checkValidationSignIn();
@@ -200,50 +223,49 @@
             }
         }
 
-        function checkSignIn(username,password)
-        {
-            
+        function checkSignIn(username, password) {
+
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/checkUserValid",
                 data: '{username:"' + username + '",password:"' + password + '"}',
                 contentType: "application/json"
             }).done(function (res) {
-                
+
                 let obj = JSON.parse(res.d);
                 $.each(obj, function (i, data) {
-                    
+
                     if (data.flag == 0) {
-                        
+
                         Swal.fire({
                             icon: 'success',
                             title: 'You have been Logged In!',
                         })
                         clearSign();
-                        signInSession(username);                        
+                        signInSession(username);
                         $('#loginModal').modal('hide');
                     }
                     else {
-                        
+
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: 'You are not a Valid User!',
                         })
-                        clearSign();                        
+                        clearSign();
                     }
                 });
             });
         }
 
         function checkPassword() {
-            var passFlag = true;            
+            var passFlag = true;
             var password = $('#txtPass').val();
-            var confPassword = $('#txtConfPass').val();            
-            if (confPassword == password) {                
+            var confPassword = $('#txtConfPass').val();
+            if (confPassword == password) {
                 passFlag = true;
             }
-            else {                
+            else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -255,16 +277,16 @@
             return passFlag;
         }
 
-        function validPassword() {                        
+        function validPassword() {
             let passFlag = true;
             var validElm = $('.validSignIn');
             var message = $('.passCheck');
             var password = $('#txtPass').val();
-            var confPassword = $('#txtConfPass').val();            
+            var confPassword = $('#txtConfPass').val();
             if (confPassword == '' || password == '') {
                 return false;
             }
-            else if (confPassword == password) {                
+            else if (confPassword == password) {
                 message.show();
                 message.removeClass("text-danger").addClass("text-success");
                 message.html('Passwords are Matched');
@@ -275,14 +297,13 @@
                 message.removeClass("text-success").addClass("text-danger");
                 message.html('Passwords are not Matched');
                 message.show();
-                
+
                 passFlag = true;
             }
             return passFlag;
         }
 
-        function addUser(username,password)
-        {
+        function addUser(username, password) {
 
             var flag;
             var temp;
@@ -291,72 +312,69 @@
                 url: "admin/utility.aspx/insertUserData",
                 data: '{username:"' + username + '",password:"' + password + '"}',
                 contentType: "application/json"
-            }).done(function (res) {                                                
-                let obj = JSON.parse(res.d);                                
-                $.each(obj, function (i, data) {                    
+            }).done(function (res) {
+                let obj = JSON.parse(res.d);
+                $.each(obj, function (i, data) {
                     if (data.flag == 0) {
                         flag = 0;
                         temp = flag;
                         Swal.fire({
-                                    icon: 'error',
-                                    title: 'Oops...',
-                                    text: 'This Username is taken , Please Try Another!',
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'This Username is taken , Please Try Another!',
                         })
                         clear();
                     }
                     else {
-                        flag = 1;                        
+                        flag = 1;
                         temp = flag;
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'You have been registered!',
-                            })
-                            clear();
-                            signInSession(username);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'You have been registered!',
+                        })
+                        clear();
+                        signInSession(username);
                         $('#SignUpModal').modal('hide');
                     }
                 });
-                
+
             });
-            
+
         }
 
-        function clear()
-        {             
-              $('#txtPass').val('');
-              $('#txtConfPass').val('');
-              $('#txtUser').val('');
+        function clear() {
+            $('#txtPass').val('');
+            $('#txtConfPass').val('');
+            $('#txtUser').val('');
         }
 
         function clearSign() {
             $('#txtUserName').val('');
-            $('#txtPassword').val('');            
+            $('#txtPassword').val('');
         }
 
-        function signInSession(username)
-        {
+        function signInSession(username) {
             let flag;
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/setUserClientInSession",
                 data: '{username:"' + username + '"}',
                 contentType: "application/json"
-            }).done(function (res) {                
+            }).done(function (res) {
                 let obj = JSON.parse(res.d);
-                
+
             });
         }
 
-        function signOut()
-        {
+        function signOut() {
             let flag;
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/signOutUserClientInSession",
                 data: '{}',
                 contentType: "application/json"
-            }).done(function (res) {                
-                let obj = JSON.parse(res.d);                                             
+            }).done(function (res) {
+                let obj = JSON.parse(res.d);
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
@@ -375,55 +393,49 @@
     <div class="humberger-menu-overlay"></div>
     <div class="humberger-menu-wrapper">
         <div class="hw-logo">
-            <a href="#"><img src="img/f-logo.png" alt="" /></a>
+            <a href="#">
+                <img src="img/f-logo.png" alt="" /></a>
         </div>
         <div class="hw-menu mobile-menu">
             <ul>
                 <li class=""><a href="Default.aspx"><span>Home</span></a></li>
-                        <li class="mega-menu">
-                            <a href="custompc.aspx" id="linkPCBuildMob" class="dynamicLink" onclick="alloWPCBuild()"><span>Customize Your PC</span></a>
-                            <a href="pre_built_pc.aspx" id="preBuilt" class="" ><span>PREBUILT PC</span></a>
-                            <a href="orders.aspx" id="linkOrdersMob" class="dynamicLink" onclick="checkLogin()"><span>Your Orders</span></a>
-                            <a href="about.aspx"><span>About  Us</span></a>
-                            <a href="store.aspx"><span>Store</span></a>
-                            <a href="contactUs.aspx"><span>Contact Us</span></a>
-                        </li>
+                <li class="mega-menu">
+                    <a href="custompc.aspx" id="linkPCBuildMob" class="dynamicLink" onclick="alloWPCBuild()"><span>Customize Your PC</span></a>
+                    <a href="pre_built_pc.aspx" id="preBuilt" class=""><span>PREBUILT PC</span></a>
+                    <a href="orders.aspx" id="linkOrdersMob" class="dynamicLink" onclick="checkLogin()"><span>Your Orders</span></a>
+                    <a href="about.aspx"><span>About  Us</span></a>
+                    <a href="store.aspx"><span>Store</span></a>
+                    <a href="contactUs.aspx"><span>Contact Us</span></a>
+                </li>
             </ul>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="hw-copyright">
             Copyright © 2021 Custom PC Builder. All rights reserved
         </div>
-      
+
     </div>
     <header class="header-section">
         <div class="ht-options">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-md-8">
+                    <div class="col-md-12">
                         <div class="ht-widget">
                             <ul>
-                                <li><i class="fa fa-sun-o"></i><span>20<sup>c</sup></span> London</li>
-                                <li><i class="fa fa-clock-o"></i>Aug 01, 2019</li>
-                                <li class="signup-switch signup-open" onclick="checkLogin()">
-                                    <i class="fa fa-sign-in"></i>Sign In
-                                </li>
-                                <li class="signup-switch signup-open" onclick="signOut()">
-                                    <i class="fa fa-sign-out"></i>Sign Out
-                                </li>
                                 
+                                <li class="signup-switch signup-open largeIconText" onclick="checkLogin()">
+                                    <i class="fa fa-sign-in largeIcon"></i>Sign In
+                                </li>
+                                <li class="signup-switch signup-open largeIconText" onclick="signOut()">
+                                    <i class="fa fa-sign-out largeIcon"></i>Sign Out
+                                </li>
+                                <li class="fa fa-shopping-cart largeIcon linkHover" onclick="goToOrder()">                                    
+                                   <span class="badge badge-danger" id="cartbadge">0</span>                                        
+                                </li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
-                        <div class="ht-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -439,19 +451,19 @@
         </div>
         <div class="nav-options">
             <div class="container">
-                  <div class="humberger-menu humberger-open">
+                <div class="humberger-menu humberger-open">
                     <i class="fa fa-bars"></i>
                 </div>
-               
+
 
                 <div class="nav-menu">
                     <ul>
                         <li class=""><a href="Default.aspx"><span>Home</span></a></li>
                         <li class="mega-menu">
                             <a href="#" id="linkPCBuild" onclick="alloWPCBuild()"><span>Customize Your PC</span></a>
-                            <a href="#" id="linkOrders" onclick="checkLogin()"><span>Your Orders</span></a>
-                            <a href="pre_built_pc.aspx" class="" ><span>PREBUILT PC</span></a>
-                             <a href="about.aspx"><span>About  Us</span></a>
+                            <%--<a href="#" id="linkOrders" onclick="checkLogin()"><span>Your Orders</span></a>--%>
+                            <a href="pre_built_pc.aspx" class=""><span>PREBUILT PC</span></a>
+                            <a href="about.aspx"><span>About  Us</span></a>
                             <a href="store.aspx"><span>Store</span></a>
                             <a href="contactUs.aspx"><span>Contact Us</span></a>
                         </li>
@@ -476,12 +488,12 @@
                 </div>
             </div>
         </div>
-        <div class="hero-slider owl-carousel ">          
+        <div class="hero-slider owl-carousel ">
             <div class="hs-item set-bg" data-setbg="assets/images/bg2.jpg"></div>
             <div class="hs-item set-bg" data-setbg="assets/images/bg1.jpg"></div>
             <div class="hs-item set-bg" data-setbg="assets/images/bg3.jpg"></div>
         </div>
-        
+
     </section>
 
     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -489,8 +501,6 @@
     <footer class="footer-section">
         <div class="container">
             <div class="row">
-                
-              
             </div>
             <div class="copyright-area">
                 <div class="row">
@@ -499,16 +509,16 @@
                             <p>
                                 Copyright &copy;
                                 <script>document.write(new Date().getFullYear());</script>
-                                All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i>by <a href="#" > Custom PC Builder</a>
+                                fa fa-shopping-cart largeIconAll rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i>by <a href="#">Custom PC Builder</a>
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="ca-links">
                             <a href="Default.aspx"><span>Home</span></a>
-                            <a href="about.aspx">About Us</a>                            
+                            <a href="about.aspx">About Us</a>
                             <a href="contactUs.aspx">Contact</a>
-                            <a href="orders.aspx"><span>Orders</span></a>
+                            <%--<a href="orders.aspx"><span>Orders</span></a>--%>
                         </div>
                     </div>
                 </div>
@@ -603,65 +613,64 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
-                    
-                        <div class="card-body card-block">
-                            <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                <%-- Username --%>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="txtUserName" class=" form-control-label">Username</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="text" id="txtUser" name="txtUserName" placeholder="Enter Username" class="form-control validSignUp" />
-                                    </div>
-                                </div>
-                                <%-- Password --%>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="txtPassword" class=" form-control-label">Password</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="password" id="txtPass" name="txtPassword" placeholder="Enter Password" class="form-control validSignUp passCheck" onkeyup="validPassword()" />
-                                    </div>
-                                    <div class="col-12 col-md-9 text-danger" style="display:none">
-                                        *Password Does Not Match
-                                    </div>
-                                </div>
 
-                                <%-- Confirm Password --%>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="txtConfPassword" class=" form-control-label">Confirm Password</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="password" id="txtConfPass" name="txtConfPassword" placeholder="Enter Confirm Password" class="form-control validSignUp" onkeyup="validPassword()" />
-                                    </div>
-                                    <div class="col col-md-3">
-                                        
-                                    </div>
-                                    <div class="col-12 col-md-9 text-danger passCheck mt-2" style="display:none">
-                                        *Password Does Not Match
-                                    </div>
-                                </div>
 
-                            </form>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <button id="btnSignUp" class="btn btn-outline-warning btn-block" onclick="SignUp()">
+                    <div class="card-body card-block">
+                        <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <%-- Username --%>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="txtUserName" class=" form-control-label">Username</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="txtUser" name="txtUserName" placeholder="Enter Username" class="form-control validSignUp" />
+                                </div>
+                            </div>
+                            <%-- Password --%>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="txtPassword" class=" form-control-label">Password</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="password" id="txtPass" name="txtPassword" placeholder="Enter Password" class="form-control validSignUp passCheck" onkeyup="validPassword()" />
+                                </div>
+                                <div class="col-12 col-md-9 text-danger" style="display: none">
+                                    *Password Does Not Match
+                                </div>
+                            </div>
+
+                            <%-- Confirm Password --%>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="txtConfPassword" class=" form-control-label">Confirm Password</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="password" id="txtConfPass" name="txtConfPassword" placeholder="Enter Confirm Password" class="form-control validSignUp" onkeyup="validPassword()" />
+                                </div>
+                                <div class="col col-md-3">
+                                </div>
+                                <div class="col-12 col-md-9 text-danger passCheck mt-2" style="display: none">
+                                    *Password Does Not Match
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="btnSignUp" class="btn btn-outline-warning btn-block" onclick="SignUp()">
                                 Sign Up
                             </button>
-                            </div>
-                            <div class="col-12 mt-2">
-                                <a href="#" class="text-primary" onclick="showSignIn()">Already a User ? Sign Here !</a>
-                            </div>
-                            
-
                         </div>
-                    
+                        <div class="col-12 mt-2">
+                            <a href="#" class="text-primary" onclick="showSignIn()">Already a User ? Sign Here !</a>
+                        </div>
+
+
+                    </div>
+
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -675,6 +684,7 @@
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="assets/js/main.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 
 </body>
 </html>
