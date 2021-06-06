@@ -850,6 +850,80 @@ public partial class utility : System.Web.UI.Page
     }
     #endregion
 
+    #region Platform
+    [WebMethod]
+    public static string getPlatformData()
+    {
+        Props obj = new Props();
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+
+        SqlConnection conn = new SqlConnection();
+        conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
+
+        string query = "select top 3 * from mst_Platform where isActive=1";
+        SqlDataAdapter adp = new SqlDataAdapter(query, conn);
+        adp.Fill(ds);
+        dt = ds.Tables[0];
+        System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+        Dictionary<string, object> row;
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            row = new Dictionary<string, object>();
+            foreach (DataColumn col in dt.Columns)
+            {
+                row.Add(col.ColumnName, dr[col]);
+            }
+            rows.Add(row);
+        }
+
+        serializer.MaxJsonLength = Int32.MaxValue;
+
+        string jj = serializer.Serialize(rows);
+        return serializer.Serialize(rows);
+
+
+    }
+
+    [WebMethod]
+    public static string getMorePlatformData()
+    {
+        Props obj = new Props();
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+
+        SqlConnection conn = new SqlConnection();
+        conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
+
+        string query = "select * from mst_Platform where isActive=1";
+        SqlDataAdapter adp = new SqlDataAdapter(query, conn);
+        adp.Fill(ds);
+        dt = ds.Tables[0];
+        System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+        Dictionary<string, object> row;
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            row = new Dictionary<string, object>();
+            foreach (DataColumn col in dt.Columns)
+            {
+                row.Add(col.ColumnName, dr[col]);
+            }
+            rows.Add(row);
+        }
+
+        serializer.MaxJsonLength = Int32.MaxValue;
+
+        string jj = serializer.Serialize(rows);
+        return serializer.Serialize(rows);
+
+
+    }
+    #endregion
+
     #region Storage
     [WebMethod]
     public static string getStorageData()

@@ -22,20 +22,14 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css" />
-
+    <link href="assets/css/style.css" rel="stylesheet" />
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <style>
-        .largeIcon {
-            font-size:1.5rem !important;
-        }
-
-        .largeIconText {
-            font-size:1rem !important;
-        }
+       
     </style>
     <%-- Scripts --%>
     <script>

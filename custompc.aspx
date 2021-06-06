@@ -4,15 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <style>
-        .svg {
-            max-width: 13% !important;
-        }
-
-            .svg:hover {
-                transform: skew(-15deg);
-            }
-    </style>
     <script>
         $(document).ready(function () {
             var obj = function () {
@@ -78,34 +69,83 @@
 
             checkLogin();
         });
-        
+
 
         var imgSource = 'assets/images/';
-        
+
         $(document).ready(function () {
             //userTb
-            getRamData();
-            getProcessorData();
-            getMotherboardData();
-            getGPUData()
-            getSMPSData();
-            getCoolerData();
-            getStorageData();
-            getWifiData();
+            //getRamData();
+            //getProcessorData();
+            //getMotherboardData();
+            //getGPUData()
+            //getSMPSData();
+            //getCoolerData();
+            //getStorageData();
+            //getWifiData();
             //$('#viewLessRam').hide();
-          
+            getPlatformData();
 
         });
 
+        // Platform Data
+        function getPlatformData() {
+            $('#partsContent').empty();
+            $.ajax({
+                type: "POST",
+                url: "admin/utility.aspx/getPlatformData",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (res) {
+                    var result = JSON.parse(res.d)
+                    
+                    var demo = `
+                             <fieldset id='options'>
+                            </fieldset>
+                            <div class ="card-footer text-center">
+                                <img class ="svg rounded" src="assets/images/icon/platform.svg" alt="Alternate Text" />
+                                <div class ="col-md-12">
+                                    <span class ="text-center text-white">Choose Platform</span>
+                                </div>
+                                <div class ="col-md-12">
+                                    <div class ="row">
+                                        <div class ="form-group col-md-6 text-center">
+                                            <button class ="btn btn-danger btn-md" id="preButton">Back</button>
+                                        </div>
+                                        <div class ="form-group col-md-6 text-center">
+                                            <button class ="btn btn-danger btn-md" id="nextButton" onclick='getMotherboardData()'>Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+                    //console.log(`Platform Data : ${res}`);
+                    $('#partsContent').append(demo);
+                    console.log(result);
+                    $.each(result, function (i, data) {
+
+                        var demoOptions = `<div class ="card bg-dark text-white">
+                                    <label>
+                                        <input type="radio" name="radio-button" value='${data.pt_id}' />
+                                        <span class ="text-white">${data.name}</span>
+                                    </label>
+                                </div>
+                                `;
+                        $('#options').append(demoOptions);
+                    });
+                }
+            });
+        }
+
         // RAM Data
-        function getRamData() {            
+        function getRamData() {
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/getRamData",
                 data: '{}',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function (res) {                    
+                success: function (res) {
                     var result = JSON.parse(res.d)
                     //console.log(res);
                     $.each(result, function (i, data) {
@@ -116,8 +156,7 @@
         }
 
         // Processor Data
-        function getProcessorData()
-        {
+        function getProcessorData() {
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/getProcessorData",
@@ -125,9 +164,9 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
                         console.log(`Processor Data : ${data[i]}`);
                     });
@@ -136,10 +175,12 @@
         }
 
 
-     
+
         // Motherboard Data
-        function getMotherboardData()
-        {
+        function getMotherboardData() {
+
+
+            $('#partsContent').empty();
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/getMotherboardData",
@@ -147,17 +188,51 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
                     
+                    
+                    var demo = `
+                             <fieldset id='options'>
+
+
+
+                            </fieldset>
+                            <div class ="card-footer text-center">
+                                <img class ="svg rounded" src="assets/images/icon/platform.svg" alt="Alternate Text" />
+                                <div class ="col-md-12">
+                                    <span class ="text-center text-white">Choose Motherboard</span>
+                                </div>
+                                <div class ="col-md-12">
+                                    <div class ="row">
+                                        <div class ="form-group col-md-6 text-center">
+                                            <button class ="btn btn-danger btn-md" id="preButton" onclick='getPlatformData()'>Back</button>
+                                        </div>
+                                        <div class ="form-group col-md-6 text-center">
+                                            <button class ="btn btn-danger btn-md" id="nextButton" onclick=''>Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+                    //console.log(`Platform Data : ${res}`);
+                    $('#partsContent').append(demo);
+                    console.log(result);
                     $.each(result, function (i, data) {
-                        console.log(`MotherBoard Data : ${data[i]}`);
+
+                        var demoOptions = `<div class ="card bg-dark text-white">
+                                    <label>
+                                        <input type="radio" name="radio-button" value='${data.id}' />
+                                        <span class ="text-white">${data.model} ${data.brand}</span>
+                                    </label>
+                                </div>
+                                `;
+                        $('#options').append(demoOptions);
                     });
                 }
             });
         }
 
-     
+
         // GPU Data
         function getGPUData() {
             $.ajax({
@@ -167,9 +242,9 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
                         console.log(`GPU Data : ${data[i]}`);
                     });
@@ -186,9 +261,9 @@
                 data: '{}',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function (data) {                    
+                success: function (data) {
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
                         console.log(`SMPS Data : ${data[i]}`);
                     });
@@ -196,7 +271,7 @@
             });
         }
 
-        
+
         function getCoolerData() {
             $.ajax({
                 type: "POST",
@@ -205,9 +280,9 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
                         console.log(`Cooler Data : ${data[i]}`);
                     });
@@ -243,9 +318,9 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
                         console.log(`Wifi Data : ${data[i]}`);
                     });
@@ -261,44 +336,51 @@
                         <div class="card-header row">
                             <div class="col-md-12">
                                 <h3 class="text-white text-center">Select Parts</h3>
-                                <div class="col-md-12 row mt-2 text-center">
-                                    <a href="#">
-                                        <i class="fa fa-arrow-left bg-dark text-white mr-1"></i>
-                                    </a>
-                                    
-                                    <div class="col-md-1">
-                                        
-                                    </div>
-                                    
-                                    <div class="col-md-3 form-group">
-                                        <button class="btn btn-outline-danger btn-md text-white">Item</button>
-                                    </div>
-                                    <div class="col-md-3 form-group">
-                                        <button class="btn btn-outline-danger btn-md text-white">Item</button>
-                                    </div>
-                                    <div class="col-md-3 form-group">
-                                        <button class="btn btn-outline-danger btn-md text-white">Item</button>
-                                    </div>
-                                    <div class="col-md-1">
-                                        
-                                    </div>
-                                    <a href="#">
-                                        <i class="fa fa-arrow-right bg-dark text-white"></i>
-                                    </a>
-                                    
-                                </div>
                             </div>
                         </div>
-                        <div class="card-body row">
+                        <div class="card-body row" id="partsContent">
+
+                           <%-- <fieldset>
+
+                                <div class="card bg-dark text-white">
+                                    <label>
+                                        <input type="radio" name="radio-button" value="css" />
+                                        <span class="text-white">CSS-only fully stylable radio button</span>
+                                    </label>
+                                </div>
+                                <div class="card bg-dark text-white">
+                                    <label>
+                                        <input type="radio" name="radio-button" value="css" />
+                                        <span class="text-white">CSS-only fully stylable radio button</span>
+                                    </label>
+                                </div>
+                                <div class="card bg-dark text-white">
+                                    <label>
+                                        <input type="radio" name="radio-button" value="css" />
+                                        <span class="text-white">CSS-only fully stylable radio button</span>
+                                    </label>
+                                </div>
+
+                            </fieldset>
+                            <div class="card-footer text-center">
+                                <img class="svg rounded" src="assets/images/icon/platform.svg" alt="Alternate Text" />
+                                <div class="col-md-12">
+                                    <span class="text-center text-white">Choose Platform</span>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-6 text-center">
+                                            <button class="btn btn-danger btn-md ">Back</button>
+                                        </div>
+                                        <div class="form-group col-md-6 text-center">
+                                            <button class="btn btn-danger btn-md ">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>--%>
                             
-                            <div class="col-md-12"></div>
                         </div>
-                        <div class="card-footer text-center">
-                            <img class="svg rounded" src="assets/images/icon/platform.svg" alt="Alternate Text" />
-                            <div class="col-md-12">
-                                <span class="text-center text-white">Choose Platform</span>
-                            </div>                            
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -83,11 +83,11 @@
                 $.each(obj, function (i, data) {
                     var tableData = `
                             <tr>
-                               <td>${i}</td>
+                               <td>${++i}</td>
                                <td>${data.item}</td>
                                <td>${data.itemType}</td>
                                <td>${data.itemPrice}</td>
-                               <td>Delete</td>
+                               <td><button class ="btn btn-danger btn-md">Delete</button></td>
                             </tr>
                         `;
                     $('#userTbBody').append(tableData);
@@ -98,7 +98,7 @@
 
     </script>
 
-
+    
 
     <%--Shopping Content--%>
     <section class="instagram-post-section spad">
@@ -109,10 +109,10 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-12">
+                <div class="col-lg-7">
                     <div class="card bg-dark text-white">
                         <div class="card-body">
-                            <table id="userTb" class="table table-dark table-striped table-bordered table-responsive">
+                            <table id="userTb" class="table table-dark table-striped  table-responsive">
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
