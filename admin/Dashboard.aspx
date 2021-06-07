@@ -4,6 +4,42 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <script>
+        getRecordsCount();
+        function getRecordsCount() {
+            $.ajax({
+                type: "POST",
+                url: "utility.aspx/getRecordCount",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    //var obj = JSON.parse(result);
+
+                    console.log('Record Count')
+                    var obj = JSON.parse(result.d);
+                    console.log(obj);
+                    for(var val of obj)
+                    {
+                    
+                        $('#listUsers').text(val.cntUsers);
+                        $('#listPreBuilt').text(val.cntPreBuiltPC);
+                        $('#listProducts').text(val.cntProducts);
+                        $('#listPlat').text(val.cntPlatform);
+                        $('#listRAM').text(val.cntRam);
+                        $('#listProcessor').text(val.cntProcessor);
+                        $('#listMotherboard').text(val.cntMotherBoard);
+                        $('#listGPU').text(val.cntGPU);
+                        $('#listSMPS').text(val.cntSMPS);
+                        $('#listCooler').text(val.cntCooler);
+                        $('#listStorage').text(val.cntStorage);
+                        $('#listWifiCard').text(val.cntWiFI);
+                    }
+                }
+            });
+        }
+    </script>
+
     <div class="main-content">
         <div class="section__content section__content--p30">
             <div class="container-fluid">

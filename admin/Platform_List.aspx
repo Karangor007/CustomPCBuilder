@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="Platform_List.aspx.cs" Inherits="Platform_List" %>
+﻿<%@ Page Title="Platform List" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="Platform_List.aspx.cs" Inherits="Platform_List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

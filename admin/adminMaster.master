@@ -37,10 +37,28 @@
 <body>
     <script>
         $(document).ready(function () {
-            getUser();
+
 
         });
 
+        getUser();
+        
+        function swalAlert() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Session is Expired ! Please Login First!'
+
+            }).then(function () {
+                
+            })
+        }
+
+        function redirectToHome() {
+            window.location.replace("../login.aspx");
+        }
+
+        // Get User In Session
         function getUser() {
             $.ajax({
                 type: "POST",
@@ -50,13 +68,21 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
                     //var obj = JSON.parse(result);
-                    //console.log(obj);
+
 
                     var obj = JSON.parse(result.d);
-                    //console.log(obj);
+                    console.log(obj);
                     for(var val of obj)
                     {
                     //console.log(val);
+                        if (val.user == 0 || val.user == null) {
+                            //window.location.href = "../login.aspx";
+                            
+                            redirectToHome();
+                        }
+                        else {
+
+                        }
                         $('#userProfHeading').html(val.user);
                         $('#userProf').html(val.user);
                     //logHref
@@ -67,6 +93,8 @@
                 }
             });
         }
+
+        
 
     </script>
 
@@ -93,126 +121,58 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li>
-                            <a class="" href="Dashboard.aspx">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>                                                   </li>
+                            <a class="" href="Dashboard.aspx">Dashboard</a>
+
+                        </li>
                         <li>
-                            <a href="Registration.aspx">
-                                <i class="fas fa-chart-bar"></i>User Master</a>
+                            <a href="Registration.aspx">User Master</a>
                         </li>
                         <li>
                             <a href="RAM_List.aspx">
-                                <i class="fas fa-table"></i>RAM Master</a>
+                                  RAM Master</a>
                         </li>
                         <li>
                             <a href="Platform_List.aspx">
-                                <i class="fas fa-table"></i>Platform Master</a>
+                                  Platform Master</a>
                         </li>
                         <li>
                             <a href="Processor_List.aspx">
-                                <i class="fas fa-table"></i>Processor Master</a>
+                                  Processor Master</a>
                         </li>
                         <li>
                             <a href="motherboard_list.aspx">
-                                <i class="fas fa-table"></i>Motherboard Master</a>
+                                  Motherboard Master</a>
                         </li>
                         <li>
                             <a href="GPU_List.aspx">
-                                <i class="fas fa-table"></i>GPU Master</a>
+                                  GPU Master</a>
                         </li>
                         <li>
                             <a href="SMPS_List.aspx">
-                                <i class="fas fa-table"></i>SMPS Master</a>
+                                  SMPS Master</a>
                         </li>
                         <li>
                             <a href="Cooler_List.aspx">
-                                <i class="fas fa-table"></i>Cooler Master</a>
+                                  Cooler Master</a>
                         </li>
                         <li>
                             <a href="Storage_List.aspx">
-                                <i class="fas fa-table"></i>Storage Master</a>
+                                  Storage Master</a>
                         </li>
                         <li>
                             <a href="WifiCard_List.aspx">
-                                <i class="fas fa-table"></i>WiFi Card Master</a>
+                                  WiFi Card Master</a>
                         </li>
                         <li>
                             <a href="PreBuiltPC.aspx">
-                                <i class="fas fa-table"></i>Pre Built PC</a>
+                                  Pre Built PC</a>
                         </li>
                         <li>
                             <a href="Products.aspx">
-                                <i class="fas fa-table"></i>Products</a>
+                                  Products</a>
                         </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
+                        
+                        
                     </ul>
                 </div>
             </nav>
@@ -230,124 +190,61 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
                             <a class="js-arrow" href="Dashboard.aspx">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                             </ul>
                         </li>
                         <li>
                             <a href="Registration.aspx">
-                                <i class="fas fa-chart-bar"></i>User Master</a>
+                                User Master</a>
                         </li>
                         <li>
                             <a href="RAM_List.aspx">
-                                <i class="fas fa-table"></i>RAM Master</a>
+                                  RAM Master</a>
                         </li>
                         <li>
                             <a href="Platform_List.aspx">
-                                <i class="fas fa-table"></i>Platform Master</a>
+                                  Platform Master</a>
                         </li>
                         <li>
                             <a href="Processor_List.aspx">
-                                <i class="fas fa-table"></i>Processor Master</a>
+                                  Processor Master</a>
                         </li>
                         <li>
                             <a href="motherboard_list.aspx">
-                                <i class="fas fa-table"></i>Motherboard Master</a>
+                                  Motherboard Master</a>
                         </li>
                         <li>
                             <a href="GPU_List.aspx">
-                                <i class="fas fa-table"></i>GPU Master</a>
+                                  GPU Master</a>
                         </li>
                         <li>
                             <a href="SMPS_List.aspx">
-                                <i class="fas fa-table"></i>SMPS Master</a>
+                                  SMPS Master</a>
                         </li>
                         <li>
                             <a href="Cooler_List.aspx">
-                                <i class="fas fa-table"></i>Cooler Master</a>
+                                  Cooler Master</a>
                         </li>
                         <li>
                             <a href="Storage_List.aspx">
-                                <i class="fas fa-table"></i>Storage Master</a>
+                                  Storage Master</a>
                         </li>
                         <li>
                             <a href="WifiCard_List.aspx">
-                                <i class="fas fa-table"></i>WiFi Card Master</a>
+                                  WiFi Card Master</a>
                         </li>
                         <li>
                             <a href="PreBuiltPC.aspx">
-                                <i class="fas fa-table"></i>Pre Built PC</a>
+                                  Pre Built PC</a>
                         </li>
                         <li>
                             <a href="Products.aspx">
-                                <i class="fas fa-table"></i>Products</a>
+                                  Products</a>
                         </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
+                        
+                        
+                        
                     </ul>
                 </nav>
             </div>
@@ -359,7 +256,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="#" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports...">
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -499,23 +396,7 @@
                                                     <span class="email"><a href="https://colorlib.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d2b8bdbabcb6bdb792b7aab3bfa2beb7fcb1bdbf">[email&#160;protected]</a></span>
                                                 </div>
                                             </div>
-                                            <div class="account-dropdown__body">
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account
-                                                    </a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting
-                                                    </a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-money-box"></i>Billing
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="account-dropdown__footer">
                                                 <a id="logHref" href="../login.aspx">
 
@@ -536,17 +417,16 @@
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-             <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2021 Custom PC Builder. All rights reserved.</p>
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <p>Copyright © 2021 Custom PC Builder. All rights reserved.</p>
                     </div>
+                </div>
+            </div>
         </div>
     </div>
     <footer>
-       
     </footer>
     <%--<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>--%>
 

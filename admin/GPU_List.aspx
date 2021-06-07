@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="GPU_List.aspx.cs" Inherits="GPU_List" %>
+﻿<%@ Page Title="GPU List" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="GPU_List.aspx.cs" Inherits="GPU_List" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="motherboard_master.aspx.cs" Inherits="motherboard_master" %>
+﻿<%@ Page Title="Motherboard List" Language="C#" MasterPageFile="adminMaster.master" AutoEventWireup="true" CodeFile="motherboard_master.aspx.cs" Inherits="motherboard_master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

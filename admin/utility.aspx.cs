@@ -33,7 +33,9 @@ public partial class utility : System.Web.UI.Page
 
         if (obj.userName == "" || obj.userName == null)
         {
-            mst.redirectLogin();
+            //mst.redirectLogin();
+            row.Add("user", obj.userName);
+            rows.Add(row);
         }
         else
         {
@@ -53,15 +55,25 @@ public partial class utility : System.Web.UI.Page
     private string getUserInSession()
     {
         string user;
+        //Session != null
+        //if (Session != null && Session["clientusername"] != null)
+        //{
+        //    //Session != null && Session["TenantSessionId"] != null
+        //    //Session["clientusername"] == null
+        //    user = Session["clientusername"].ToString();
 
-        if (Session["username"].ToString() == "0" || Session["username"] == null)
+        //}
+        //Session["username"].ToString() == "0" || Session["username"] == null
+        if (Session != null && Session["username"] != null)
         {
-            user = null;
-            redirectLogin();
+            
+            user = Session["username"].ToString();
+            //redirectLogin();
         }
         else
         {
-            user = Session["username"].ToString();
+            user = null;
+            
         }
 
 
@@ -80,6 +92,59 @@ public partial class utility : System.Web.UI.Page
 
         }
     }
+
+    [WebMethod]
+    public static string getRecordCount()
+    {
+        Props obj = new Props();
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+
+        SqlConnection conn = new SqlConnection();
+        conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
+
+        if (conn.State == ConnectionState.Closed)
+        {
+            conn.Open();
+        }
+
+        string query = @"AdminRecordCount";
+        SqlCommand cmd = new SqlCommand(query,conn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        using (SqlDataReader sdr = cmd.ExecuteReader())
+        {
+            //Create a new DataSet.
+            
+            ds.Tables.Add("Records");
+
+            //Load DataReader into the DataTable.
+            ds.Tables[0].Load(sdr);
+        }
+        
+        
+        dt = ds.Tables[0];
+        System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+        Dictionary<string, object> row;
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            row = new Dictionary<string, object>();
+            foreach (DataColumn col in dt.Columns)
+            {
+                row.Add(col.ColumnName, dr[col]);
+            }
+            rows.Add(row);
+        }
+
+        serializer.MaxJsonLength = Int32.MaxValue;
+
+        string jj = serializer.Serialize(rows);
+        return serializer.Serialize(rows);
+
+
+    }
+
     #endregion
 
     #region Client Side
