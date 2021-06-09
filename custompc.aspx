@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/client.master" AutoEventWireup="true" CodeFile="custompc.aspx.cs" Inherits="custompc" %>
+﻿<%@ Page Title="Custom PC Builder | Build Custom PC" Language="C#" MasterPageFile="~/client.master" AutoEventWireup="true" CodeFile="custompc.aspx.cs" Inherits="custompc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -38,11 +38,7 @@
                             console.log(data.clientuser);
                             if (data.clientuser == null) {
                                 //alert('Please Login First');                            
-                                swalAlert();
-                                //setTimeout(function () {
-                                //    //alert('Please Login First');
-                                //    window.location.replace("Default.aspx");
-                                //},1400)                            
+                                swalAlert();                                                         
                             }
 
                         });

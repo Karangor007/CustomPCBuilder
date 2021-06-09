@@ -102,8 +102,8 @@
 
     <%--Shopping Content--%>
     <section class="instagram-post-section spad">
-        <div class="section-title">
-            <h5>RAM</h5>
+        <div class="section-title container">
+            <h5>Orders</h5>
         </div>
         <%-- List --%>
         <div class="container">
@@ -117,8 +117,9 @@
                                     <tr>
                                         <th>Sr No.</th>
                                         <th>Product</th>
+                                        <th>Type</th>
                                         <th>Price</th>
-                                        <th>Quantity</th>
+                                        
                                         <th>Delete</th>
                                     </tr>
 

@@ -250,7 +250,7 @@ public partial class utility : System.Web.UI.Page
             obj.contact = "";
             //obj.dob = dob;
             obj.address = "";
-            obj.userType = "";
+            obj.userType = "user";
             obj.isActive = "1";
             obj.createAt = DateTime.Now.ToString("yyyy-MM-dd");
             obj.userName = username;

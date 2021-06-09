@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="client.master" AutoEventWireup="true" CodeFile="store.aspx.cs" Inherits="store" %>
+﻿<%@ Page Title="Custom PC Builder | Store" Language="C#" MasterPageFile="client.master" AutoEventWireup="true" CodeFile="store.aspx.cs" Inherits="store" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -8,12 +8,64 @@
     <script>
         var imgSource = 'assets/images/';
         $(document).ready(function () {
-    //        $(document.body).append(`<div id="preloder" style="display:none;">
-    //    <div class="loader"></div>
-    //</div>`);
-    //        var demo = `<div id="preloder">
-    //    <div class="loader"></div>
-    //</div>`;
+            var obj = function () {
+                this.demoAlert = function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please Login First!'
+
+                    })
+                }
+
+                this.demoRedirect = function () {
+                    window.location.replace("Default.aspx");
+                }
+            }
+
+            function checkLogin() {
+                //admin/utility.aspx/
+                var demoObj = new obj();
+                $.ajax({
+                    type: "POST",
+                    url: "admin/utility.aspx/getClientUser",
+                    data: '{}',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        //console.log(data);                    
+                        var result = JSON.parse(data.d)
+                        console.log(result);
+                        $.each(result, function (i, data) {
+                            console.log(data.clientuser);
+                            if (data.clientuser == null) {
+                                //alert('Please Login First');                            
+                                swalAlert();
+                            }
+
+                        });
+                    }
+                });
+            }
+
+            // Redirect
+            function redirectToHome() {
+                window.location.replace("Default.aspx");
+            }
+
+            // alert
+            function swalAlert() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please Login First!'
+
+                }).then(function () {
+                    redirectToHome();
+                })
+            }
+
+            checkLogin();
             //$('preloder').show(1).delay(1000).hide(1);
             getAllProducts();
             //getItem();

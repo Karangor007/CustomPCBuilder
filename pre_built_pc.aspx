@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/client.master" AutoEventWireup="true" CodeFile="pre_built_pc.aspx.cs" Inherits="pre_built_pc" %>
+﻿<%@ Page Title="Custom PC Builder | Pre Built PC" Language="C#" MasterPageFile="~/client.master" AutoEventWireup="true" CodeFile="pre_built_pc.aspx.cs" Inherits="pre_built_pc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -9,6 +9,10 @@
         }
     </style>
     <script>
+
+      
+        
+
         var arr = [];
         var data = [];
         var cartArray = [];
@@ -16,6 +20,64 @@
         var imgSource = 'assets/images/';
         $(document).ready(function () {
             //getItem();
+            var obj = function () {
+                this.demoAlert = function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please Login First!'
+
+                    })
+                }
+
+                this.demoRedirect = function () {
+                    window.location.replace("Default.aspx");
+                }
+            }
+
+            function checkLogin() {
+                //admin/utility.aspx/
+                var demoObj = new obj();
+                $.ajax({
+                    type: "POST",
+                    url: "admin/utility.aspx/getClientUser",
+                    data: '{}',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        //console.log(data);                    
+                        var result = JSON.parse(data.d)
+                        console.log(result);
+                        $.each(result, function (i, data) {
+                            console.log(data.clientuser);
+                            if (data.clientuser == null) {
+                                //alert('Please Login First');                            
+                                swalAlert();
+                            }
+
+                        });
+                    }
+                });
+            }
+
+            // Redirect
+            function redirectToHome() {
+                window.location.replace("Default.aspx");
+            }
+
+            // alert
+            function swalAlert() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please Login First!'
+
+                }).then(function () {
+                    redirectToHome();
+                })
+            }
+
+            checkLogin();
             getAllProducts();         
         });
 
@@ -37,7 +99,7 @@
                 addInSession(id, type, price, brand)
                 // Retrieve
                 data = JSON.parse(sessionStorage.getItem("lastname"));
-                alert(`Cart : ${data}`);
+                //alert(`Cart : ${data}`);
                 //pushItem(arr);
             } else {
                 alert("Sorry, your browser does not support Web Storage...")
@@ -98,14 +160,15 @@
         // Set To Cart
         function setToCart(arrObj)
         {
+            console.log(arrObj);
             var itemCount = arrObj.length;
-            var obj = 'MSI Clutch GM08';
+            var obj = arrObj.item;
             var cartIcon = $('#cartbadge');
             cartIcon.text(itemCount)
             Swal.fire({
                 icon: 'success',
                 title: 'Success..',
-                text: `You have added ${obj} to your shopping cart!`,
+                text: `You  Order has been added to your shopping cart!`,
                 
             })
             //console.log(cartIcon)

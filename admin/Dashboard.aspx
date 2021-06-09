@@ -14,7 +14,9 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
-                    //var obj = JSON.parse(result);
+                    var objResult = result;
+                    console.log(objResult);
+
 
                     console.log('Record Count')
                     var obj = JSON.parse(result.d);
