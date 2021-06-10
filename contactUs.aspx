@@ -43,6 +43,16 @@
 
     <script>
 
+        function loadSpinner() {
+            timerAlert();
+            setTimeout(function () {
+                //$('#myLoader').hide();
+                Swal.close();
+            }, 1000)
+            timerAlert();
+
+        }
+
         function timerAlert()
         {
             let timerInterval
@@ -74,15 +84,7 @@
             })
         }
 
-        function loadSpinner() {           
-            timerAlert();
-            setTimeout(function () {
-                //$('#myLoader').hide();
-                Swal.close();
-            }, 1000)
-            timerAlert();
-          
-        }
+       
 
         function showSpinner()
         {

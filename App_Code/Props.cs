@@ -35,6 +35,12 @@ public class Props
 
     #endregion
 
+    #region Product_Category
+    public string prod_cat_id { get; set; }
+    public string prod_cat_name { get; set; }
+    
+    #endregion
+
     #region RAM
     public string ram_id { get; set; }
     public string ram_brand { get; set; }

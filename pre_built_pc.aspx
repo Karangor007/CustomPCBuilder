@@ -188,6 +188,48 @@
         }
         
 
+        function timerAlert() {
+            let timerInterval
+            Swal.fire({
+                
+                timerProgressBar: true,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        const content = Swal.getHtmlContainer()
+                        if (content) {
+                            const b = content.querySelector('b')
+                            if (b) {
+                                b.textContent = Swal.getTimerLeft()
+                            }
+                        }
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    //console.log('I was closed by the timer')
+                }
+            })
+        }
+
+
+
+        function showSpinner() {
+            //$('#myLoader').show();
+            timerAlert();
+        }
+
+        function hideSpinner() {
+            //$('#myLoader').hide();
+            Swal.close();
+        }
+
         // Show Details
         function showDetails(id, type) {
             //console.log($('#exampleModal'));
@@ -196,9 +238,11 @@
             $.ajax({
                 type: "POST",
                 url: "pre_built_pc.aspx/getPCByIdType",
+
                 data: '{id : "' + id + '",type:"'+type+'"}',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
+
                 success: function (data) {
                     var result = JSON.parse(data.d)
                     console.log(result);
@@ -309,8 +353,20 @@
                 type: "POST",
                 url: "pre_built_pc.aspx/getGamingPC",
                 data: '{}',
+                beforeSend: function () {
+                    showSpinner();
+
+                },
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
+                complete: function () {
+                    hideSpinner()
+                    //Swal.fire({
+                    //    icon: 'success',
+                    //    title: 'Success',
+                    //    text: 'Your Response is Recorded!',
+                    //})
+                },
                 success: function (data) {
                     var result = JSON.parse(data.d)
 

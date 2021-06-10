@@ -17,6 +17,7 @@
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <%--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">--%>
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
     <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
@@ -128,6 +129,10 @@
                             <a href="Registration.aspx">User Master</a>
                         </li>
                         <li>
+                            <a href="category.aspx">Product Category</a>
+                        </li>
+
+                        <li>
                             <a href="RAM_List.aspx">
                                   RAM Master</a>
                         </li>
@@ -197,6 +202,9 @@
                         <li>
                             <a href="Registration.aspx">
                                 User Master</a>
+                        </li>
+                        <li>
+                            <a href="category.aspx">Product Category</a>
                         </li>
                         <li>
                             <a href="RAM_List.aspx">
@@ -432,6 +440,7 @@
 
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+
     <script src="vendor/slick/slick.min.js">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
