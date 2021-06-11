@@ -60,7 +60,7 @@
                                             <div class="col-12 col-md-9">
                                                 <%--<input type="text" id="txtFirstName" name="text-input" placeholder="Enter First Name" class="form-control">--%>
                                                 <asp:dropdownlist runat="server" id="drpType" cssclass="form-control">
-                                                    <asp:ListItem Text="Select Product Type" />
+                                                    
                                                     <asp:ListItem Text="Wifi-Card" />
                                                     <asp:ListItem Text="Mouse" />
                                                     <asp:ListItem Text="Monitors" />

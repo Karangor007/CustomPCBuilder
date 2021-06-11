@@ -73,7 +73,7 @@
                                                                 <asp:Label Text='<%#Eval("brand")%>' ID="lblBrand" runat="server" />
                                                             </td>
                                                             <td>
-                                                                <asp:Label Text='<%#Eval("type")%>' ID="lblRamSize" runat="server" />
+                                                                <asp:Label Text='<%#Eval("name")%>' ID="lblRamSize" runat="server" />
                                                             </td>
                                                             <td>
                                                                 <asp:Label Text='<%#Eval("details")%>' ID="lblRamType" runat="server" />

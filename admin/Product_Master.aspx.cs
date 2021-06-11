@@ -17,6 +17,7 @@ public partial class admin_Product_Master : System.Web.UI.Page
         if (!IsPostBack)
         {
             requestData();
+            bindProductType();
         }
     }
 
@@ -223,6 +224,7 @@ public partial class admin_Product_Master : System.Web.UI.Page
             }
             else
             {
+                //bindProductType();
                 btnSubmit.Text = "Update";
                 string query = "select * from mst_products where id='" + obj.Product_id + "'";
                 SqlDataAdapter adp = new SqlDataAdapter(query, conn);
@@ -233,7 +235,8 @@ public partial class admin_Product_Master : System.Web.UI.Page
                 txtStock.Text = ds.Tables[0].Rows[0]["in_stock"].ToString();
                 txtPrice.Text = ds.Tables[0].Rows[0]["price"].ToString();
                 txtDetails.Text = ds.Tables[0].Rows[0]["details"].ToString();
-                drpType.Text = ds.Tables[0].Rows[0]["type"].ToString();
+                drpType.Items.Insert(0, new ListItem("Please Select Type"));
+                drpType.SelectedValue = ds.Tables[0].Rows[0]["type"].ToString();
                 chbActive.Checked = ds.Tables[0].Rows[0]["isactive"].ToString() == "True" ? true : false;
 
             }
@@ -243,6 +246,31 @@ public partial class admin_Product_Master : System.Web.UI.Page
         catch (Exception ex)
         {
             throw ex;
+        }
+    }
+
+    private void bindProductType()
+    {
+        try
+        {
+            SqlConnection conn = new SqlConnection();
+            DataSet ds = new DataSet();
+            Props obj = new Props();
+            conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
+            string query = "select * from mst_product_cat where isActive = 1";
+            SqlDataAdapter adp = new SqlDataAdapter(query, conn);
+            adp.Fill(ds);
+            drpType.DataSource = ds.Tables[0];
+            
+            drpType.DataTextField = "name";
+            drpType.DataValueField = "id";
+            drpType.DataBind();
+            drpType.Items.Insert(0,new ListItem("Please Select Type"));
+
+        }
+        catch (Exception ex)
+        {
+
         }
     }
 }

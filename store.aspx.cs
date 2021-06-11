@@ -62,7 +62,9 @@ public partial class store : System.Web.UI.Page
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
 
-        string query = "select * from mst_products where isActive=1 and type='Mouse'";
+        string query = "select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'mouse' and mst_products.isActive=1";
+        //select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'mouse' and mst_products.isActive=1
+        //
         SqlDataAdapter adp = new SqlDataAdapter(query, conn);
         adp.Fill(ds);
         dt = ds.Tables[0];
@@ -97,7 +99,8 @@ public partial class store : System.Web.UI.Page
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
 
-        string query = "select * from mst_products where isActive=1 and type='Monitors'";
+        string query = "select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'Monitors' and mst_products.isActive=1";
+        //select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'Monitors' and mst_products.isActive=1
         SqlDataAdapter adp = new SqlDataAdapter(query, conn);
         adp.Fill(ds);
         dt = ds.Tables[0];
@@ -132,7 +135,8 @@ public partial class store : System.Web.UI.Page
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
 
-        string query = "select * from mst_products where isActive=1 and type='Keyboards'";
+        string query = "select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'Keyboards' and mst_products.isActive=1";
+        //select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'Keyboards' and mst_products.isActive=1
         SqlDataAdapter adp = new SqlDataAdapter(query, conn);
         adp.Fill(ds);
         dt = ds.Tables[0];
@@ -166,8 +170,8 @@ public partial class store : System.Web.UI.Page
 
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
-
-        string query = "select * from mst_products where isActive=1 and type ='Headsets'";
+        //select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'Headsets' and mst_products.isActive=1
+        string query = "select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'Headsets' and mst_products.isActive=1";
         SqlDataAdapter adp = new SqlDataAdapter(query, conn);
         adp.Fill(ds);
         dt = ds.Tables[0];
@@ -201,7 +205,8 @@ public partial class store : System.Web.UI.Page
         SqlConnection conn = new SqlConnection();
         conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
 
-        string query = "select * from mst_products where isActive=1 and type = 'Wifi-Card'";
+        string query = "select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'Wifi-Card' and mst_products.isActive=1";
+        //select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id and mst_product_cat.name = 'Wifi-Card' and mst_products.isActive=1
         SqlDataAdapter adp = new SqlDataAdapter(query, conn);
         adp.Fill(ds);
         dt = ds.Tables[0];

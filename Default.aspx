@@ -18,7 +18,7 @@
             getCoolerData();
             getStorageData();
             getWifiData();
-            //$('#viewLessRam').hide();          
+                    
         });
 
         // View More RAM

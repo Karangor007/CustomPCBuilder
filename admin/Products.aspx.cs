@@ -99,7 +99,7 @@ public partial class admin_Products : System.Web.UI.Page
                 conn.Open();
             }
 
-            string query = "select * from mst_products";
+            string query = "select mst_products.*,mst_product_cat.name from mst_products inner join mst_product_cat on mst_products.type = mst_product_cat.id";
             SqlDataAdapter adp = new SqlDataAdapter(query, conn);
             adp.Fill(ds);
             rptProduct.DataSource = ds;
