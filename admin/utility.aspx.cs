@@ -182,7 +182,7 @@ public partial class utility : System.Web.UI.Page
         }
         else
         {
-            user = null;
+            user = "";
             
         }
 
@@ -354,6 +354,100 @@ public partial class utility : System.Web.UI.Page
 
         conn.Close();
         return flag;
+    }
+
+    [WebMethod]
+    public static string addToProductCartData(string product_id, string type,string quantity,string price)
+    {
+        string flag = "0";
+        utility reg = new utility();
+        Dictionary<string, string> row = row = new Dictionary<string, string>();
+        List<Dictionary<string, string>> rows = new List<Dictionary<string, string>>();
+        System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        Props obj = new Props();
+        obj.Product_cart_Product_id = product_id.Trim();
+        obj.Product_cart_Type = type.Trim();
+        obj.Product_cart_Quantity = quantity.Trim();
+        obj.Product_cart_Price = price.Trim();
+        obj.isActive = "1";
+        obj.createAt = DateTime.Now.ToString("yyyy-MM-dd");
+        obj.createBy = reg.getUserClientInSession();
+        obj.updateAt = null;
+        obj.updateBy = "";
+        //string userExist = utility.checkUserExist(obj.userName);                                     
+        SqlConnection conn = new SqlConnection();
+        conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
+        //var temp = demo;
+        conn.Open();            
+        //insert into mst_product_cart values('product_id', 'type', 'quantity', 'price', 'isActive', 'createBy', 'createAt', 'updateBy', 'updateAt')            
+        string query = "insert into mst_product_cart values('"+ obj.Product_cart_Product_id + "', '"+ obj.Product_cart_Type + "', '"+ obj.Product_cart_Quantity + "', '"+ obj.Product_cart_Price + "', '"+obj.isActive+"', '"+obj.createBy+"', '"+obj.createAt+"', '"+obj.updateBy+"', '"+obj.updateAt+"')";
+        SqlCommand com = new SqlCommand(query, conn);
+        com.ExecuteNonQuery();
+        flag = "1";
+        conn.Close();        
+        row.Add("flag", flag);
+        rows.Add(row);
+        serializer.MaxJsonLength = Int32.MaxValue;
+
+        string jj = serializer.Serialize(rows);
+        return serializer.Serialize(rows);
+
+    }
+
+    [WebMethod]
+    public static string getCartDataCount()
+    {
+        Props obj = new Props();
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+        utility util = new utility();
+        SqlConnection conn = new SqlConnection();
+        conn = new SqlConnection(ConfigurationManager.ConnectionStrings["Conn"].ConnectionString);
+
+        if (conn.State == ConnectionState.Closed)
+        {
+            conn.Open();
+        }
+
+        obj.userName = util.getUserClientInSession();
+        
+        
+        string query = @"getCartProductCount";
+        SqlCommand cmd = new SqlCommand(query, conn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@UserName", obj.userName);
+        using (SqlDataReader sdr = cmd.ExecuteReader())
+        {
+            //Create a new DataSet.
+
+            ds.Tables.Add("Records");
+
+            //Load DataReader into the DataTable.
+            ds.Tables[0].Load(sdr);
+        }
+
+
+        dt = ds.Tables[0];
+        System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+        Dictionary<string, object> row;
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            row = new Dictionary<string, object>();
+            foreach (DataColumn col in dt.Columns)
+            {
+                row.Add(col.ColumnName, dr[col]);
+            }
+            rows.Add(row);
+        }
+
+        serializer.MaxJsonLength = Int32.MaxValue;
+
+        string jj = serializer.Serialize(rows);
+        return serializer.Serialize(rows);
+
+
     }
 
     #region Send Mail

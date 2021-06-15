@@ -72,17 +72,52 @@
 
         });
 
-        function getItem() {
-            if (typeof (Storage) !== "undefined") {
-                // Store
-                //sessionStorage.setItem("lastname", arr);
-                // Retrieve
-                data = JSON.parse(sessionStorage.getItem("lastname"));
-                //alert(data);
+        function getCartData(){
+            $.ajax({
+                type: "POST",
+                url: "admin/utility.aspx/getCartDataCount",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var result = JSON.parse(data.d)
+                    console.log('Cart Data');
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        console.log(data);
 
-            } else {
-                alert("Sorry, your browser does not support Web Storage...")
-            }
+                    });
+                }
+            });
+        }
+
+        function addTocart(id, type, price, brand,model)
+        {
+            console.log(`id : ${id} Model : ${model} Type : ${type} Price : ${price}`)
+
+            var product_id = `${id}`;
+            var type = `${type}`;
+            var price = `${price}`;
+            var quantity = '';
+
+            $.ajax({
+                type: "POST",
+                url: "admin/utility.aspx/addToProductCartData",
+                data: '{product_id:"' + product_id + '",type:"' + type + '",quantity:"' + quantity + '",price:"' + price + '"}',
+                contentType: "application/json"
+            }).done(function (res) {
+                //alert(res);
+                $('#catModal').modal('hide');
+                clear();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: `${model} Has Been Added To Cart!`,
+                })
+                getCartData()
+
+                //console.log(res);
+            });
         }
 
         // All Products
@@ -97,7 +132,7 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     var result = JSON.parse(data.d)
-
+                    //console.log(result);
                     $.each(result, function (i, data) {
                         var demo = `<div class="col-md-4 text-center">
                                 <div class="card bg-dark ml-1">
@@ -110,7 +145,7 @@
                                             <button class ="btn btn-outline-danger btn-sm text-white text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class ="btn btn-outline-danger btn-sm text-white text-white">Add To Cart</button>
+                                            <button class ="btn btn-outline-danger btn-sm text-white text-white" onclick="addTocart('${data.id}','${data.type}','${data.price}','${data.brand}','${data.model}')">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -147,7 +182,7 @@
                                             <button class="btn btn-outline-danger btn-sm text-white text-white text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
+                                            <button class ="btn btn-outline-danger btn-sm text-white" onclick="addTocart('${data.id}','${data.type}','${data.price}','${data.brand}','${data.model}')">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +219,7 @@
                                             <button class="btn btn-outline-danger btn-sm text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
+                                            <button class ="btn btn-outline-danger btn-sm text-white" onclick="addTocart('${data.id}','${data.type}','${data.price}','${data.brand}','${data.model}')">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -221,7 +256,7 @@
                                             <button class="btn btn-outline-danger btn-sm text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
+                                            <button class ="btn btn-outline-danger btn-sm text-white" onclick="addTocart('${data.id}','${data.type}','${data.price}','${data.brand}','${data.model}')">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +293,7 @@
                                             <button class="btn btn-outline-danger btn-sm text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-outline-danger btn-sm text-white">Add To Cart</button>
+                                            <button class ="btn btn-outline-danger btn-sm text-white" onclick="addTocart('${data.id}','${data.type}','${data.price}','${data.brand}','${data.model}')">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +332,7 @@
                                             <button class="btn btn-outline-danger btn-sm text-white">View</button>
                                         </div>
                                         <div class="form-group">
-                                            <button class="btn btn-danger btn-sm text-white">Add To Cart</button>
+                                            <button class ="btn btn-danger btn-sm text-white" onclick="addTocart('${data.id}','${data.type}','${data.price}','${data.brand}','${data.model}')">Add To Cart</button>
                                         </div>
                                     </div>
                                 </div>

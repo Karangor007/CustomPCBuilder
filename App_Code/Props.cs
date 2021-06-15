@@ -179,6 +179,27 @@ public class Props
     public string mailContact { get; set; }
     public string mailMessage { get; set; }
     #endregion
+
+    #region PreBuilt Cart
+    public string PreBuilt_cart_Product_id { get; set; }
+    public string PreBuilt_cart_Type { get; set; }
+    public string PreBuilt_cart_Quantity { get; set; }
+    public string PreBuilt_cart_Price { get; set; }
+    #endregion
+
+    #region Product Cart
+    public string Product_cart_Product_id { get; set; }
+    public string Product_cart_Type { get; set; }
+    public string Product_cart_Quantity { get; set; }
+    public string Product_cart_Price { get; set; }
+    #endregion
+
+    #region CustomPC Cart
+    public string CustomPC_cart_Product_id { get; set; }
+    public string CustomPC_cart_Type { get; set; }
+    public string CustomPC_cart_Quantity { get; set; }
+    public string CustomPC_cart_Price { get; set; }
+    #endregion
     public Props()
 	{
 		//

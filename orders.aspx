@@ -7,7 +7,10 @@
 
         $(document).ready(function () {
 
-            $('#userTb').DataTable();
+            $('#pcPartsTb').DataTable();
+            $('#customPCTb').DataTable();
+            $('#preBuiltTb').DataTable();
+
             getData();
             var obj = function () {
                 this.demoAlert = function () {
@@ -72,6 +75,26 @@
 
             checkLogin();
         });
+        getCartData();
+        // get Cart Data
+        function getCartData() {
+            $.ajax({
+                type: "POST",
+                url: "admin/utility.aspx/getCartDataCount",
+                data: '{}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var result = JSON.parse(data.d)
+                    console.log('Cart Data');
+                    //console.log(result);
+                    $.each(result, function (i, data) {
+                        console.log(data.Cart_Data_Count);
+
+                    });
+                }
+            });
+        }
 
         // Redirect Obj
 
@@ -99,20 +122,24 @@
     </script>
 
     
+    
 
     <%--Shopping Content--%>
+    
     <section class="instagram-post-section spad">
+        <%-- PC Parts --%>
         <div class="section-title container">
-            <h5>Orders</h5>
+            <h5>PC Parts</h5>
         </div>
         <%-- List --%>
+
         <div class="container">
             <div class="row">
 
                 <div class="col-lg-7">
                     <div class="card bg-dark text-white">
                         <div class="card-body">
-                            <table id="userTb" class="table table-dark table-striped  table-responsive">
+                            <table id="pcPartsTb" class="table table-dark table-striped  ">
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
@@ -124,7 +151,7 @@
                                     </tr>
 
                                 </thead>
-                                <tbody id="userTbBody">
+                                <tbody id="pcPartsTbBody">
                                 </tbody>
 
                             </table>
@@ -135,6 +162,76 @@
             </div>
         </div>
 
+        <%-- Pre Built PC --%>
+         <div class="section-title container mt-4">
+            <h5>Pre Built PC</h5>
+        </div>
+        <%-- List --%>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-7">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <table id="preBuiltTb" class="table table-dark table-striped  ">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Product</th>
+                                        <th>Type</th>
+                                        <th>Price</th>
+                                        
+                                        <th>Delete</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody id="preBuiltTbBody">
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <%-- Custom Built PC --%>
+         <div class="section-title container mt-4">
+            <h5>Custom Built PC</h5>
+        </div>
+        <%-- List --%>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-7">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <table id="customPCTb" class="table table-dark table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Product</th>
+                                        <th>Type</th>
+                                        <th>Price</th>
+                                        
+                                        <th>Delete</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody id="customPCTbBody">
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+       
 
     </section>
 

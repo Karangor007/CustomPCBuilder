@@ -109,4 +109,24 @@ html,body{height:100%;font-family:montserrat,sans-serif;-webkit-font-smoothing:a
             .svg:hover {
                 transform: skew(-15deg);
             }
+
+            .font-lg {
+            font-size: 3rem !important;
+        }
+
+        .img-size {
+            height: 21rem !important;
+            width: 21rem !important;
+        }
+
+          .Center {
+            width:200px;
+            height:200px;
+            /*position: fixed;*/
+            background-color: blue;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -100px;
+        }
                                          

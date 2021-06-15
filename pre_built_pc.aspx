@@ -13,10 +13,7 @@
       
         
 
-        var arr = [];
-        var data = [];
-        var cartArray = [];
-        var itemArray = [];
+        
         var imgSource = 'assets/images/';
         $(document).ready(function () {
             //getItem();
@@ -83,109 +80,11 @@
 
         // Add to Cart
         function addTocart(id,type,price,brand)
-        {
-            itemArray = [
-                {
-
-                    itemId: id,
-                    itemType: type,
-                    itemPrice: price,
-                    item : brand
-                }
-            ];
-                        
-            if (typeof (Storage) !== "undefined") {
-                // Store
-                addInSession(id, type, price, brand)
-                // Retrieve
-                data = JSON.parse(sessionStorage.getItem("lastname"));
-                //alert(`Cart : ${data}`);
-                //pushItem(arr);
-            } else {
-                alert("Sorry, your browser does not support Web Storage...")
-            }
+        {                                    
+            console.log(`id : ${id} Type : ${type} Price : ${price}`)   
         }
 
-        function getItem(obj)
-        {
-            if (typeof (Storage) !== "undefined") {                
-                data = JSON.parse(sessionStorage.getItem("lastname"));
-                alert('lastname Arr :'+data);
-
-            } else {
-                alert("Sorry, your browser does not support Web Storage...")
-            }
-        }
-
-        // Add item In Session
-        function addInSession(id,type,price,brand)
-        {
-            
-            
-            check = JSON.parse(sessionStorage.getItem("lastname"));
-            if (check == null) {
-                itemArray = [
-                {
-                    itemId: id,
-                    itemType: type,
-                    itemPrice: price,
-                    item: brand
-                }
-                ];
-                console.log(`Check Is Null : ${check}`);
-                sessionStorage.setItem("lastname", JSON.stringify(itemArray));
-                check = JSON.parse(sessionStorage.getItem("lastname"));
-                cartArray = check;                
-            }
-            else {
-                //debugger;
-                console.log(`Check Is Not Null : ${check}`);
-                itemArray = JSON.parse(sessionStorage.getItem("lastname"))
-                
-                console.log(`itemArray`);
-                console.log(itemArray);
-                let tempArray = {
-                    itemId: id,
-                    itemType: type,
-                    itemPrice: price,
-                    item: brand
-                };
-                itemArray.push(tempArray)
-                cartArray = itemArray;                
-                sessionStorage.setItem("lastname", JSON.stringify(cartArray));                
-            }
-            setToCart(cartArray);
-        }
-
-        // Set To Cart
-        function setToCart(arrObj)
-        {
-            console.log(arrObj);
-            var itemCount = arrObj.length;
-            var obj = arrObj.item;
-            var cartIcon = $('#cartbadge');
-            cartIcon.text(itemCount)
-            Swal.fire({
-                icon: 'success',
-                title: 'Success..',
-                text: `You  Order has been added to your shopping cart!`,
-                
-            })
-            //console.log(cartIcon)
-            console.log('arrObj')            
-            for (let val of arrObj) {
-                console.log(val);
-            }
-        }
-        // Check Array is empty or not and push item
-        function pushItem(obj)
-        {
-            obj = JSON.parse(sessionStorage.getItem("lastname"));
-            let myArray = new Array();
-            myArray = obj;
-            console.log('Array : ' + myArray);
-
-        }
+        
         
 
         function timerAlert() {

@@ -4,21 +4,25 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <style>
+        
+    </style>
+
     <script>
 
         var imgSource = 'assets/images/';
-        
+
         $(document).ready(function () {
             //userTb
-            getRamData();
-            getProcessorData();
-            getMotherboardData();
-            getGPUData()
-            getSMPSData();
-            getCoolerData();
-            getStorageData();
-            getWifiData();
-                    
+            //getRamData();
+            //getProcessorData();
+            //getMotherboardData();
+            //getGPUData()
+            //getSMPSData();
+            //getCoolerData();
+            //getStorageData();
+            //getWifiData();
+
         });
 
         // View More RAM
@@ -74,7 +78,7 @@
                         </div>
 
                     </div>
-                  
+
                     </div>`
 
                         $("#divRam").append(demo);
@@ -94,22 +98,22 @@
             $('#divRam').empty();
             $('#viewLessRam').hide();
             $('#viewMoreRam').show();
-            
+
             getRamData();
         }
         // RAM Data
         function getRamData() {
-            
+
             $.ajax({
                 type: "POST",
                 url: "Default.aspx/getRamData",
                 data: '{}',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function (data) {                    
-                    var result = JSON.parse(data.d)                    
+                success: function (data) {
+                    var result = JSON.parse(data.d)
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -157,8 +161,7 @@
         }
 
         // Processor Data
-        function getProcessorData()
-        {
+        function getProcessorData() {
             $.ajax({
                 type: "POST",
                 url: "Default.aspx/getProcessorData",
@@ -166,11 +169,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                        
+
                         var demo = `<div>
 
 
@@ -220,8 +223,7 @@
         }
 
 
-        function viewLessProcessor()
-        {
+        function viewLessProcessor() {
             $('#divProcess').empty();
             $('#viewLessProcess').hide();
             $('#viewMoreProcess').show();
@@ -229,8 +231,7 @@
             getProcessorData();
         }
 
-        function viewMoreProcessor()
-        {
+        function viewMoreProcessor() {
             $('#divProcess').empty();
             $('#viewMoreProcess').hide();
             $('#viewLessProcess').show();
@@ -241,11 +242,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -292,8 +293,7 @@
         }
 
         // Motherboard Data
-        function getMotherboardData()
-        {
+        function getMotherboardData() {
             $.ajax({
                 type: "POST",
                 url: "Default.aspx/getMotherboardData",
@@ -301,11 +301,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -352,8 +352,7 @@
             });
         }
 
-        function viewMoreMotherBoard()
-        {
+        function viewMoreMotherBoard() {
             $('#divMBoard').empty();
             $('#viewMoreMotherBoard').hide();
             $('#viewLessMotherBoard').show();
@@ -364,11 +363,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
                     <div class="section-title ramClass">
@@ -410,8 +409,7 @@
             });
         }
 
-        function viewLessMotherBoard()
-        {
+        function viewLessMotherBoard() {
             $('#divMBoard').empty();
             $('#viewLessMotherBoard').hide();
             $('#viewMoreMotherBoard').show();
@@ -428,9 +426,9 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
                         var demo = `<div>
 
@@ -470,7 +468,7 @@
                     </div>`
 
                         $("#divGPU").append(demo);
-                        
+
 
                     });
                 }
@@ -488,11 +486,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -552,11 +550,11 @@
                 data: '{}',
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function (data) {                    
+                success: function (data) {
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -597,7 +595,7 @@
 
 
                         $("#divSMPS").append(demo);
-                        
+
 
                     });
                 }
@@ -615,11 +613,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
                     console.log(result);
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -671,7 +669,7 @@
             getSMPSData();
         }
 
-        
+
         function getCoolerData() {
             $.ajax({
                 type: "POST",
@@ -680,11 +678,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -725,7 +723,7 @@
 
 
                         $("#divCooler").append(demo);
-                    
+
                     });
                 }
             });
@@ -742,11 +740,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -850,7 +848,7 @@
                     </div>`
 
                         $("#divStorage").append(demo);
-                        
+
                     });
                 }
             });
@@ -867,11 +865,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -931,11 +929,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
                     <div class ="section-title ramClass">
@@ -974,7 +972,7 @@
                     </div>`
 
                         $("#divWifi").append(demo);
-                        
+
 
                     });
                 }
@@ -992,11 +990,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    
+
                     var result = JSON.parse(data.d)
-                    
+
                     $.each(result, function (i, data) {
-                    
+
                         var demo = `<div>
 
 
@@ -1048,208 +1046,292 @@
             getWifiData();
         }
     </script>
+    <section class="details-post-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 p-0">
+                    <div class="dp-pic">
+                        <img class="img-size" src="assets/img/built-pc.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-8 p-0">
+                    <div class="details-text">
+                        <%-- Pic Item --%>
+                        <div class="dt-item">
+                            <h5 class="font-lg">High Performance Systems, Re-imagined!</h5>
+                            <p>
+                                Build your own Custom PC, or explore our range of high end computer systems
+designed for gaming, content creation or research
+                            </p>
+                            <div>
+                                <a class="btn btn-outline-danger btn-block text-white" href="custompc.aspx">Build You Own PC Here</a>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="details-post-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 p-0">
+                    <div class="details-text">
+                        <%-- Pic Item --%>
+                        <div class="dt-item">
+                            <h5 class="font-lg">We Power Gamers, AI Labs, Filmmakers & More</h5>
+                            <p>
+                                There is only so far an off-the-shelf solution can go. Made to order and purpose built for your use case - this is what we excel at. You don't want an underpowered build leaving you with long wait times during crunch times.
+                            </p>
+                        </div>
+
+                        <div class="dt-pic-item">
+
+                            <div class="dp-text">
+                                <p>
+                                    We genuinely believe that PCs should be a pleasure to purchase and own. They should help you get your work done, and not be a pain to manage. We make it our mission to create the best PC for you to run your games and applications in a budget that suits you. Rigorous testing and an unmatched customer service are our foundational beliefs and have seen us serve customers across 50 Indian cities since 2014.
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 p-0">
+                    <div class="dp-pic">
+                        <img class="img-size" src="assets/img/gaming-pc.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="details-post-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 p-0">
+                    <div class="dp-pic">
+                        <img class="img-size" src="assets/img/cust-pc.png" alt="" />
+                    </div>
+                </div>
+
+                <div class="col-lg-8 p-0">
+                    <div class="details-text">
+                        <%-- Pic Item --%>
+                        <div class="dt-item">
+                            <h5 class="font-lg">READY, SET, BUILD!</h5>
+                            <p>
+                                Choose from our range of high performance PC’s for your gaming, content creation or research needs. Nothing quite fits? Build your very own custom machine with our Custom PC Configurator or choose a liquid cooling monster. Here at theMVP.in believe that model numbers should never hold you back - Customize everything - Build your dream PC with us today!
+                            </p>
+                        </div>
+
+                        <div class="dt-pic-item">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
     <section class="instagram-post-section spad">
 
-        <%-- RAM --%>
-        <div class="container">            
+        <%-- RAM --%>       
+        <%--<div class="container">
             <div class="row">
                 <div class="section-title">
                     <h5>RAM</h5>
                 </div>
                 <div class="col-lg-12">
                     <div id="divRam">
-
                     </div>
 
 
                     <div class="pagination-item">
-                        <div  onclick="viewMoreRam()" id="viewMoreRam"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
-                        
+                        <div onclick="viewMoreRam()" id="viewMoreRam"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+
                     </div>
-                      <div class ="pagination-item">
-                        <div  onclick="viewLessRam()" id="viewLessRam" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+                    <div class="pagination-item">
+                        <div onclick="viewLessRam()" id="viewLessRam" style='display: none;'><i class="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
         <%-- Processor --%>
-        <div class="container mt-5">              
+        <%--<div class="container mt-5">
             <div class="row">
                 <div class="section-title">
                     <h5>Processors</h5>
                 </div>
                 <div class="col-lg-12">
                     <div id="divProcess">
-
                     </div>
 
 
                     <div class="pagination-item">
-                        <div  onclick="viewMoreProcessor()" id="viewMoreProcess"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
-                        
+                        <div onclick="viewMoreProcessor()" id="viewMoreProcess"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+
                     </div>
-                      <div class ="pagination-item">
-                        <div  onclick="viewLessProcessor()" id="viewLessProcess" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+                    <div class="pagination-item">
+                        <div onclick="viewLessProcessor()" id="viewLessProcess" style='display: none;'><i class="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
         <%-- MotherBoard --%>
-        <div class="container mt-5">              
+        <%--<div class="container mt-5">
             <div class="row">
                 <div class="section-title">
                     <h5>Motherboard</h5>
                 </div>
                 <div class="col-lg-12">
                     <div id="divMBoard">
-
                     </div>
 
 
                     <div class="pagination-item">
-                        <div  onclick="viewMoreMotherBoard()" id="viewMoreMotherBoard"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
-                        
+                        <div onclick="viewMoreMotherBoard()" id="viewMoreMotherBoard"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+
                     </div>
-                      <div class ="pagination-item">
-                        <div  onclick="viewLessMotherBoard()" id="viewLessMotherBoard" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+                    <div class="pagination-item">
+                        <div onclick="viewLessMotherBoard()" id="viewLessMotherBoard" style='display: none;'><i class="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
         <%-- GPU --%>
-        <div class="container mt-5">              
+        <%--<div class="container mt-5">
             <div class="row">
                 <div class="section-title">
                     <h5>GPU</h5>
                 </div>
                 <div class="col-lg-12">
                     <div id="divGPU">
-
                     </div>
 
 
                     <div class="pagination-item">
-                        <div  onclick="viewMoreGPU()" id="viewMoreGPU"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
-                        
+                        <div onclick="viewMoreGPU()" id="viewMoreGPU"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+
                     </div>
-                      <div class ="pagination-item">
-                        <div  onclick="viewLessGPU()" id="viewLessGPU" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+                    <div class="pagination-item">
+                        <div onclick="viewLessGPU()" id="viewLessGPU" style='display: none;'><i class="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
-          <%-- SMPS --%>
-        <div class="container mt-5">              
+        <%-- SMPS --%>
+        <%--<div class="container mt-5">
             <div class="row">
                 <div class="section-title">
                     <h5>SMPS</h5>
                 </div>
                 <div class="col-lg-12">
                     <div id="divSMPS">
-
                     </div>
 
 
                     <div class="pagination-item">
-                        <div  onclick="viewMoreSMPS()" id="viewMoreSMPS"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
-                        
+                        <div onclick="viewMoreSMPS()" id="viewMoreSMPS"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+
                     </div>
-                      <div class ="pagination-item">
-                        <div  onclick="viewLessSMPS()" id="viewLessSMPS" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+                    <div class="pagination-item">
+                        <div onclick="viewLessSMPS()" id="viewLessSMPS" style='display: none;'><i class="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
-         <%-- Cooler --%>
-        <div class="container mt-5">              
+        <%-- Cooler --%>
+        <%--<div class="container mt-5">
             <div class="row">
                 <div class="section-title">
                     <h5>Coolers</h5>
                 </div>
                 <div class="col-lg-12">
                     <div id="divCooler">
-
                     </div>
 
 
                     <div class="pagination-item">
-                        <div  onclick="viewMoreCooler()" id="viewMoreCooler"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
-                        
+                        <div onclick="viewMoreCooler()" id="viewMoreCooler"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+
                     </div>
-                      <div class ="pagination-item">
-                        <div  onclick="viewLessCooler()" id="viewLessCooler" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+                    <div class="pagination-item">
+                        <div onclick="viewLessCooler()" id="viewLessCooler" style='display: none;'><i class="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
-         <%-- Storage --%>
-        <div class="container mt-5">              
+        <%-- Storage --%>
+        <%--<div class="container mt-5">
             <div class="row">
                 <div class="section-title">
                     <h5>Storage</h5>
                 </div>
                 <div class="col-lg-12">
                     <div id="divStorage">
-
                     </div>
 
 
                     <div class="pagination-item">
-                        <div  onclick="viewMoreStorage()" id="viewMoreStorage"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
-                        
+                        <div onclick="viewMoreStorage()" id="viewMoreStorage"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+
                     </div>
-                      <div class ="pagination-item">
-                        <div  onclick="viewLessStorage()" id="viewLessStorage" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+                    <div class="pagination-item">
+                        <div onclick="viewLessStorage()" id="viewLessStorage" style='display: none;'><i class="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
-          <%-- Wifi Card --%>
-        <div class="container mt-5">              
+        <%-- Wifi Card --%>
+        <%--<div class="container mt-5">
             <div class="row">
                 <div class="section-title">
                     <h5>Wifi Card</h5>
                 </div>
                 <div class="col-lg-12">
                     <div id="divWifi">
-
                     </div>
 
 
                     <div class="pagination-item">
-                        <div  onclick="viewMoreWifi()" id="viewMoreWifi"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
-                        
+                        <div onclick="viewMoreWifi()" id="viewMoreWifi"><i class="fa fa-plus"></i><span class="ml-2">View More...</span></div>
+
                     </div>
-                      <div class ="pagination-item">
-                        <div  onclick="viewLessWifi()" id="viewLessWifi" style='display:none;'><i class ="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
+                    <div class="pagination-item">
+                        <div onclick="viewLessWifi()" id="viewLessWifi" style='display: none;'><i class="fa fa-minus"></i><span class="ml-2">View Less...</span></div>
 
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
-    </section>    
+    </section>
+
 </asp:Content>
 
