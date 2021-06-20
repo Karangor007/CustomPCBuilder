@@ -43,8 +43,7 @@
         }
 
         // Set Cart Count
-        function setCart()
-        {
+        function setCart() {
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/getCartDataCount",
@@ -174,8 +173,11 @@
 
         function SignUp() {
             let checkValid = checkValidationSignUp();
-            let user = $('#txtUser').val();
-            let pass = $('#txtPass').val();
+            let user = $('#txtUser').val().trim();
+            let pass = $('#txtPass').val().trim();
+            let email = $('#txtEmail').val().trim();
+            let phone = $('#txtPhone').val().trim();
+            let address = $('#txtAddress').val().trim();
 
             let checkPass = validPassword()
             if (!checkValid) {
@@ -194,7 +196,8 @@
             }
             else {
                 debugger;
-                addUser(user, pass);
+                //addUser(user, pass);
+                addUser(user, pass, email, phone, address)
 
             }
         }
@@ -314,14 +317,14 @@
             return passFlag;
         }
 
-        function addUser(username, password) {
+        function addUser(username, password,email,phone,address) {
 
             var flag;
             var temp;
             $.ajax({
                 type: "POST",
                 url: "admin/utility.aspx/insertUserData",
-                data: '{username:"' + username + '",password:"' + password + '"}',
+                data: '{username:"' + username + '",password:"' + password + '",email : "'+email+'",phone : "'+phone+'",address : "'+address+'"}',
                 contentType: "application/json"
             }).done(function (res) {
                 let obj = JSON.parse(res.d);
@@ -386,6 +389,7 @@
                 contentType: "application/json"
             }).done(function (res) {
                 let obj = JSON.parse(res.d);
+                setCart();
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
@@ -433,20 +437,20 @@
                     <div class="col-md-12">
                         <div class="ht-widget">
                             <ul>
-                                
+
                                 <li class="signup-switch signup-open largeIconText" onclick="checkLogin()">
                                     <i class="fa fa-sign-in largeIcon"></i>Sign In
                                 </li>
                                 <li class="signup-switch signup-open largeIconText" onclick="signOut()">
                                     <i class="fa fa-sign-out largeIcon"></i>Sign Out
                                 </li>
-                                <li class="fa fa-shopping-cart largeIcon linkHover" onclick="goToOrder()">                                    
-                                   <span class="badge badge-danger" id="cartbadge">0</span>                                        
+                                <li class="fa fa-shopping-cart largeIcon linkHover" onclick="goToOrder()">
+                                    <span class="badge badge-danger" id="cartbadge">0</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -618,7 +622,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Login</h5>
+                    <h5 class="modal-title" id="modalTitle">Sign Up</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -662,6 +666,31 @@
                                 </div>
                                 <div class="col-12 col-md-9 text-danger passCheck mt-2" style="display: none">
                                     *Password Does Not Match
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="txtUserName" class=" form-control-label">Email</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="email" id="txtEmail" name="txtUserName" placeholder="Enter Email" class="form-control  validSignUp" />
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="txtUserName" class=" form-control-label">Phone No.</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="txtPhone" name="txtUserName" placeholder="Enter Phone No." class="form-control validSignUp" />
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="txtUserName" class=" form-control-label">Address</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <%--<input type="text" id="txtPhone" name="txtUserName" placeholder="Enter Phone No." class="form-control validSignUp" />--%>
+                                    <textarea id="txtAddress" name="txtUserName" placeholder="Enter Address" class="form-control validSignUp" rows="5"></textarea>
                                 </div>
                             </div>
 

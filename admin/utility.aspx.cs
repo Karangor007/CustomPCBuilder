@@ -220,7 +220,7 @@ public partial class utility : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static string insertUserData(string username, string password)
+    public static string insertUserData(string username, string password,string email,string phone,string address)
     {
         string flag = "0";
         Dictionary<string, string> row = row = new Dictionary<string, string>();
@@ -246,10 +246,10 @@ public partial class utility : System.Web.UI.Page
             obj.firstName = "";
             obj.lastName = "";
             obj.password = password;
-            obj.email = "";
-            obj.contact = "";
+            obj.email = email.Trim();
+            obj.contact = phone.Trim() ;
             //obj.dob = dob;
-            obj.address = "";
+            obj.address = address.Trim();
             obj.userType = "user";
             obj.isActive = "1";
             obj.createAt = DateTime.Now.ToString("yyyy-MM-dd");

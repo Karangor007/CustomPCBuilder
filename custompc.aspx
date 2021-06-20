@@ -327,59 +327,55 @@
     <section class="contact-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card bg-dark">
                         <div class="card-header row">
                             <div class="col-md-12">
+                                <h2 class="text-white text-center">Built Your Own PC</h2>
                                 <h3 class="text-white text-center">Select Parts</h3>
                             </div>
                         </div>
-                        <div class="card-body row" id="partsContent">
-
-                           <%-- <fieldset>
-
-                                <div class="card bg-dark text-white">
-                                    <label>
-                                        <input type="radio" name="radio-button" value="css" />
-                                        <span class="text-white">CSS-only fully stylable radio button</span>
-                                    </label>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">Platform</button>
                                 </div>
-                                <div class="card bg-dark text-white">
-                                    <label>
-                                        <input type="radio" name="radio-button" value="css" />
-                                        <span class="text-white">CSS-only fully stylable radio button</span>
-                                    </label>
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">PC Case</button>
                                 </div>
-                                <div class="card bg-dark text-white">
-                                    <label>
-                                        <input type="radio" name="radio-button" value="css" />
-                                        <span class="text-white">CSS-only fully stylable radio button</span>
-                                    </label>
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">RAM</button>
                                 </div>
-
-                            </fieldset>
-                            <div class="card-footer text-center">
-                                <img class="svg rounded" src="assets/images/icon/platform.svg" alt="Alternate Text" />
-                                <div class="col-md-12">
-                                    <span class="text-center text-white">Choose Platform</span>
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">GPU</button>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="form-group col-md-6 text-center">
-                                            <button class="btn btn-danger btn-md ">Back</button>
-                                        </div>
-                                        <div class="form-group col-md-6 text-center">
-                                            <button class="btn btn-danger btn-md ">Next</button>
-                                        </div>
-                                    </div>
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">Processor</button>
                                 </div>
-                            </div>--%>
-                            
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">Cooler</button>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">SMPS</button>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">MotherBoard</button>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <button class="btn btn-outline-danger  text-white">Storage</button>
+                                </div>
+                            </div>
+                                                      
+                        </div>
+                        <div class="card-footer">
+                            <div class="form-group">
+                                <button class="btn btn-block btn-outline-danger text-white">Proceed Your Order</button>
+                            </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="display:none;">
                     <div class="card bg-dark">
                         <div class="card-body">
                         </div>

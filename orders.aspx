@@ -139,22 +139,64 @@
                 <div class="col-lg-7">
                     <div class="card bg-dark text-white">
                         <div class="card-body">
-                            <table id="pcPartsTb" class="table table-dark table-striped  ">
+                            <table id="pcPartsTb" class="table table-dark">
                                 <thead>
-                                    <tr>
+                                    <tr class="bg-dark">
                                         <th>Sr No.</th>
                                         <th>Product</th>
                                         <th>Type</th>
+                                        <th>Quantity</th>
                                         <th>Price</th>
-
                                         <th>Delete</th>
                                     </tr>
 
                                 </thead>
                                 <tbody id="pcPartsTbBody">
+                                    <tr class="bg-dark text-white" style="background-color:black;">
+                                        <td>1</td>
+                                        <td>Clutch GM08</td>
+                                        <td>Mouse</td>
+                                        <td>2</td>
+                                        <td>1,299</td>
+                                        <td>Delete</td>
+                                    </tr>
+                                    <tr class="bg-dark text-white" style="background-color:black;">
+                                        <td>2</td>
+                                        <td>Vigor GK20 Gaming</td>
+                                        <td>KeyBoard</td>
+                                        <td>4</td>
+                                        <td>1899</td>
+                                        <td>Delete</td>
+                                    </tr>
+                                    
                                 </tbody>
 
                             </table>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-lg-5">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body row">
+                            <div class="col-md-12">
+                                <h3 class="text-white text-center">Sub Total</h3>
+                                <h4 class="text-white text-center">6,396.00</h4>
+                            </div> 
+                            <div class="col-md-12">
+                                <h3 class="text-white text-center">Shipping</h3>
+                                <h4 class="text-white text-center">800.00</h4>
+                            </div> 
+                            
+                            <div class="col-md-12">
+                                <h3 class="text-white text-center">Total</h3>
+                                <h4 class="text-white text-center">7,196</h4>
+                            </div>  
+                            <div class="col-md-12">
+                                <hr class="text-white" style="color:white !important;"/>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button class="btn btn-warning btn-block mt-4">Checkout</button>
+                            </div>    
                         </div>
                     </div>
                 </div>
@@ -193,6 +235,8 @@
                         </div>
                     </div>
                 </div>
+
+               
 
             </div>
         </div>

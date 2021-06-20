@@ -14,7 +14,6 @@
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Please Login First!'
-
                     })
                 }
 
@@ -121,6 +120,7 @@
 
                 //console.log(res);
             });
+            setCart();
         }
 
         // All Products
