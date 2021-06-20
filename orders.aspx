@@ -42,7 +42,7 @@
                         console.log(result);
                         $.each(result, function (i, data) {
                             console.log(data.clientuser);
-                            if (data.clientuser == null) {
+                            if (data.clientuser == "" || data.clientuser == null) {
                                 //alert('Please Login First');                            
                                 swalAlert();
                                 //setTimeout(function () {
@@ -121,11 +121,11 @@
 
     </script>
 
-    
-    
+
+
 
     <%--Shopping Content--%>
-    
+
     <section class="instagram-post-section spad">
         <%-- PC Parts --%>
         <div class="section-title container">
@@ -133,7 +133,7 @@
         </div>
         <%-- List --%>
 
-        <div class="container">
+        <div class="container ">
             <div class="row">
 
                 <div class="col-lg-7">
@@ -146,7 +146,7 @@
                                         <th>Product</th>
                                         <th>Type</th>
                                         <th>Price</th>
-                                        
+
                                         <th>Delete</th>
                                     </tr>
 
@@ -163,7 +163,7 @@
         </div>
 
         <%-- Pre Built PC --%>
-         <div class="section-title container mt-4">
+        <div class="section-title container mt-4">
             <h5>Pre Built PC</h5>
         </div>
         <%-- List --%>
@@ -181,7 +181,7 @@
                                         <th>Product</th>
                                         <th>Type</th>
                                         <th>Price</th>
-                                        
+
                                         <th>Delete</th>
                                     </tr>
 
@@ -198,7 +198,7 @@
         </div>
 
         <%-- Custom Built PC --%>
-         <div class="section-title container mt-4">
+        <div class="section-title container mt-4">
             <h5>Custom Built PC</h5>
         </div>
         <%-- List --%>
@@ -216,7 +216,7 @@
                                         <th>Product</th>
                                         <th>Type</th>
                                         <th>Price</th>
-                                        
+
                                         <th>Delete</th>
                                     </tr>
 
@@ -231,7 +231,7 @@
 
             </div>
         </div>
-       
+
 
     </section>
 

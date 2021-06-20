@@ -80,7 +80,7 @@
                 success: function (data) {
                     var result = JSON.parse(data.d)
                     $.each(result, function (i, data) {
-                        if (data.clientuser == null) {
+                        if (data.clientuser == "" || data.clientuser == null) {
                             showLoginModal();
                         }
                         else {
@@ -109,7 +109,7 @@
                 success: function (data) {
                     var result = JSON.parse(data.d)
                     $.each(result, function (i, data) {
-                        if (data.clientuser == null) {
+                        if (data.clientuser == "" || data.clientuser == null) {
                             showLoginModal();
                         }
                         else {

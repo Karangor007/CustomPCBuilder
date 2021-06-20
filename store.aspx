@@ -24,6 +24,7 @@
             }
 
             function checkLogin() {
+                debugger;
                 //admin/utility.aspx/
                 var demoObj = new obj();
                 $.ajax({
@@ -33,12 +34,14 @@
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     success: function (data) {
-                        //console.log(data);                    
+                        //console.log(data);        
+                        debugger;
                         var result = JSON.parse(data.d)
                         console.log(result);
                         $.each(result, function (i, data) {
                             console.log(data.clientuser);
-                            if (data.clientuser == null) {
+                            debugger;
+                            if (data.clientuser == "" || data.clientuser == null) {
                                 //alert('Please Login First');                            
                                 swalAlert();
                             }

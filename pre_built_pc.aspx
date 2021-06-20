@@ -47,7 +47,7 @@
                         console.log(result);
                         $.each(result, function (i, data) {
                             console.log(data.clientuser);
-                            if (data.clientuser == null) {
+                            if (data.clientuser == "" || data.clientuser == null) {
                                 //alert('Please Login First');                            
                                 swalAlert();
                             }
